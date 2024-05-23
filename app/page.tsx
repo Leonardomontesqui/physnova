@@ -1,12 +1,20 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-import SignIn from "./components/sign-in";
-
+import { supabaseBrowser } from "@/lib/supabase/browser";
 import NavBar from "./components/NavBar";
 
 export default function Landing() {
-  const router = useRouter();
+  const handleLoginWithOAuth = (provider: "google") => {
+    const supabase = supabaseBrowser();
+
+    supabase.auth.signInWithOAuth({
+      provider: "google",
+      options: {
+        redirectTo: window.location.origin + "/auth/callback?next=/home",
+      },
+    }); //?
+  };
+
   return (
     <main className="h-dvh w-dvh flex flex-col gap-[150px]">
       <NavBar />
@@ -19,7 +27,12 @@ export default function Landing() {
             Mastering IB Physics 5 questions at a time
           </div>
         </div>
-        <SignIn />
+        <button
+          className="border bg-[#4356ff] px-[16px] py-[8px] rounded-lg text-white"
+          onClick={() => handleLoginWithOAuth("google")}
+        >
+          Login with Google
+        </button>
       </div>
     </main>
   );
