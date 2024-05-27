@@ -4,7 +4,7 @@ import { supabaseBrowser } from "@/lib/supabase/browser";
 import NavBar from "./components/NavBar";
 
 export default function Landing() {
-  const handleLoginWithOAuth = (provider: "google") => {
+  const handleLoginWithOAuth = async (provider: "google") => {
     const supabase = supabaseBrowser();
 
     supabase.auth.signInWithOAuth({
@@ -12,7 +12,7 @@ export default function Landing() {
       options: {
         redirectTo: window.location.origin + "/auth/callback?next=/home",
       },
-    }); //?
+    });
   };
 
   return (
