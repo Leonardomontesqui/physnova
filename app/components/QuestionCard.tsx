@@ -19,7 +19,7 @@ export default function QuestionCard() {
     getNextUniqueIndex();
   }, []);
 
-  const insertGameplayData = async () => {
+  const insertGameplayData = async (isLastCorrect: boolean) => {
     const supabase = supabaseBrowser();
 
     const {data: userDataRes, error: userDataError} =
@@ -31,7 +31,7 @@ export default function QuestionCard() {
     }
 
     const {error} = await supabase.from('gameplay').insert({
-      accurate: correctAnswers,
+      accurate: correctAnswers + Number(isLastCorrect),
       name: userDataRes.user.user_metadata.name,
     });
 
@@ -52,13 +52,13 @@ export default function QuestionCard() {
 
   const handleOptionClick = async (option: any) => {
     if (option.isCorrect) {
-      setCorrectAnswers(correctAnswers + 1);
+      setCorrectAnswers((prev) => prev + 1);
     }
 
     if (currentIndexSet.length <= 5) {
       getNextUniqueIndex();
     } else {
-      insertGameplayData();
+      insertGameplayData(option.isCorrect as boolean);
       router.push('/home');
     }
   };
