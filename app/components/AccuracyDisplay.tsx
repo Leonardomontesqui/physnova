@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import RoundedContainer from "./RoundedContainer";
 import { supabaseBrowser } from "@/lib/supabase/browser";
-import { ChevronRight } from "lucide-react";
 
 export default function AccuracyDisplay() {
   interface User {
@@ -58,7 +57,7 @@ export default function AccuracyDisplay() {
   // Calculate the total accurate answers and total questions
   const totalAccurate =
     gameplayData?.reduce((sum, game) => sum + game.accurate, 0) || 0;
-  const totalQuestions = gameplayData?.length * 5 || 0;
+  const totalQuestions = (gameplayData?.length || 0) * 5;
   const totalIncorrect = totalQuestions - totalAccurate;
 
   return (
