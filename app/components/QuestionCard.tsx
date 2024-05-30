@@ -55,7 +55,7 @@ export default function QuestionCard() {
       setCorrectAnswers(correctAnswers + 1);
     }
 
-    if (currentIndexSet.length < 5) {
+    if (currentIndexSet.length <= 5) {
       getNextUniqueIndex();
     } else {
       insertGameplayData();
@@ -66,7 +66,7 @@ export default function QuestionCard() {
   return (
     <div className='h-full w-full border rounded-3xl bg-white flex flex-col px-[60px] py-[40px] justify-between'>
       <div className='flex flex-col gap-[32px]'>
-        <div className='text-[#bfbfbf]'>{currentIndexSet.length} of 5</div>
+        <div className='text-[#bfbfbf]'>{currentIndexSet.length - 1} of 5</div>
         <div className=''>{currentQuestion?.Question}</div>{' '}
       </div>
 
