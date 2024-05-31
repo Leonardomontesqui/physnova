@@ -1,58 +1,47 @@
 "use client";
 import React, { useEffect, useState } from "react"; //lets try with supabase server first
 import { supabaseBrowser } from "@/lib/supabase/browser";
+const supabase = supabaseBrowser();
+import { useRouter } from "next/navigation";
 
 export default function ProfileHeader() {
-  interface user {
-    user_metadata: {
-      picture: string;
-      name: string;
-    };
-  }
-
-  const [fetchError, setFetchError] = useState<string | null>(null);
-  const [userData, setUserData] = useState<user | null>(null);
+  const router = useRouter();
+  const [userPictureUrl, setUserPictureUrl] = useState<string>();
+  const [userName, setUserName] = useState<string>();
 
   useEffect(() => {
-    const fetchUser = async () => {
-      const supabase = supabaseBrowser();
-
+    const fetchUserInfo = async () => {
       const {
         data: { user },
-        error,
+        error: userDataError,
       } = await supabase.auth.getUser();
 
+      if (userDataError) {
+        console.error("Error in fetching user data");
+      }
+
       if (!user) {
-        window.location.href = "/";
+        router.push("/");
       }
 
-      if (error) {
-        setFetchError("Could not fetch user");
-        setUserData(null);
-        console.log(error);
-      }
-
-      if (user) {
-        setUserData(user);
-        setFetchError(null);
-        console.log("User data fetched: ", user);
-      }
+      setUserName(user?.user_metadata.name);
+      setUserPictureUrl(user?.user_metadata.picture);
+      console.log("User data fetched: ", user);
     };
 
-    fetchUser();
+    fetchUserInfo();
   }, []);
 
   return (
     <div>
-      {fetchError && <p className="text-black">{fetchError}</p>}
-      {userData && (
+      {userPictureUrl && userName && (
         <div className="flex gap-[8px] items-center">
           <img
-            src={userData.user_metadata.picture}
-            alt="Picture"
+            src={userPictureUrl}
+            alt="Profile picture"
             className="rounded-full w-[40px] h-[40px]"
           />
-          <p>{userData.user_metadata.name}</p>
+          <p>{userName}</p>
         </div>
       )}
     </div>

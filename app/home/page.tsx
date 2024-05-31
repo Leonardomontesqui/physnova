@@ -4,12 +4,14 @@ import NavBar2 from "../components/NavBar2";
 import RoundedContainer from "../components/RoundedContainer";
 import ProfileHeader from "../components/ProfileHeader.1";
 import { ChevronRight } from "lucide-react";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation"; //FROM NEXT NAVIGATION
 import AccuracyDisplay from "../components/AccuracyDisplay";
 
 export default function Home() {
+  const router = useRouter();
+
   const handlePlayClick = () => {
-    window.location.href = "/question";
+    router.push("/question");
   };
 
   return (

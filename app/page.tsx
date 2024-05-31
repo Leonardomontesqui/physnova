@@ -1,12 +1,10 @@
 "use client";
-
 import { supabaseBrowser } from "@/lib/supabase/browser";
 import NavBar from "./components/NavBar";
+const supabase = supabaseBrowser();
 
 export default function Landing() {
-  const handleLoginWithOAuth = async (provider: "google") => {
-    const supabase = supabaseBrowser();
-
+  const handleLoginWithOAuth = async () => {
     supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
@@ -23,13 +21,13 @@ export default function Landing() {
           <div className="font-semibold text-[89.76px] bg-gradient-to-r from-[#4356ff] to-[#283499] bg-clip-text text-transparent">
             PhysNova
           </div>
-          <div className="text-[37.9px]">
+          <div className="text-3xl">
             Mastering IB Physics 5 questions at a time
           </div>
         </div>
         <button
           className="border bg-[#4356ff] px-[16px] py-[8px] rounded-lg text-white"
-          onClick={() => handleLoginWithOAuth("google")}
+          onClick={() => handleLoginWithOAuth()}
         >
           Login with Google
         </button>
