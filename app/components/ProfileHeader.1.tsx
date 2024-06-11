@@ -26,7 +26,7 @@ export default function ProfileHeader() {
 
       setUserName(user?.user_metadata.name);
       setUserPictureUrl(user?.user_metadata.picture);
-      console.log("User data fetched: ", user);
+      // console.log("User data fetched: ", user);
     };
 
     fetchUserInfo();

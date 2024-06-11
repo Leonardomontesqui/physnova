@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import RoundedContainer from "./RoundedContainer";
 import { supabaseBrowser } from "@/lib/supabase/browser";
+import { CircleCheck, CircleX, MonitorDot, Target } from "lucide-react";
 
 interface Gameplay {
   accurate: number;
@@ -12,8 +13,8 @@ export default function AccuracyDisplay() {
   const [gameplayData, setGameplayData] = useState<Gameplay[]>([]);
   const totalAccurate =
     gameplayData?.reduce((sum, game) => sum + game.accurate, 0) || 0;
-  const totalQuestions = gameplayData?.length * 5;
-  const totalIncorrect = totalQuestions - totalAccurate;
+  const GamesPlayed = gameplayData?.length;
+  const totalIncorrect = GamesPlayed * 5 - totalAccurate;
 
   useEffect(() => {
     fetchLatestAccuracy();
@@ -37,31 +38,44 @@ export default function AccuracyDisplay() {
       console.error("Error fetching gameplay data");
       return;
     }
-
+    // console.log("Check out", gameplayDataRes);
     setGameplayData(gameplayDataRes);
   };
 
   return (
-    <div className="flex flex-col gap-[16px]">
-      <div className="flex items-center gap-[8px]">
-        <div className="w-full h-[1px] bg-[#dedede]" />
-        <p className="">Latest</p>
-        <div className="w-full h-[1px] bg-[#dedede]" />
-      </div>
-      <RoundedContainer>
-        Accuracy:{" "}
-        {gameplayData && gameplayData[gameplayData.length - 1]?.accurate}/5
+    <div className="flex flex-col gap-[16px] h-full items-center">
+      <RoundedContainer className="bg-[#4356ff] border border-[#d0d4fe] flex items-center">
+        <Target size={40} strokeWidth={1.5} className="text-white" />
+        <div className="flex flex-col">
+          <div className="text-white text-opacity-80">Accuracy</div>
+          <div className="text-white text-[32px]">
+            {gameplayData && gameplayData[gameplayData.length - 1]?.accurate}
+            /5
+          </div>
+        </div>
       </RoundedContainer>
-      <div className="flex items-center gap-[8px]">
-        <div className="w-full h-[1px] bg-[#dedede]" />
-        <p className="">Overall</p>
-        <div className="w-full h-[1px] bg-[#dedede]" />
-      </div>
-      <RoundedContainer>Questions Seen: {totalQuestions}</RoundedContainer>
+      <div className="w-full h-[1px] bg-[#dedede]" />
+      <RoundedContainer className="flex items-center">
+        <MonitorDot size={35} strokeWidth={1.5} className="text-[#dedede]" />
+        <div className="flex flex-col">
+          <div className="text-[#afadad]">Games Played</div>
+          <div className="text-[24px]">{GamesPlayed}</div>
+        </div>
+      </RoundedContainer>
       <div className="flex gap-[16px]">
-        <RoundedContainer>Answered Correctly: {totalAccurate}</RoundedContainer>
         <RoundedContainer className="flex items-center">
-          Answered Incorrectly: {totalIncorrect}
+          <CircleCheck size={35} strokeWidth={1.5} className="text-[#dedede]" />
+          <div className="flex flex-col">
+            <div className="text-[#afadad]">Correctly Answered</div>
+            <div className="text-[24px]">{totalAccurate}</div>
+          </div>
+        </RoundedContainer>
+        <RoundedContainer className="flex items-center">
+          <CircleX size={35} strokeWidth={1.5} className="text-[#dedede]" />
+          <div className="flex flex-col">
+            <div className="text-[#afadad]">Incorrectly Answered</div>
+            <div className="text-[24px]">{totalIncorrect}</div>
+          </div>
         </RoundedContainer>
       </div>
     </div>

@@ -4,11 +4,17 @@ import { questionList } from "../questionList";
 import { supabaseBrowser } from "@/lib/supabase/browser";
 import { User } from "@supabase/supabase-js";
 import { useRouter } from "next/navigation";
+import ReactMarkdown from "react-markdown";
+import rehypeKatex from "rehype-katex";
+import remarkMath from "remark-math";
+import rehypeRaw from "rehype-raw";
+import remarkGfm from "remark-gfm";
+import "katex/dist/katex.min.css";
 const supabase = supabaseBrowser(); // this makes it a variable for all
 
 export default function QuestionCard() {
   //React Hooks and variables at the top
-  const [currentIndexSet, setCurrentIndexSet] = useState<number[]>([]); // Track used question indices using a Set
+  const [currentIndexSet, setCurrentIndexSet] = useState<number[]>([]); // Track used question indices
   const [currentIndex, setCurrentIndex] = useState<number | null>(null); // Current question index
   const [correctAnswers, setCorrectAnswers] = useState<number>(0); // Counter for correct answers
 
@@ -22,6 +28,7 @@ export default function QuestionCard() {
   }, []);
 
   const insertGamePlayData = async (isLastCorrect: boolean) => {
+    //function when game finishes
     const { data: userData, error: userDataError } =
       await supabase.auth.getUser();
     if (!userData || userDataError) {
@@ -34,6 +41,7 @@ export default function QuestionCard() {
       .insert({
         accurate: correctAnswers + Number(isLastCorrect),
         name: userData.user.user_metadata.name,
+        question_index_list: currentIndexSet,
       });
 
     if (gameplayInsertError) {
@@ -44,6 +52,7 @@ export default function QuestionCard() {
   const getNextUniqueIndex = () => {
     let newIndex;
     do {
+      // newIndex = questionList.length - 1; // for testing purposes!!!!!!!!!!
       newIndex = Math.floor(Math.random() * questionList.length);
     } while (currentIndexSet.includes(newIndex));
 
@@ -61,28 +70,52 @@ export default function QuestionCard() {
       getNextUniqueIndex();
     } else {
       insertGamePlayData(option.isCorrect as boolean);
+
       router.push("/home");
     }
   };
 
   return (
-    <div className="h-full w-full border rounded-3xl bg-white flex flex-col px-[60px] py-[40px] justify-between">
-      <div className="flex flex-col gap-[32px]">
-        <div className="text-[#bfbfbf]">{currentIndexSet.length - 1} of 5</div>
-        <div className="">{currentQuestion?.Question}</div>{" "}
+    <div className="min-h-full h-full w-full border rounded-3xl bg-white flex flex-col px-[64px] py-[20px] gap-[16px]">
+      <div className="text-[#bfbfbf] text-[14px]">
+        {currentIndexSet.length - 1} of 5
       </div>
+      <div className="flex flex-col gap-[16px] h-full">
+        <div>
+          {currentQuestion?.Question && (
+            <ReactMarkdown
+              children={currentQuestion.Question}
+              remarkPlugins={[remarkMath, remarkGfm]}
+              rehypePlugins={[rehypeKatex, rehypeRaw]}
+            />
+          )}
+        </div>
 
-      <div className="flex flex-col gap-[8px]">
+        {currentQuestion?.Image && (
+          <img
+            className="mx-auto max-h-[200px]"
+            src={currentQuestion.Image}
+            alt="Image Related to Question"
+          />
+        )}
+      </div>
+      <div className="flex flex-col gap-[8px] ">
         {currentQuestion?.Options &&
-          currentQuestion?.Options.map((option) => (
-            <button
-              key={option.text}
-              className="border rounded-lg px-[16px] py-[8px] text-left"
-              onClick={() => handleOptionClick(option)} // Pass the option object
-            >
-              {option.text}
-            </button>
-          ))}
+          currentQuestion?.Options.slice()
+            .sort(() => Math.random() - 0.5)
+            .map((option) => (
+              <button
+                key={option.text}
+                className="border rounded-lg px-[16px] py-[8px] text-left hover:bg-[#f7f7f7] after:bg-[#4356ff]"
+                onClick={() => handleOptionClick(option)} // Pass the option object
+              >
+                <ReactMarkdown
+                  children={option.text}
+                  remarkPlugins={[remarkMath, remarkGfm]}
+                  rehypePlugins={[rehypeKatex, rehypeRaw]}
+                />
+              </button>
+            ))}
       </div>
     </div>
   );
