@@ -7,12 +7,11 @@ import { useRouter } from "next/navigation";
 
 const supabase = supabaseBrowser();
 
-export default function question() {
+export default function Question() {
+  const router = useRouter();
   useEffect(() => {
     verifyUser();
   }, []);
-
-  const router = useRouter();
 
   const verifyUser = async () => {
     const { data: userData, error: userDataError } =
