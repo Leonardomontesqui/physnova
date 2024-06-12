@@ -2,7 +2,6 @@
 import React, { useState } from "react";
 import NavBar2 from "../components/NavBar2";
 import RoundedContainer from "../components/RoundedContainer";
-import ProfileHeader from "../components/ProfileHeader.1";
 import { useRouter } from "next/navigation"; //FROM NEXT NAVIGATION
 import AccuracyDisplay from "../components/AccuracyDisplay";
 import QuestionCard from "../components/QuestionCard";

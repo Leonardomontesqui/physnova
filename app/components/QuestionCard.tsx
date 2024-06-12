@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from "react";
 import { questionList } from "../questionList";
 import { supabaseBrowser } from "@/lib/supabase/browser";
-import { User } from "@supabase/supabase-js";
 import { useRouter } from "next/navigation";
 import ReactMarkdown from "react-markdown";
 import rehypeKatex from "rehype-katex";
@@ -10,27 +9,57 @@ import remarkMath from "remark-math";
 import rehypeRaw from "rehype-raw";
 import remarkGfm from "remark-gfm";
 import "katex/dist/katex.min.css";
+
 const supabase = supabaseBrowser(); // this makes it a variable for all
 
+// Fisher-Yates Shuffle Algorithm
+const shuffleArray = (array: number[]) => {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+};
+
 export default function QuestionCard() {
-  //React Hooks and variables at the top
-  const [currentIndexSet, setCurrentIndexSet] = useState<number[]>([]); // Track used question indices
-  const [currentIndex, setCurrentIndex] = useState<number | null>(null); // Current question index
-  const [correctAnswers, setCorrectAnswers] = useState<number>(0); // Counter for correct answers
+  const [questionIndexSet, setQuestionIndexSet] = useState<number[]>([]);
+  const [currentIndex, setCurrentIndex] = useState<number | null>(null);
+  const [correctAnswers, setCorrectAnswers] = useState<number>(0);
+  const [optionClickedIndex, setOptionClickedIndex] = useState<number[]>([]);
+  const [shuffledOptionIndices, setShuffledOptionIndices] = useState<number[]>(
+    []
+  );
 
   const currentQuestion =
     currentIndex !== null ? questionList[currentIndex] : null;
   const router = useRouter();
 
   useEffect(() => {
-    // Get index on mount
     getNextUniqueIndex();
   }, []);
 
-  const insertGamePlayData = async (isLastCorrect: boolean) => {
-    //function when game finishes
+  useEffect(() => {
+    if (currentQuestion?.Options) {
+      setShuffledOptionIndices(shuffleArray([0, 1, 2, 3]));
+    }
+  }, [currentQuestion]);
+
+  const getNextUniqueIndex = () => {
+    let newIndex;
+    do {
+      newIndex = Math.floor(Math.random() * questionList.length);
+    } while (questionIndexSet.includes(newIndex));
+
+    setQuestionIndexSet((prev) => [...prev, newIndex]);
+    setCurrentIndex(newIndex);
+  };
+
+  const insertGamePlayData = async (index: number, isLastCorrect: boolean) => {
+    let updatedIndexSelect = optionClickedIndex;
+    updatedIndexSelect.push(index);
     const { data: userData, error: userDataError } =
       await supabase.auth.getUser();
+
     if (!userData || userDataError) {
       console.error("Error fetching user data");
       return;
@@ -41,7 +70,8 @@ export default function QuestionCard() {
       .insert({
         accurate: correctAnswers + Number(isLastCorrect),
         name: userData.user.user_metadata.name,
-        question_index_list: currentIndexSet,
+        question_index_list: questionIndexSet,
+        option_index_list: updatedIndexSelect,
       });
 
     if (gameplayInsertError) {
@@ -49,28 +79,18 @@ export default function QuestionCard() {
     }
   };
 
-  const getNextUniqueIndex = () => {
-    let newIndex;
-    do {
-      // newIndex = questionList.length - 1; // for testing purposes!!!!!!!!!!
-      newIndex = Math.floor(Math.random() * questionList.length);
-    } while (currentIndexSet.includes(newIndex));
+  const handleOptionClick = async (index: number, option: any) => {
+    // console.log("Index clicked: ", index);
+    setOptionClickedIndex((prev) => [...prev, index]);
 
-    setCurrentIndexSet((prev) => [...prev, newIndex]);
-    setCurrentIndex(newIndex);
-  };
-
-  const handleOptionClick = async (option: any) => {
-    // Pass the clicked option object
     if (option.isCorrect) {
       setCorrectAnswers(correctAnswers + 1);
     }
 
-    if (currentIndexSet.length <= 5) {
+    if (questionIndexSet.length <= 5) {
       getNextUniqueIndex();
     } else {
-      insertGamePlayData(option.isCorrect as boolean);
-
+      insertGamePlayData(index, option.isCorrect);
       router.push("/home");
     }
   };
@@ -78,7 +98,7 @@ export default function QuestionCard() {
   return (
     <div className="min-h-full h-full w-full border rounded-3xl bg-white flex flex-col px-[64px] py-[20px] gap-[16px]">
       <div className="text-[#bfbfbf] text-[14px]">
-        {currentIndexSet.length - 1} of 5
+        {questionIndexSet.length - 1} of 5
       </div>
       <div className="flex flex-col gap-[16px] h-full">
         <div>
@@ -99,15 +119,15 @@ export default function QuestionCard() {
           />
         )}
       </div>
-      <div className="flex flex-col gap-[8px] ">
+      <div className="flex flex-col gap-[8px]">
         {currentQuestion?.Options &&
-          currentQuestion?.Options.slice()
-            .sort(() => Math.random() - 0.5)
-            .map((option) => (
+          shuffledOptionIndices.map((shuffledIndex) => {
+            const option = currentQuestion.Options[shuffledIndex];
+            return (
               <button
-                key={option.text}
+                key={shuffledIndex}
                 className="border rounded-lg px-[16px] py-[8px] text-left hover:bg-[#f7f7f7] after:bg-[#4356ff]"
-                onClick={() => handleOptionClick(option)} // Pass the option object
+                onClick={() => handleOptionClick(shuffledIndex, option)}
               >
                 <ReactMarkdown
                   children={option.text}
@@ -115,7 +135,8 @@ export default function QuestionCard() {
                   rehypePlugins={[rehypeKatex, rehypeRaw]}
                 />
               </button>
-            ))}
+            );
+          })}
       </div>
     </div>
   );

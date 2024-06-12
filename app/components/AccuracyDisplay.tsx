@@ -54,7 +54,7 @@ export default function AccuracyDisplay() {
           </div>
         </div>
       </RoundedContainer>
-      <div className="w-full h-[1px] bg-[#dedede]" />
+      <div className="font-medium">Overall</div>
       <RoundedContainer className="flex items-center">
         <MonitorDot size={35} strokeWidth={1.5} className="text-[#dedede]" />
         <div className="flex flex-col">

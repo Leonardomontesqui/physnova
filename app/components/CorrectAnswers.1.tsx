@@ -19,6 +19,7 @@ export default function CorrectAnswers() {
   const [indexSet, setIndexSet] = useState<number[]>([]);
   const [currentIndex, setCurrentIndex] = useState<number>(1);
   const [currentQuestion, setCurrentQuestion] = useState<any>();
+  const [clickedOptionList, setClickedOptionList] = useState<number[]>([]);
 
   useEffect(() => {
     fetchQuestionIndex();
@@ -26,10 +27,7 @@ export default function CorrectAnswers() {
 
   useEffect(() => {
     if (indexSet.length > 0) {
-      setCurrentIndex(1);
-      // console.log("First Index: ", currentIndex);
       setCurrentQuestion(questionList[indexSet[1]]);
-      // console.log("Updated indexSet: ", indexSet);
     }
   }, [indexSet]);
 
@@ -50,14 +48,23 @@ export default function CorrectAnswers() {
     if (!gameplayDataRes || gameplayDataError) {
       console.error("Error fetching gameplay data");
       return;
+    } else {
+      const latestGameData = gameplayDataRes[gameplayDataRes.length - 1];
+      setIndexSet(latestGameData.question_index_list);
     }
 
-    const latestGameData = gameplayDataRes[gameplayDataRes.length - 1];
+    //latest option index data
+    const { data: optionIndex, error: optionIndexError } = await supabase
+      .from("gameplay")
+      .select("option_index_list")
+      .eq("user_id", userDataRes.user.id);
 
-    if (latestGameData && latestGameData.question_index_list) {
-      setIndexSet(latestGameData.question_index_list);
+    if (!optionIndex || optionIndexError) {
+      console.error("Error fetching option index data");
+      return;
     } else {
-      // console.log("No question index list found");
+      const latestOptionData = optionIndex[optionIndex.length - 1];
+      setClickedOptionList(latestOptionData.option_index_list);
     }
   };
 
@@ -74,6 +81,19 @@ export default function CorrectAnswers() {
       const newIndex = currentIndex - 1;
       setCurrentIndex(newIndex);
       setCurrentQuestion(questionList[indexSet[newIndex]]);
+    }
+  };
+
+  const getOptionColor = (index: number, isCorrect: boolean) => {
+    if (index == clickedOptionList[currentIndex - 1]) {
+      return isCorrect
+        ? "border-[#d2e9d8] bg-[#ecf8ef]"
+        : "border-[#e7cccc] bg-[#fde2e2]";
+    }
+    if (isCorrect) {
+      return "border-[#d2e9d8] bg-[#ecf8ef]";
+    } else {
+      return "border-[#e0e0e0]";
     }
   };
 
@@ -105,31 +125,21 @@ export default function CorrectAnswers() {
         </div>
         <div className="flex flex-col gap-[8px] ">
           {currentQuestion?.Options &&
-            currentQuestion?.Options.map((option: option) =>
-              option.isCorrect ? (
-                <div
-                  key={option.text}
-                  className="border bg-[#ecf8ef] border-[#d2e9d8] rounded-lg px-[16px] py-[8px] text-left"
-                >
-                  <ReactMarkdown
-                    children={option.text}
-                    remarkPlugins={[remarkMath, remarkGfm]}
-                    rehypePlugins={[rehypeKatex, rehypeRaw]}
-                  />
-                </div>
-              ) : (
-                <div
-                  key={option.text}
-                  className="border rounded-lg px-[16px] py-[8px] text-left"
-                >
-                  <ReactMarkdown
-                    children={option.text}
-                    remarkPlugins={[remarkMath, remarkGfm]}
-                    rehypePlugins={[rehypeKatex, rehypeRaw]}
-                  />
-                </div>
-              )
-            )}
+            currentQuestion?.Options.map((option: option, index: number) => (
+              <div
+                key={option.text}
+                className={`border rounded-lg px-[16px] py-[8px] text-left ${getOptionColor(
+                  index,
+                  option.isCorrect
+                )}`}
+              >
+                <ReactMarkdown
+                  children={option.text}
+                  remarkPlugins={[remarkMath, remarkGfm]}
+                  rehypePlugins={[rehypeKatex, rehypeRaw]}
+                />
+              </div>
+            ))}
         </div>
       </div>
       <div className="flex justify-between w-full">
