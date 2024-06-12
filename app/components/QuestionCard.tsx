@@ -104,10 +104,11 @@ export default function QuestionCard() {
         <div>
           {currentQuestion?.Question && (
             <ReactMarkdown
-              children={currentQuestion.Question}
               remarkPlugins={[remarkMath, remarkGfm]}
               rehypePlugins={[rehypeKatex, rehypeRaw]}
-            />
+            >
+              {currentQuestion.Question}
+            </ReactMarkdown>
           )}
         </div>
 
@@ -130,10 +131,11 @@ export default function QuestionCard() {
                 onClick={() => handleOptionClick(shuffledIndex, option)}
               >
                 <ReactMarkdown
-                  children={option.text}
                   remarkPlugins={[remarkMath, remarkGfm]}
                   rehypePlugins={[rehypeKatex, rehypeRaw]}
-                />
+                >
+                  {option.text}
+                </ReactMarkdown>
               </button>
             );
           })}

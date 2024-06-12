@@ -107,10 +107,11 @@ export default function CorrectAnswers() {
             {currentQuestion?.Question && (
               <ReactMarkdown
                 className="text-[14px]"
-                children={currentQuestion.Question}
                 remarkPlugins={[remarkMath, remarkGfm]}
                 rehypePlugins={[rehypeKatex, rehypeRaw]}
-              />
+              >
+                {currentQuestion.Question}
+              </ReactMarkdown>
             )}
           </div>
           <div className="max-h-[140px]">
@@ -134,10 +135,11 @@ export default function CorrectAnswers() {
                 )}`}
               >
                 <ReactMarkdown
-                  children={option.text}
                   remarkPlugins={[remarkMath, remarkGfm]}
                   rehypePlugins={[rehypeKatex, rehypeRaw]}
-                />
+                >
+                  {option.text}
+                </ReactMarkdown>
               </div>
             ))}
         </div>
