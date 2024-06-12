@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import RoundedContainer from "./RoundedContainer";
 import { supabaseBrowser } from "@/lib/supabase/browser";
 import { CircleCheck, CircleX, MonitorDot, Target } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 interface Gameplay {
   accurate: number;
@@ -15,6 +16,7 @@ export default function AccuracyDisplay() {
     gameplayData?.reduce((sum, game) => sum + game.accurate, 0) || 0;
   const GamesPlayed = gameplayData?.length;
   const totalIncorrect = GamesPlayed * 5 - totalAccurate;
+  const router = useRouter();
 
   useEffect(() => {
     fetchLatestAccuracy();
@@ -25,7 +27,8 @@ export default function AccuracyDisplay() {
       await supabase.auth.getUser();
 
     if (!userDataRes || userDataError) {
-      console.error("Error fetching user data");
+      console.error("Error fetching user data or No user data was retrieved");
+      router.push("/");
       return;
     }
 

@@ -8,7 +8,7 @@ export default function Landing() {
     supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
-        redirectTo: "/auth/callback?next=/home",
+        redirectTo: window.location.origin + "/auth/callback?next=/home",
       },
     });
   };

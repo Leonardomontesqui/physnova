@@ -9,7 +9,7 @@ export default function SignOut() {
 
     const { error } = await supabase.auth.signOut();
 
-    window.location.href = "/"; //this used to be window.location.origin
+    window.location.href = window.location.origin;
   };
 
   return (

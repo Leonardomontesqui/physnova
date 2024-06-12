@@ -1,8 +1,29 @@
-import React from "react";
+"use client";
+import React, { useEffect } from "react";
 import NavBar from "../components/NavBar3";
 import QuestionCard from "../components/QuestionCard";
+import { supabaseBrowser } from "@/lib/supabase/browser";
+import { useRouter } from "next/navigation";
+
+const supabase = supabaseBrowser();
 
 export default function question() {
+  useEffect(() => {
+    verifyUser();
+  }, []);
+
+  const router = useRouter();
+
+  const verifyUser = async () => {
+    const { data: userData, error: userDataError } =
+      await supabase.auth.getUser();
+
+    if (!userData || userDataError) {
+      console.error("Error fetching user data");
+      router.push("/");
+      return;
+    }
+  };
   return (
     <main className="h-dvh w-dvw flex flex-col">
       <NavBar />
