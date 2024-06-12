@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from "react";
-import { questionList } from "../questionList";
-import ReactMarkdown from "react-markdown";
-import remarkMath from "remark-math";
-import remarkGfm from "remark-gfm";
-import rehypeKatex from "rehype-katex";
-import rehypeRaw from "rehype-raw";
-import "katex/dist/katex.min.css";
-import { supabaseBrowser } from "@/lib/supabase/browser";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import React, {useEffect, useState} from 'react';
+import {questionList} from '../questionList';
+import ReactMarkdown from 'react-markdown';
+import remarkMath from 'remark-math';
+import remarkGfm from 'remark-gfm';
+import rehypeKatex from 'rehype-katex';
+import rehypeRaw from 'rehype-raw';
+import 'katex/dist/katex.min.css';
+import {supabaseBrowser} from '@/lib/supabase/browser';
+import {ChevronLeft, ChevronRight} from 'lucide-react';
 
 const supabase = supabaseBrowser();
 
@@ -32,21 +32,21 @@ export default function CorrectAnswers() {
   }, [indexSet]);
 
   const fetchQuestionIndex = async () => {
-    const { data: userDataRes, error: userDataError } =
+    const {data: userDataRes, error: userDataError} =
       await supabase.auth.getUser();
 
     if (!userDataRes || userDataError) {
-      console.error("Error fetching user data");
+      console.error('Error fetching user data');
       return;
     }
 
-    const { data: gameplayDataRes, error: gameplayDataError } = await supabase
-      .from("gameplay")
-      .select("question_index_list")
-      .eq("user_id", userDataRes.user.id);
+    const {data: gameplayDataRes, error: gameplayDataError} = await supabase
+      .from('gameplay')
+      .select('question_index_list')
+      .eq('user_id', userDataRes.user.id);
 
     if (!gameplayDataRes || gameplayDataError) {
-      console.error("Error fetching gameplay data");
+      console.error('Error fetching gameplay data');
       return;
     } else {
       const latestGameData = gameplayDataRes[gameplayDataRes.length - 1];
@@ -54,13 +54,13 @@ export default function CorrectAnswers() {
     }
 
     //latest option index data
-    const { data: optionIndex, error: optionIndexError } = await supabase
-      .from("gameplay")
-      .select("option_index_list")
-      .eq("user_id", userDataRes.user.id);
+    const {data: optionIndex, error: optionIndexError} = await supabase
+      .from('gameplay')
+      .select('option_index_list')
+      .eq('user_id', userDataRes.user.id);
 
     if (!optionIndex || optionIndexError) {
-      console.error("Error fetching option index data");
+      console.error('Error fetching option index data');
       return;
     } else {
       const latestOptionData = optionIndex[optionIndex.length - 1];
@@ -87,26 +87,26 @@ export default function CorrectAnswers() {
   const getOptionColor = (index: number, isCorrect: boolean) => {
     if (index == clickedOptionList[currentIndex - 1]) {
       return isCorrect
-        ? "border-[#d2e9d8] bg-[#ecf8ef]"
-        : "border-[#e7cccc] bg-[#fde2e2]";
+        ? 'border-[#d2e9d8] bg-[#ecf8ef]'
+        : 'border-[#e7cccc] bg-[#fde2e2]';
     }
     if (isCorrect) {
-      return "border-[#d2e9d8] bg-[#ecf8ef]";
+      return 'border-[#d2e9d8] bg-[#ecf8ef]';
     } else {
-      return "border-[#e0e0e0]";
+      return 'border-[#e0e0e0]';
     }
   };
 
   return (
-    <div className="w-full h-full min-h-0 bg-white rounded-3xl border border-[#d9d9d9] p-[24px] flex flex-col items-center gap-[8px] basis-2/3">
-      <div className="font-medium">Answers</div>
-      <div className="h-full min-h-0 w-full border rounded-3xl bg-white flex flex-col px-[32px] py-[16px] gap-[16px]">
-        <div className="text-[#bfbfbf] text-[14px]">{currentIndex} of 5</div>
-        <div className="flex min-h-0 h-full flex-col gap-[8px] min-h-0 overflow-y-scroll no-scrollbar">
+    <div className='w-full h-full min-h-0 bg-white rounded-3xl border border-[#d9d9d9] p-[24px] flex flex-col items-center gap-[8px] basis-2/3'>
+      <div className='font-medium'>Answers</div>
+      <div className='h-full min-h-0 w-full border rounded-3xl bg-white flex flex-col px-[32px] py-[16px] gap-[16px]'>
+        <div className='text-[#bfbfbf] text-[14px]'>{currentIndex} of 5</div>
+        <div className='flex min-h-0 h-full flex-col gap-[8px] min-h-0 overflow-y-scroll no-scrollbar'>
           <div>
             {currentQuestion?.Question && (
               <ReactMarkdown
-                className="text-[14px]"
+                className='text-[14px]'
                 remarkPlugins={[remarkMath, remarkGfm]}
                 rehypePlugins={[rehypeKatex, rehypeRaw]}
               >
@@ -114,17 +114,17 @@ export default function CorrectAnswers() {
               </ReactMarkdown>
             )}
           </div>
-          <div className="max-h-[140px]">
+          <div className='max-h-[140px]'>
             {currentQuestion?.Image && (
               <img
-                className="mx-auto h-[100%]"
+                className='mx-auto h-[100%]'
                 src={currentQuestion.Image}
-                alt="Image Related to Question"
+                alt='Image Related to Question'
               />
             )}
           </div>
         </div>
-        <div className="flex flex-col gap-[8px] ">
+        <div className='flex flex-col gap-[8px] '>
           {currentQuestion?.Options &&
             currentQuestion?.Options.map((option: option, index: number) => (
               <div
@@ -144,15 +144,15 @@ export default function CorrectAnswers() {
             ))}
         </div>
       </div>
-      <div className="flex justify-between w-full">
+      <div className='flex justify-between w-full'>
         <button
-          className="border border-[#d0cece] mx-2 rounded px-[2px] py-[2px]"
+          className='border border-[#d0cece] mx-2 rounded px-[2px] py-[2px]'
           onClick={() => handlePrevClick()}
         >
           <ChevronLeft size={20} />
         </button>
         <button
-          className="border border-[#d0cece] mx-2 rounded px-[2px] py-[2px]"
+          className='border border-[#d0cece] mx-2 rounded px-[2px] py-[2px]'
           onClick={() => handleNextClick()}
         >
           <ChevronRight size={20} />
