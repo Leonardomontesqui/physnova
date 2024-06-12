@@ -1,10 +1,11 @@
 'use client';
-
-import React from 'react';
+import React, {useState} from 'react';
 import NavBar2 from '../components/NavBar2';
-import ProfileHeader from '../components/ProfileHeader.1';
+import RoundedContainer from '../components/RoundedContainer';
+import {useRouter} from 'next/navigation'; //FROM NEXT NAVIGATION
 import AccuracyDisplay from '../components/AccuracyDisplay';
-import {useRouter} from 'next/navigation';
+import QuestionCard from '../components/QuestionCard';
+import CorrectAnswers from '../components/CorrectAnswers.1';
 
 export default function Home() {
   const router = useRouter();
@@ -13,20 +14,23 @@ export default function Home() {
     router.push('/question');
   };
 
+  const [currentIndex, setCurrentIndex] = useState<number>(1);
+
   return (
-    <main className='flex flex-col w-dvh h-dvh'>
+    <main className='flex flex-col w-dvh h-screen'>
       <NavBar2 />
-      <div className='border h-full bg-[#f6f7fb] flex px-[80px] py-[32px] gap-[32px]'>
-        <div className='w-full h-full bg-white rounded-3xl border border-[#d9d9d9] p-[40px] flex flex-col justify-between'>
-          <ProfileHeader />
+      <div className='border min-h-0 h-full bg-[#f6f7fb] flex px-[200px] py-[32px] gap-[32px]'>
+        <div className='w-full h-full bg-white rounded-3xl border border-[#d9d9d9] p-[24px] flex flex-col items-center gap-[16px] basis-1/3'>
+          <div className='font-medium'>Gameplay</div>
           <AccuracyDisplay />
           <button
-            className='px-[16px] py-[8px] bg-[#4356ff] rounded-xl border border-[#d0d4fe] self-center text-white'
+            className='px-[16px] py-[8px] bg-white rounded-xl border-2 border-[#4356ff] self-center text-[#4356ff] text-[20px]'
             onClick={handlePlayClick}
           >
             Play
           </button>
         </div>
+        <CorrectAnswers />
       </div>
     </main>
   );

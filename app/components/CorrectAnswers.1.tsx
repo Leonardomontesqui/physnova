@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {QUESTION_LIST} from '../../lib/constants';
+import {questionList} from '../questionList';
 import ReactMarkdown from 'react-markdown';
 import remarkMath from 'remark-math';
 import remarkGfm from 'remark-gfm';
@@ -26,8 +26,8 @@ export default function CorrectAnswers() {
   }, []);
 
   useEffect(() => {
-    if (indexSet?.length > 0) {
-      setCurrentQuestion(QUESTION_LIST[indexSet[1]]);
+    if (indexSet.length > 0) {
+      setCurrentQuestion(questionList[indexSet[1]]);
     }
   }, [indexSet]);
 
@@ -72,7 +72,7 @@ export default function CorrectAnswers() {
     if (currentIndex < 5) {
       const newIndex = currentIndex + 1;
       setCurrentIndex(newIndex);
-      setCurrentQuestion(QUESTION_LIST[indexSet[newIndex]]);
+      setCurrentQuestion(questionList[indexSet[newIndex]]);
     }
   };
 
@@ -80,7 +80,7 @@ export default function CorrectAnswers() {
     if (currentIndex > 1) {
       const newIndex = currentIndex - 1;
       setCurrentIndex(newIndex);
-      setCurrentQuestion(QUESTION_LIST[indexSet[newIndex]]);
+      setCurrentQuestion(questionList[indexSet[newIndex]]);
     }
   };
 
