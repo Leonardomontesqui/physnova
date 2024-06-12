@@ -1,14 +1,14 @@
-"use client";
-import React, { useState, useEffect } from "react";
-import { questionList } from "../questionList";
-import { supabaseBrowser } from "@/lib/supabase/browser";
-import { useRouter } from "next/navigation";
-import ReactMarkdown from "react-markdown";
-import rehypeKatex from "rehype-katex";
-import remarkMath from "remark-math";
-import rehypeRaw from "rehype-raw";
-import remarkGfm from "remark-gfm";
-import "katex/dist/katex.min.css";
+'use client';
+import React, {useState, useEffect} from 'react';
+import {QUESTION_LIST} from '../../lib/constants';
+import {supabaseBrowser} from '@/lib/supabase/browser';
+import {useRouter} from 'next/navigation';
+import ReactMarkdown from 'react-markdown';
+import rehypeKatex from 'rehype-katex';
+import remarkMath from 'remark-math';
+import rehypeRaw from 'rehype-raw';
+import remarkGfm from 'remark-gfm';
+import 'katex/dist/katex.min.css';
 
 const supabase = supabaseBrowser(); // this makes it a variable for all
 
@@ -31,7 +31,7 @@ export default function QuestionCard() {
   );
 
   const currentQuestion =
-    currentIndex !== null ? questionList[currentIndex] : null;
+    currentIndex !== null ? QUESTION_LIST[currentIndex] : null;
   const router = useRouter();
 
   useEffect(() => {
@@ -47,7 +47,7 @@ export default function QuestionCard() {
   const getNextUniqueIndex = () => {
     let newIndex;
     do {
-      newIndex = Math.floor(Math.random() * questionList.length);
+      newIndex = Math.floor(Math.random() * QUESTION_LIST.length);
     } while (questionIndexSet.includes(newIndex));
 
     setQuestionIndexSet((prev) => [...prev, newIndex]);
@@ -57,16 +57,16 @@ export default function QuestionCard() {
   const insertGamePlayData = async (index: number, isLastCorrect: boolean) => {
     let updatedIndexSelect = optionClickedIndex;
     updatedIndexSelect.push(index);
-    const { data: userData, error: userDataError } =
+    const {data: userData, error: userDataError} =
       await supabase.auth.getUser();
 
     if (!userData || userDataError) {
-      console.error("Error fetching user data");
+      console.error('Error fetching user data');
       return;
     }
 
-    const { error: gameplayInsertError } = await supabase
-      .from("gameplay")
+    const {error: gameplayInsertError} = await supabase
+      .from('gameplay')
       .insert({
         accurate: correctAnswers + Number(isLastCorrect),
         name: userData.user.user_metadata.name,
@@ -75,7 +75,7 @@ export default function QuestionCard() {
       });
 
     if (gameplayInsertError) {
-      console.error("Error inserting gameplay data");
+      console.error('Error inserting gameplay data');
     }
   };
 
@@ -91,16 +91,16 @@ export default function QuestionCard() {
       getNextUniqueIndex();
     } else {
       insertGamePlayData(index, option.isCorrect);
-      router.push("/home");
+      router.push('/home');
     }
   };
 
   return (
-    <div className="min-h-full h-full w-full border rounded-3xl bg-white flex flex-col px-[64px] py-[20px] gap-[16px]">
-      <div className="text-[#bfbfbf] text-[14px]">
+    <div className='min-h-full h-full w-full border rounded-3xl bg-white flex flex-col px-[64px] py-[20px] gap-[16px]'>
+      <div className='text-[#bfbfbf] text-[14px]'>
         {questionIndexSet.length - 1} of 5
       </div>
-      <div className="flex flex-col gap-[16px] h-full">
+      <div className='flex flex-col gap-[16px] h-full'>
         <div>
           {currentQuestion?.Question && (
             <ReactMarkdown
@@ -114,20 +114,20 @@ export default function QuestionCard() {
 
         {currentQuestion?.Image && (
           <img
-            className="mx-auto max-h-[200px]"
+            className='mx-auto max-h-[200px]'
             src={currentQuestion.Image}
-            alt="Image Related to Question"
+            alt='Image Related to Question'
           />
         )}
       </div>
-      <div className="flex flex-col gap-[8px]">
+      <div className='flex flex-col gap-[8px]'>
         {currentQuestion?.Options &&
           shuffledOptionIndices.map((shuffledIndex) => {
             const option = currentQuestion.Options[shuffledIndex];
             return (
               <button
                 key={shuffledIndex}
-                className="border rounded-lg px-[16px] py-[8px] text-left hover:bg-[#f7f7f7] after:bg-[#4356ff]"
+                className='border rounded-lg px-[16px] py-[8px] text-left hover:bg-[#f7f7f7] after:bg-[#4356ff]'
                 onClick={() => handleOptionClick(shuffledIndex, option)}
               >
                 <ReactMarkdown
