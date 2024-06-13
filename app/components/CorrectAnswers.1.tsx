@@ -85,7 +85,7 @@ export default function CorrectAnswers() {
   };
 
   const getOptionColor = (index: number, isCorrect: boolean) => {
-    if (index == clickedOptionList[currentIndex - 1]) {
+    if (index == clickedOptionList[currentIndex]) {
       return isCorrect
         ? "border-[#d2e9d8] bg-[#ecf8ef]"
         : "border-[#e7cccc] bg-[#fde2e2]";
