@@ -86,19 +86,20 @@ export default function QuestionCard() {
     if (option.isCorrect) {
       setCorrectAnswers(correctAnswers + 1);
     }
-
-    if (questionIndexSet.length <= 5) {
+    //used to be <=5
+    if (questionIndexSet.length < 5) {
       getNextUniqueIndex();
     } else {
       insertGamePlayData(index, option.isCorrect);
       router.push("/home");
+      // window.location.href = "/home";
     }
   };
-
+  //used to be length-1
   return (
     <div className="min-h-full h-full w-full border rounded-3xl bg-white flex flex-col px-[64px] py-[20px] gap-[16px]">
       <div className="text-[#bfbfbf] text-[14px]">
-        {questionIndexSet.length - 1} of 5
+        {questionIndexSet.length} of 5
       </div>
       <div className="flex flex-col gap-[16px] h-full">
         <div>

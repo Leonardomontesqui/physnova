@@ -17,7 +17,7 @@ interface option {
 }
 export default function CorrectAnswers() {
   const [indexSet, setIndexSet] = useState<number[]>([]);
-  const [currentIndex, setCurrentIndex] = useState<number>(1);
+  const [currentIndex, setCurrentIndex] = useState<number>(0); //used to be 1
   const [currentQuestion, setCurrentQuestion] = useState<any>();
   const [clickedOptionList, setClickedOptionList] = useState<number[]>([]);
 
@@ -27,7 +27,7 @@ export default function CorrectAnswers() {
 
   useEffect(() => {
     if (indexSet.length > 0) {
-      setCurrentQuestion(questionList[indexSet[1]]);
+      setCurrentQuestion(questionList[indexSet[0]]);
     }
   }, [indexSet]);
 
@@ -69,7 +69,7 @@ export default function CorrectAnswers() {
   };
 
   const handleNextClick = () => {
-    if (currentIndex < 5) {
+    if (currentIndex < 4) {
       const newIndex = currentIndex + 1;
       setCurrentIndex(newIndex);
       setCurrentQuestion(questionList[indexSet[newIndex]]);
@@ -77,7 +77,7 @@ export default function CorrectAnswers() {
   };
 
   const handlePrevClick = () => {
-    if (currentIndex > 1) {
+    if (currentIndex > 0) {
       const newIndex = currentIndex - 1;
       setCurrentIndex(newIndex);
       setCurrentQuestion(questionList[indexSet[newIndex]]);
@@ -101,7 +101,9 @@ export default function CorrectAnswers() {
     <div className="w-full h-full min-h-0 bg-white rounded-3xl border border-[#d9d9d9] p-[24px] flex flex-col items-center gap-[8px] basis-2/3">
       <div className="font-medium">Answers</div>
       <div className="h-full min-h-0 w-full border rounded-3xl bg-white flex flex-col px-[32px] py-[16px] gap-[16px]">
-        <div className="text-[#bfbfbf] text-[14px]">{currentIndex} of 5</div>
+        <div className="text-[#bfbfbf] text-[14px]">
+          {currentIndex + 1} of 5
+        </div>
         <div className="flex min-h-0 h-full flex-col gap-[8px] min-h-0 overflow-y-scroll no-scrollbar">
           <div>
             {currentQuestion?.Question && (
