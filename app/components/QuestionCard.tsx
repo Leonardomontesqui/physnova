@@ -90,9 +90,9 @@ export default function QuestionCard() {
     if (questionIndexSet.length < 5) {
       getNextUniqueIndex();
     } else {
-      insertGamePlayData(index, option.isCorrect);
-      router.push("/home");
-      // window.location.href = "/home";
+      await insertGamePlayData(index, option.isCorrect);
+      // router.push("/home");
+      window.location.href = "/home";
     }
   };
   //used to be length-1
