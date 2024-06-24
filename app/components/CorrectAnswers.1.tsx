@@ -59,7 +59,8 @@ export default function CorrectAnswers() {
     const { data: optionIndex, error: optionIndexError } = await supabase
       .from("gameplay")
       .select("option_index_list")
-      .eq("user_id", userDataRes.user.id);
+      .eq("user_id", userDataRes.user.id)
+      .order("created_at", { ascending: true }); // this solves all
 
     if (!optionIndex || optionIndexError) {
       console.error("Error fetching option index data");

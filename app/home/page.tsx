@@ -14,8 +14,6 @@ export default function Home() {
     router.push("/question");
   };
 
-  const [currentIndex, setCurrentIndex] = useState<number>(1);
-
   return (
     <main className="flex flex-col w-dvh h-screen">
       <NavBar2 />
