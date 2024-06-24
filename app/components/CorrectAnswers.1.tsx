@@ -107,7 +107,7 @@ export default function CorrectAnswers() {
           {currentIndex + 1} of 5
           {currentQuestion?.Topic && <div>{currentQuestion.Topic}</div>}
         </div>
-        <div className="flex min-h-0 h-full flex-col gap-[8px] min-h-0 overflow-y-scroll no-scrollbar">
+        <div className="flex min-h-0 h-full flex-col gap-[8px] overflow-y-scroll no-scrollbar">
           <div>
             {currentQuestion?.Question && (
               <ReactMarkdown
@@ -119,7 +119,7 @@ export default function CorrectAnswers() {
               </ReactMarkdown>
             )}
           </div>
-          <div className="max-h-[140px]">
+          <div className="max-h-[170px]">
             {currentQuestion?.Image && (
               <img
                 className="mx-auto h-[100%]"

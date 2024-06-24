@@ -596,31 +596,7 @@ export const questionList = [
       { text: "2W", isCorrect: false },
     ],
   },
-  {
-    Qnumber: 5,
-    Topic: "Mechanics", //check for this question in answers
-    Exam: "2016_Nov_SL",
-    Question:
-      "An object, initially at rest, is accelerated by a constant force. Which graphs show the variation with time t of the kinetic energy and the variation with time t of the speed of the object?",
-    Options: [
-      {
-        text: "<img src='https://i.imgur.com/S0sHfbi.png' alt='Graph A' style='height:70px;'/>",
-        isCorrect: true,
-      },
-      {
-        text: `<img src='https://i.imgur.com/pOLUUIT.png' alt='Graph B' style='height: 70px;'/>`,
-        isCorrect: false,
-      },
-      {
-        text: "<img src='https://i.imgur.com/l2kDuj4.png' alt='Graph C' style='height:70px;'/>",
-        isCorrect: false,
-      },
-      {
-        text: "<img src='https://i.imgur.com/YRpZRcb.png' alt='Graph D' style='height:70px;'/>",
-        isCorrect: false,
-      },
-    ],
-  },
+
   {
     Qnumber: 7,
     Topic: "Mechanics",
@@ -740,56 +716,6 @@ export const questionList = [
       { text: "Never opposite", isCorrect: false },
     ],
   },
-  {
-    Qnumber: 14,
-    Topic: "Waves",
-    Exam: "2016_Nov_SL",
-    Question:
-      "A particle oscillates with simple harmonic motion (shm) of period T. Which graph shows the variation with time of the kinetic energy of the particle?",
-    Options: [
-      {
-        text: "<img src='https://i.imgur.com/dgAdm1G.png' alt='Graph A' style='height:60px;'/>",
-        isCorrect: false,
-      },
-      {
-        text: "<img src='https://i.imgur.com/rZkfMO4.png' alt='Graph B' style='height:60px;'/>",
-        isCorrect: false,
-      },
-      {
-        text: "<img src='https://i.imgur.com/eNNcvL5.png' alt='Graph C' style='height:60px;'/>",
-        isCorrect: false,
-      },
-      {
-        text: "<img src='https://i.imgur.com/8mkxhMC.png' alt='Graph D' style='height:60px;'/>",
-        isCorrect: true,
-      },
-    ],
-  },
-  {
-    Qnumber: 15,
-    Topic: "Waves",
-    Exam: "2016_Nov_SL",
-    Question:
-      "A light ray is incident on an air-diamond boundary. The refractive index of diamond is greater than 1. Which diagram shows the correct path of the light ray?",
-    Options: [
-      {
-        text: "<img src='https://i.imgur.com/gv4pgkO.png' alt='Diagram A' style='height:60px;'/>",
-        isCorrect: true,
-      },
-      {
-        text: "<img src='https://i.imgur.com/CkUh082.png' alt='Diagram B' style='height:60px;'/>",
-        isCorrect: false,
-      },
-      {
-        text: "<img src='https://i.imgur.com/u9uUk14.png' alt='Diagram C' style='height:60px;'/>",
-        isCorrect: false,
-      },
-      {
-        text: "<img src='https://i.imgur.com/ATTsSWC.png' alt='Diagram D' style='height:60px;'/>",
-        isCorrect: false,
-      },
-    ],
-  },
 
   {
     Qnumber: 16,
@@ -864,6 +790,83 @@ export const questionList = [
       { text: "I and III only", isCorrect: false },
       { text: "II and III only", isCorrect: true },
       { text: "I, II, and III", isCorrect: false },
+    ],
+  },
+
+  {
+    Qnumber: 5,
+    Topic: "Mechanics", //check for this question in answers
+    Exam: "2016_Nov_SL",
+    Question:
+      "An object, initially at rest, is accelerated by a constant force. Which graphs show the variation with time t of the kinetic energy and the variation with time t of the speed of the object?",
+    Options: [
+      {
+        text: "<img src='https://i.imgur.com/S0sHfbi.png' alt='Graph A' style='max-height:80px; min-height:60px;'/>",
+        isCorrect: true,
+      },
+      {
+        text: `<img src='https://i.imgur.com/pOLUUIT.png' alt='Graph B' style='max-height:80px; min-height:60px;'/>`,
+        isCorrect: false,
+      },
+      {
+        text: "<img src='https://i.imgur.com/l2kDuj4.png' alt='Graph C' style='max-height:80px; min-height:60px;'/>",
+        isCorrect: false,
+      },
+      {
+        text: "<img src='https://i.imgur.com/YRpZRcb.png' alt='Graph D' style='max-height:80px; min-height:60px;'/>",
+        isCorrect: false,
+      },
+    ],
+  },
+  {
+    Qnumber: 14,
+    Topic: "Waves",
+    Exam: "2016_Nov_SL",
+    Question:
+      "A particle oscillates with simple harmonic motion (shm) of period T. Which graph shows the variation with time of the kinetic energy of the particle?",
+    Options: [
+      {
+        text: "<img src='https://i.imgur.com/dgAdm1G.png' alt='Graph A' style='max-height:80px; min-height:60px;'/>",
+        isCorrect: false,
+      },
+      {
+        text: "<img src='https://i.imgur.com/rZkfMO4.png' alt='Graph B' style='max-height:80px; min-height:60px;'/>",
+        isCorrect: false,
+      },
+      {
+        text: "<img src='https://i.imgur.com/eNNcvL5.png' alt='Graph C' style='max-height:80px; min-height:60px;'/>",
+        isCorrect: false,
+      },
+      {
+        text: "<img src='https://i.imgur.com/8mkxhMC.png' alt='Graph D' style='max-height:80px; min-height:60px;'/>",
+        isCorrect: true,
+      },
+    ],
+  },
+
+  {
+    Qnumber: 15,
+    Topic: "Waves",
+    Exam: "2016_Nov_SL",
+    Question:
+      "A light ray is incident on an air-diamond boundary. The refractive index of diamond is greater than 1. Which diagram shows the correct path of the light ray?",
+    Options: [
+      {
+        text: "<img src='https://i.imgur.com/gv4pgkO.png' alt='Diagram A' style='max-height:80px; min-height:60px;'/>",
+        isCorrect: true,
+      },
+      {
+        text: "<img src='https://i.imgur.com/CkUh082.png' alt='Diagram B' style='max-height:80px; min-height:60px;'/>",
+        isCorrect: false,
+      },
+      {
+        text: "<img src='https://i.imgur.com/u9uUk14.png' alt='Diagram C' style='max-height:80px; min-height:60px;'/>",
+        isCorrect: false,
+      },
+      {
+        text: "<img src='https://i.imgur.com/ATTsSWC.png' alt='Diagram D' style='max-height:80px; min-height:60px;'/>",
+        isCorrect: false,
+      },
     ],
   },
 ];

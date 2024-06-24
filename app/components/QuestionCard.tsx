@@ -50,6 +50,8 @@ export default function QuestionCard() {
       newIndex = Math.floor(Math.random() * questionList.length);
     } while (questionIndexSet.includes(newIndex));
 
+    // newIndex = questionList.length - 1; // for testing
+
     setQuestionIndexSet((prev) => [...prev, newIndex]);
     setCurrentIndex(newIndex);
   };
