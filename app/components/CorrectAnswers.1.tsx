@@ -43,7 +43,8 @@ export default function CorrectAnswers() {
     const { data: gameplayDataRes, error: gameplayDataError } = await supabase
       .from("gameplay")
       .select("question_index_list")
-      .eq("user_id", userDataRes.user.id);
+      .eq("user_id", userDataRes.user.id)
+      .order("created_at", { ascending: true });
 
     if (!gameplayDataRes || gameplayDataError) {
       console.error("Error fetching gameplay data");
@@ -51,6 +52,7 @@ export default function CorrectAnswers() {
     } else {
       const latestGameData = gameplayDataRes[gameplayDataRes.length - 1];
       setIndexSet(latestGameData.question_index_list);
+      console.log("This are the questions: ", gameplayDataRes);
     }
 
     //latest option index data
@@ -101,8 +103,9 @@ export default function CorrectAnswers() {
     <div className="w-full h-full min-h-0 bg-white rounded-3xl border border-[#d9d9d9] p-[24px] flex flex-col items-center gap-[8px] basis-2/3">
       <div className="font-medium">Answers</div>
       <div className="h-full min-h-0 w-full border rounded-3xl bg-white flex flex-col px-[32px] py-[16px] gap-[16px]">
-        <div className="text-[#bfbfbf] text-[14px]">
+        <div className="text-[#bfbfbf] text-[12px] flex w-full justify-between">
           {currentIndex + 1} of 5
+          {currentQuestion?.Topic && <div>{currentQuestion.Topic}</div>}
         </div>
         <div className="flex min-h-0 h-full flex-col gap-[8px] min-h-0 overflow-y-scroll no-scrollbar">
           <div>

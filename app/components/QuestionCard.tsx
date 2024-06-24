@@ -77,6 +77,7 @@ export default function QuestionCard() {
     if (gameplayInsertError) {
       console.error("Error inserting gameplay data");
     }
+    window.location.href = "/home";
   };
 
   const handleOptionClick = async (index: number, option: any) => {
@@ -92,14 +93,14 @@ export default function QuestionCard() {
     } else {
       await insertGamePlayData(index, option.isCorrect);
       // router.push("/home");
-      window.location.href = "/home";
     }
   };
   //used to be length-1
   return (
     <div className="min-h-full h-full w-full border rounded-3xl bg-white flex flex-col px-[64px] py-[20px] gap-[16px]">
-      <div className="text-[#bfbfbf] text-[14px]">
-        {questionIndexSet.length} of 5
+      <div className="text-[#bfbfbf] text-[14px] flex w-full justify-between">
+        <div>{questionIndexSet.length} of 5</div>
+        {currentQuestion?.Topic && <div>{currentQuestion.Topic}</div>}
       </div>
       <div className="flex flex-col gap-[16px] h-full">
         <div>

@@ -35,13 +35,14 @@ export default function AccuracyDisplay() {
     const { data: gameplayDataRes, error: gameplayDataError } = await supabase
       .from("gameplay")
       .select("accurate")
-      .eq("user_id", userDataRes.user.id);
+      .eq("user_id", userDataRes.user.id)
+      .order("created_at", { ascending: true });
 
     if (!gameplayDataRes || gameplayDataError) {
       console.error("Error fetching gameplay data");
       return;
     }
-    // console.log("Check out", gameplayDataRes);
+    //console.log("Check out", gameplayDataRes);
     setGameplayData(gameplayDataRes);
   };
 
