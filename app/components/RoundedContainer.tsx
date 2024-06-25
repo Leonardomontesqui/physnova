@@ -5,10 +5,11 @@ interface Props {
   className?: string; //optional string property
 }
 
+//used to be padding 24 px
 export default function RoundedContainer({ children, className }: Props) {
   return (
     <div
-      className={`p-[24px] rounded-xl border border-[#dedede] gap-[8px] w-full ${className}`}
+      className={`px-[16px] py-[8px] rounded-xl border border-[#dedede] gap-[8px] w-full ${className}`}
     >
       {children}
     </div>

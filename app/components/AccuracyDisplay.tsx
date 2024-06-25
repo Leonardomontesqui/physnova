@@ -47,38 +47,39 @@ export default function AccuracyDisplay() {
   };
 
   return (
-    <div className="flex flex-col gap-[16px] h-full items-center">
+    <div className="flex flex-col gap-[8px] h-full items-center">
       <RoundedContainer className="bg-[#4356ff] border border-[#d0d4fe] flex items-center">
-        <Target size={40} strokeWidth={1.5} className="text-white" />
+        <Target size={35} strokeWidth={1.5} className="text-white" />
         <div className="flex flex-col">
-          <div className="text-white text-opacity-80">Accuracy</div>
-          <div className="text-white text-[32px]">
+          <div className="text-white text-opacity-80 text-[14px]">Accuracy</div>
+          <div className="text-white text-[24px]">
             {gameplayData && gameplayData[gameplayData.length - 1]?.accurate}
             /5
           </div>
         </div>
       </RoundedContainer>
-      <div className="font-medium">Overall</div>
       <RoundedContainer className="flex items-center">
         <MonitorDot size={35} strokeWidth={1.5} className="text-[#dedede]" />
         <div className="flex flex-col">
-          <div className="text-[#afadad]">Games Played</div>
-          <div className="text-[24px]">{GamesPlayed}</div>
+          <div className="text-[#afadad] text-[14px]">Games Played</div>
+          <div className="text-[20px]">{GamesPlayed}</div>
         </div>
       </RoundedContainer>
-      <div className="flex gap-[16px]">
+      <div className="flex gap-[8px]">
         <RoundedContainer className="flex items-center">
           <CircleCheck size={35} strokeWidth={1.5} className="text-[#dedede]" />
           <div className="flex flex-col">
-            <div className="text-[#afadad]">Correctly Answered</div>
-            <div className="text-[24px]">{totalAccurate}</div>
+            <div className="text-[#afadad] text-[14px]">Correctly Answered</div>
+            <div className="text-[20px]">{totalAccurate}</div>
           </div>
         </RoundedContainer>
         <RoundedContainer className="flex items-center">
           <CircleX size={35} strokeWidth={1.5} className="text-[#dedede]" />
           <div className="flex flex-col">
-            <div className="text-[#afadad]">Incorrectly Answered</div>
-            <div className="text-[24px]">{totalIncorrect}</div>
+            <div className="text-[#afadad] text-[14px]">
+              Incorrectly Answered
+            </div>
+            <div className="text-[20px]">{totalIncorrect}</div>
           </div>
         </RoundedContainer>
       </div>

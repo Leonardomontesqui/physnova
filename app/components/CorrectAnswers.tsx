@@ -135,7 +135,7 @@ export default function CorrectAnswers() {
             currentQuestion?.Options.map((option: option, index: number) => (
               <div
                 key={option.text}
-                className={`border rounded-lg px-[16px] py-[8px] text-left ${getOptionColor(
+                className={`border rounded-lg px-[16px] py-[8px] text-left text-[14px] ${getOptionColor(
                   index,
                   option.isCorrect
                 )}`}
