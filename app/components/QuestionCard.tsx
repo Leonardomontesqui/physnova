@@ -11,6 +11,7 @@ import remarkGfm from "remark-gfm";
 import "katex/dist/katex.min.css";
 
 const supabase = supabaseBrowser(); // this makes it a variable for all
+type QuestionType = (typeof questionList)[0];
 
 // Fisher-Yates Shuffle Algorithm
 const shuffleArray = (array: number[]) => {
@@ -22,21 +23,27 @@ const shuffleArray = (array: number[]) => {
 };
 
 export default function QuestionCard() {
-  const [questionIndexSet, setQuestionIndexSet] = useState<number[]>([]);
-  const [currentIndex, setCurrentIndex] = useState<number | null>(null);
+  const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [correctAnswers, setCorrectAnswers] = useState<number>(0);
   const [optionClickedIndex, setOptionClickedIndex] = useState<number[]>([]);
   const [shuffledOptionIndices, setShuffledOptionIndices] = useState<number[]>(
     []
   );
+  const [questionIndexes, setQuestionIndexes] = useState<number[]>([]);
+  const [currentQuestion, setCurrentQuestion] = useState<any>();
 
-  const currentQuestion =
-    currentIndex !== null ? questionList[currentIndex] : null;
   const router = useRouter();
 
   useEffect(() => {
-    getNextUniqueIndex();
+    generateIndexList();
+    // testingIndexList();
   }, []);
+
+  useEffect(() => {
+    if (questionIndexes.length > 0) {
+      setCurrentQuestion(questionList[questionIndexes[0]]);
+    }
+  }, [questionIndexes]);
 
   useEffect(() => {
     if (currentQuestion?.Options) {
@@ -44,17 +51,89 @@ export default function QuestionCard() {
     }
   }, [currentQuestion]);
 
-  const getNextUniqueIndex = () => {
-    let newIndex;
-    do {
-      newIndex = Math.floor(Math.random() * questionList.length);
-    } while (questionIndexSet.includes(newIndex));
+  const generateIndexList = async () => {
+    //fetching the topics
 
-    // newIndex = questionList.length - 1; // for testing
+    const { data: userData, error: userDataError } =
+      await supabase.auth.getUser();
 
-    setQuestionIndexSet((prev) => [...prev, newIndex]);
-    setCurrentIndex(newIndex);
+    if (!userData || userDataError) {
+      console.error("Error fetching user data");
+      router.push("/");
+      return;
+    }
+
+    const { data: topicData, error: topicDataError } = await supabase
+      .from("topics_chosen")
+      .select("topics")
+      .eq("user_id", userData.user.id)
+      .order("created_at", { ascending: true });
+
+    if (topicDataError) {
+      console.error("Error fetching topic data");
+      return;
+    }
+
+    const topics = topicData[topicData.length - 1]["topics"];
+
+    //generating the 5 question list based on the topics
+    if (topics.length > 0) {
+      // Create a set for O(1) topic lookup
+      const topicSet = new Set(topics);
+
+      // Collect the indexes of the questions that match the topics
+      const filteredQuestionsWithIndexes = questionList.reduce(
+        (acc: any, question, index: number) => {
+          if (topicSet.has(question.Topic)) {
+            acc.push(index);
+          }
+          return acc;
+        },
+        []
+      );
+
+      // Shuffle the filtered questions array
+      const shuffledQuestions = shuffleArray(filteredQuestionsWithIndexes);
+
+      const selectedIndexes = shuffledQuestions.slice(0, 5);
+      console.log("Selected indexes of 5 random questions: ", selectedIndexes);
+
+      setQuestionIndexes(selectedIndexes);
+    } else {
+      const allIndexes = Array.from(
+        { length: questionList.length },
+        (_, index) => index
+      );
+
+      // Shuffle and select 5 random indexes
+      const shuffledIndexes = shuffleArray(allIndexes);
+      const selectedIndexes = shuffledIndexes.slice(0, 5);
+      setQuestionIndexes(selectedIndexes);
+    }
+    return;
   };
+
+  const testingIndexList = () => {
+    // Set originalIndexes to the first five indexes of questionList
+    const firstFiveIndexes = Array.from({ length: 5 }, (_, index) => index);
+    setQuestionIndexes(firstFiveIndexes);
+  };
+
+  // const getNextUniqueIndex = () => {
+  //   console.log(
+  //     "Current filteredQuestionList b4 getting index: ",
+  //     filteredQuestionList
+  //   );
+  //   let newIndex;
+  //   do {
+  //     newIndex = Math.floor(Math.random() * filteredQuestionList.length);
+  //   } while (questionIndexSet.includes(newIndex));
+
+  //   // newIndex = questionList.length - 1; // for testing
+
+  //   setQuestionIndexSet((prev) => [...prev, newIndex]);
+  //   setCurrentIndex(newIndex);
+  // };
 
   const insertGamePlayData = async (index: number, isLastCorrect: boolean) => {
     let updatedIndexSelect = optionClickedIndex;
@@ -72,7 +151,7 @@ export default function QuestionCard() {
       .insert({
         accurate: correctAnswers + Number(isLastCorrect),
         name: userData.user.user_metadata.name,
-        question_index_list: questionIndexSet,
+        question_index_list: questionIndexes,
         option_index_list: updatedIndexSelect,
       });
 
@@ -90,18 +169,19 @@ export default function QuestionCard() {
       setCorrectAnswers(correctAnswers + 1);
     }
     //used to be <=5
-    if (questionIndexSet.length < 5) {
-      getNextUniqueIndex();
+    if (currentIndex < 4) {
+      const newIndex = currentIndex + 1;
+      setCurrentIndex(newIndex);
+      setCurrentQuestion(questionList[questionIndexes[newIndex]]);
     } else {
       await insertGamePlayData(index, option.isCorrect);
-      // router.push("/home");
     }
   };
-  //used to be length-1
+
   return (
     <div className="min-h-full h-full w-full border rounded-3xl bg-white flex flex-col px-[64px] py-[20px] gap-[16px]">
       <div className="text-[#bfbfbf] text-[14px] flex w-full justify-between">
-        <div>{questionIndexSet.length} of 5</div>
+        <div>{currentIndex + 1} of 5</div>
         {currentQuestion?.Topic && <div>{currentQuestion.Topic}</div>}
       </div>
       <div className="flex flex-col gap-[16px] h-full">

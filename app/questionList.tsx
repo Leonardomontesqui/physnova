@@ -1,5 +1,107 @@
 export const questionList = [
   {
+    Qnumber: 1,
+    Topic: "Measurements and Uncertainties",
+    Exam: "2014_May_TZ2",
+    Question: "Which of the following is a unit of energy?",
+    Options: [
+      { text: "kg m<sup>-1</sup> s<sup>-1</sup>", isCorrect: false },
+      { text: "kg m<sup>2</sup> s<sup>-2</sup>", isCorrect: true },
+      { text: "kg m s<sup>-2</sup>", isCorrect: false },
+      { text: "kg m<sup>2</sup> s<sup>-1</sup>", isCorrect: false },
+    ],
+  },
+  {
+    Qnumber: 2,
+    Topic: "Measurements and Uncertainties",
+    Exam: "2014_May_TZ2",
+    Question:
+      "Each side of a metal cube is measured to be 2.0 cm ±0.20 cm. What is the absolute uncertainty in the calculated volume of the cube?",
+    Options: [
+      { text: "±0.08 cm<sup>3</sup>", isCorrect: false },
+      { text: "±0.60 cm<sup>3</sup>", isCorrect: false },
+      { text: "±0.80 cm<sup>3</sup>", isCorrect: false },
+      { text: "±2.4 cm<sup>3</sup>", isCorrect: true },
+    ],
+  },
+  {
+    Qnumber: 1,
+    Topic: "Measurements and Uncertainties",
+    Exam: "2014_May_TZ1",
+    Question:
+      "The radius of a sphere is measured with an uncertainty of 2%. What is the uncertainty in the volume of the sphere?",
+    Options: [
+      { text: "2%", isCorrect: false },
+      { text: "4%", isCorrect: false },
+      { text: "6%", isCorrect: true },
+      { text: "8%", isCorrect: false },
+    ],
+  },
+  {
+    Qnumber: 2,
+    Topic: "Measurements and Uncertainties",
+    Exam: "2014_May_TZ1",
+    Question:
+      "The force of air resistance F that acts on a car moving at speed v is given by ( F = kv^2 ) where k is a constant. What is the unit of k?",
+    Options: [
+      { text: "kg m<sup>-1</sup>", isCorrect: true },
+      { text: "kg m<sup>-2</sup> s<sup>2</sup>", isCorrect: false },
+      { text: "kg m<sup>-2</sup>", isCorrect: false },
+      { text: "kg m<sup>-2</sup> s<sup>-2</sup>", isCorrect: false },
+    ],
+  },
+  {
+    Qnumber: 1,
+    Topic: "Measurements and Uncertainties",
+    Exam: "2013_Nov",
+    Question:
+      "The sides of a square are measured to be 5.0 ±0.2 cm. Which of the following gives the area of the square and its uncertainty?",
+    Options: [
+      { text: "25.0 ± 0.2 cm<sup>2</sup>", isCorrect: false },
+      { text: "25.0 ± 0.4 cm<sup>2</sup>", isCorrect: false },
+      { text: "25 ± 2 cm<sup>2</sup>", isCorrect: true },
+      { text: "25 ± 4 cm<sup>2</sup>", isCorrect: false },
+    ],
+  },
+  {
+    Qnumber: 2,
+    Topic: "Measurements and Uncertainties",
+    Exam: "2013_Nov",
+    Question:
+      "Which of the following lists two vector quantities and one scalar quantity?",
+    Options: [
+      { text: "force, mass, time", isCorrect: false },
+      { text: "acceleration, energy, momentum", isCorrect: true },
+      { text: "distance, impulse, power", isCorrect: false },
+      { text: "density, pressure, temperature", isCorrect: false },
+    ],
+  },
+  {
+    Qnumber: 1,
+    Topic: "Measurements and Uncertainties",
+    Exam: "2017_TZ1_SL",
+    Question: "What is the unit of electrical energy in fundamental SI units?",
+    Options: [
+      { text: "kgm<sup>2</sup>C<sup>-1</sup>s", isCorrect: false },
+      { text: "kgms<sup>-2</sup>", isCorrect: false },
+      { text: "kgm<sup>2</sup>s<sup>-2</sup>", isCorrect: true },
+      { text: "kgm<sup>2</sup>s<sup>-1</sup>", isCorrect: false },
+    ],
+  },
+
+  {
+    Qnumber: 2,
+    Topic: "Measurements and Uncertainties",
+    Exam: "2017_TZ1_SL",
+    Question: "Which of the following is a scalar quantity?",
+    Options: [
+      { text: "Velocity", isCorrect: false },
+      { text: "Momentum", isCorrect: false },
+      { text: "Kinetic energy", isCorrect: true },
+      { text: "Acceleration", isCorrect: false },
+    ],
+  },
+  {
     Qnumber: 10,
     Topic: "Thermal Physics",
     Exam: "2021_TZ1_SL",

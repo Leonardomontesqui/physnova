@@ -52,7 +52,7 @@ export default function CorrectAnswers() {
     } else {
       const latestGameData = gameplayDataRes[gameplayDataRes.length - 1];
       setIndexSet(latestGameData.question_index_list);
-      console.log("This are the questions: ", gameplayDataRes);
+      // console.log("This are the questions: ", gameplayDataRes);
     }
 
     //latest option index data

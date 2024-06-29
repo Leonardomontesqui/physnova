@@ -8,21 +8,21 @@ import { useRouter } from "next/navigation";
 const supabase = supabaseBrowser();
 
 export default function Question() {
-  const router = useRouter();
-  useEffect(() => {
-    verifyUser();
-  }, []);
+  // const router = useRouter();
+  // useEffect(() => {
+  //   verifyUser();
+  // }, []);
 
-  const verifyUser = async () => {
-    const { data: userData, error: userDataError } =
-      await supabase.auth.getUser();
+  // const verifyUser = async () => {
+  //   const { data: userData, error: userDataError } =
+  //     await supabase.auth.getUser();
 
-    if (!userData || userDataError) {
-      console.error("Error fetching user data");
-      router.push("/");
-      return;
-    }
-  };
+  //   if (!userData || userDataError) {
+  //     console.error("Error fetching user data");
+  //     router.push("/");
+  //     return;
+  //   }
+  // };
   return (
     <main className="h-dvh w-dvw flex flex-col">
       <NavBar />

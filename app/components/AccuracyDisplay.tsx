@@ -47,7 +47,7 @@ export default function AccuracyDisplay() {
   };
 
   return (
-    <div className="flex flex-col gap-[8px] h-full items-center">
+    <div className="flex flex-col gap-[8px] items-center">
       <RoundedContainer className="bg-[#4356ff] border border-[#d0d4fe] flex items-center">
         <Target size={35} strokeWidth={1.5} className="text-white" />
         <div className="flex flex-col">

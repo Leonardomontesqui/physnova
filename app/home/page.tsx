@@ -1,10 +1,8 @@
 "use client";
 import React, { useState } from "react";
 import NavBar2 from "../components/NavBar2";
-import RoundedContainer from "../components/RoundedContainer";
 import { useRouter } from "next/navigation"; //FROM NEXT NAVIGATION
 import AccuracyDisplay from "../components/AccuracyDisplay";
-import QuestionCard from "../components/QuestionCard";
 import CorrectAnswers from "../components/CorrectAnswers";
 import TopicsBox from "../components/TopicsBox";
 import { supabaseBrowser } from "@/lib/supabase/browser";
@@ -38,12 +36,14 @@ export default function Home() {
             topicsChosen={topicsChosen}
             setTopicsChosen={setTopicsChosen}
           />
-          <button
-            className="px-[16px] py-[8px] bg-white rounded-xl border-2 border-[#4356ff] self-center text-[#4356ff] font-medium text-[16px]"
-            onClick={handlePlayClick}
-          >
-            Play
-          </button>
+          <div className="h-full flex flex-col justify-end">
+            <button
+              className="px-[16px] py-[8px] bg-white rounded-xl border-2 border-[#4356ff] self-center text-[#4356ff] font-medium text-[16px]"
+              onClick={handlePlayClick}
+            >
+              Play
+            </button>
+          </div>
         </div>
         <CorrectAnswers />
       </div>
