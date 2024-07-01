@@ -119,22 +119,6 @@ export default function QuestionCard() {
     setQuestionIndexes(firstFiveIndexes);
   };
 
-  // const getNextUniqueIndex = () => {
-  //   console.log(
-  //     "Current filteredQuestionList b4 getting index: ",
-  //     filteredQuestionList
-  //   );
-  //   let newIndex;
-  //   do {
-  //     newIndex = Math.floor(Math.random() * filteredQuestionList.length);
-  //   } while (questionIndexSet.includes(newIndex));
-
-  //   // newIndex = questionList.length - 1; // for testing
-
-  //   setQuestionIndexSet((prev) => [...prev, newIndex]);
-  //   setCurrentIndex(newIndex);
-  // };
-
   const insertGamePlayData = async (index: number, isLastCorrect: boolean) => {
     let updatedIndexSelect = optionClickedIndex;
     updatedIndexSelect.push(index);

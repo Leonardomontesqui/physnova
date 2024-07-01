@@ -7,7 +7,7 @@ import rehypeKatex from "rehype-katex";
 import rehypeRaw from "rehype-raw";
 import "katex/dist/katex.min.css";
 import { supabaseBrowser } from "@/lib/supabase/browser";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { Bookmark, ChevronLeft, ChevronRight } from "lucide-react";
 
 const supabase = supabaseBrowser();
 
@@ -17,7 +17,7 @@ interface option {
 }
 export default function CorrectAnswers() {
   const [indexSet, setIndexSet] = useState<number[]>([]);
-  const [currentIndex, setCurrentIndex] = useState<number>(0); //used to be 1
+  const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [currentQuestion, setCurrentQuestion] = useState<any>();
   const [clickedOptionList, setClickedOptionList] = useState<number[]>([]);
 

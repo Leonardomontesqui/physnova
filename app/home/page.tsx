@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import NavBar2 from "../components/NavBar2";
+import NavBar2 from "../components/(NavBars)/NavBar2";
 import { useRouter } from "next/navigation"; //FROM NEXT NAVIGATION
 import AccuracyDisplay from "../components/AccuracyDisplay";
 import CorrectAnswers from "../components/CorrectAnswers";
@@ -31,7 +31,7 @@ export default function Home() {
         <div className="w-full h-full bg-white rounded-3xl border border-[#d9d9d9] p-[24px] flex flex-col items-center gap-[16px] basis-1/3">
           <div className="font-medium">Gameplay</div>
           <AccuracyDisplay />
-          <div className="font-medium">Topics</div>
+          <div className="font-medium">Select Topics</div>
           <TopicsBox
             topicsChosen={topicsChosen}
             setTopicsChosen={setTopicsChosen}
