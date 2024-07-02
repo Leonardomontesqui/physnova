@@ -28,21 +28,25 @@ export default function Home() {
     <main className="flex flex-col w-dvh h-screen">
       <NavBar2 />
       <div className="border min-h-0 h-full bg-[#f6f7fb] flex px-[200px] py-[32px] gap-[32px]">
-        <div className="w-full h-full bg-white rounded-3xl border border-[#d9d9d9] p-[24px] flex flex-col items-center gap-[16px] basis-1/3">
-          <div className="font-medium">Gameplay</div>
-          <AccuracyDisplay />
-          <div className="font-medium">Select Topics</div>
-          <TopicsBox
-            topicsChosen={topicsChosen}
-            setTopicsChosen={setTopicsChosen}
-          />
-          <div className="h-full flex flex-col justify-end">
-            <button
-              className="px-[16px] py-[8px] bg-white rounded-xl border-2 border-[#4356ff] self-center text-[#4356ff] font-medium text-[16px]"
-              onClick={handlePlayClick}
-            >
-              Play
-            </button>
+        <div className="flex flex-col basis-1/3 gap-[32px]">
+          <div className="w-full h-full bg-white rounded-3xl border border-[#d9d9d9] p-[24px] flex flex-col items-center gap-[8px]">
+            <div className="font-medium">Gameplay</div>
+            <AccuracyDisplay />
+          </div>
+          <div className="h-full w-full bg-white rounded-3xl border border-[#d9d9d9] p-[24px] flex flex-col items-center gap-[8px]">
+            <div className="font-medium">Select Topics</div>
+            <TopicsBox
+              topicsChosen={topicsChosen}
+              setTopicsChosen={setTopicsChosen}
+            />
+            <div className="h-full flex flex-col justify-end">
+              <button
+                className="px-[16px] py-[8px] bg-white rounded-xl border-2 border-[#4356ff] self-center text-[#4356ff] font-medium text-[16px]"
+                onClick={handlePlayClick}
+              >
+                Play
+              </button>
+            </div>
           </div>
         </div>
         <CorrectAnswers />
