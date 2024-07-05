@@ -33,7 +33,7 @@ export default function Landing() {
         </div>
         <iframe
           className="rounded-xl h-[400px] w-[600px] border"
-          src="https://www.loom.com/embed/be0684fa2f384aecba74000a180517f2?sid=6cc8af92-957b-4a19-b123-5cfd9cc4fb12"
+          src="https://www.loom.com/share/e55e2871b1d5446385517f411863cd4f?sid=a427d051-1d0d-4cee-891f-6382d72131e3"
         />
       </div>
     </main>
