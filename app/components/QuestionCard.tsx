@@ -163,30 +163,32 @@ export default function QuestionCard() {
   };
 
   return (
-    <div className="min-h-full h-full w-full border rounded-3xl bg-white flex flex-col px-[64px] py-[20px] gap-[16px]">
-      <div className="text-[#bfbfbf] text-[14px] flex w-full justify-between">
-        <div>{currentIndex + 1} of 5</div>
-        {currentQuestion?.Topic && <div>{currentQuestion.Topic}</div>}
-      </div>
-      <div className="flex flex-col gap-[16px] h-full">
-        <div>
-          {currentQuestion?.Question && (
-            <ReactMarkdown
-              remarkPlugins={[remarkMath, remarkGfm]}
-              rehypePlugins={[rehypeKatex, rehypeRaw]}
-            >
-              {currentQuestion.Question}
-            </ReactMarkdown>
+    <div className="lg:h-full lg:mx-[200px] md:border md:rounded-3xl bg-white flex flex-col px-[16px] md:px-[64px] py-[20px] justify-between border md:my-[40px] overflow-y-scroll flex-1">
+      <div className="flex flex-col gap-[8px]">
+        <div className="text-[#bfbfbf] text-[12px] md:text-[14px] flex w-full justify-between">
+          <div>{currentIndex + 1} of 5</div>
+          {currentQuestion?.Topic && <div>{currentQuestion.Topic}</div>}
+        </div>
+        <div className="flex flex-col gap-[16px] h-full text-[14px] md:text-[16px]">
+          <p>
+            {currentQuestion?.Question && (
+              <ReactMarkdown
+                remarkPlugins={[remarkMath, remarkGfm]}
+                rehypePlugins={[rehypeKatex, rehypeRaw]}
+              >
+                {currentQuestion.Question}
+              </ReactMarkdown>
+            )}
+          </p>
+
+          {currentQuestion?.Image && (
+            <img
+              className="mx-auto max-h-[200px]"
+              src={currentQuestion.Image}
+              alt="Image Related to Question"
+            />
           )}
         </div>
-
-        {currentQuestion?.Image && (
-          <img
-            className="mx-auto max-h-[200px]"
-            src={currentQuestion.Image}
-            alt="Image Related to Question"
-          />
-        )}
       </div>
       <div className="flex flex-col gap-[8px]">
         {currentQuestion?.Options &&

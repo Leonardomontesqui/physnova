@@ -101,68 +101,66 @@ export default function CorrectAnswers() {
   };
 
   return (
-    <div className="w-full h-full min-h-0 bg-white rounded-3xl border border-[#d9d9d9] p-[24px] flex flex-col items-center gap-[8px] basis-2/3">
-      <div className="font-medium">Answers</div>
-      <div className="h-full min-h-0 w-full border rounded-3xl bg-white flex flex-col px-[32px] py-[16px] gap-[16px]">
-        <div className="text-[#bfbfbf] text-[12px] flex w-full justify-between">
-          {currentIndex + 1} of 5
-          {currentQuestion?.Topic && <div>{currentQuestion.Topic}</div>}
-        </div>
-        <div className="flex min-h-0 h-full flex-col gap-[8px] overflow-y-scroll no-scrollbar">
-          <div>
-            {currentQuestion?.Question && (
-              <ReactMarkdown
-                className="text-[14px]"
-                remarkPlugins={[remarkMath, remarkGfm]}
-                rehypePlugins={[rehypeKatex, rehypeRaw]}
-              >
-                {currentQuestion.Question}
-              </ReactMarkdown>
-            )}
-          </div>
-          <div className="max-h-[170px]">
-            {currentQuestion?.Image && (
-              <img
-                className="mx-auto h-[100%]"
-                src={currentQuestion.Image}
-                alt="Image Related to Question"
-              />
-            )}
-          </div>
-        </div>
-        <div className="flex flex-col gap-[8px] ">
-          {currentQuestion?.Options &&
-            currentQuestion?.Options.map((option: option, index: number) => (
-              <div
-                key={option.text}
-                className={`border rounded-lg px-[16px] py-[8px] text-left text-[14px] ${getOptionColor(
-                  index,
-                  option.isCorrect
-                )}`}
-              >
-                <ReactMarkdown
-                  remarkPlugins={[remarkMath, remarkGfm]}
-                  rehypePlugins={[rehypeKatex, rehypeRaw]}
-                >
-                  {option.text}
-                </ReactMarkdown>
-              </div>
-            ))}
-        </div>
-      </div>
+    <div className="mt-[16px] md:mt-0 w-full h-full min-h-0 bg-white rounded-3xl border border-[#d9d9d9] p-[24px] flex flex-col gap-[8px] basis-2/3">
       <div className="flex justify-between w-full">
         <button
-          className="border border-[#d0cece] mx-2 rounded px-[2px] py-[2px]"
+          className="border border-[#d0cece] rounded px-[2px] py-[2px]"
           onClick={() => handlePrevClick()}
         >
           <ChevronLeft size={20} />
         </button>
+        <div className="font-medium">Answers</div>
         <button
-          className="border border-[#d0cece] mx-2 rounded px-[2px] py-[2px]"
+          className="border border-[#d0cece] rounded px-[2px] py-[2px]"
           onClick={() => handleNextClick()}
         >
           <ChevronRight size={20} />
         </button>
+      </div>
+      <div className="flex min-h-0 h-full flex-col gap-[8px] overflow-y-scroll no-scrollbar">
+        <div>
+          {currentQuestion?.Question && (
+            <ReactMarkdown
+              className="text-[14px]"
+              remarkPlugins={[remarkMath, remarkGfm]}
+              rehypePlugins={[rehypeKatex, rehypeRaw]}
+            >
+              {currentQuestion.Question}
+            </ReactMarkdown>
+          )}
+        </div>
+        <div className="max-h-[170px]">
+          {currentQuestion?.Image && (
+            <img
+              className="mx-auto h-[100%]"
+              src={currentQuestion.Image}
+              alt="Image Related to Question"
+            />
+          )}
+        </div>
+      </div>
+      <div className="flex flex-col gap-[8px] w-full">
+        {currentQuestion?.Options &&
+          currentQuestion?.Options.map((option: option, index: number) => (
+            <div
+              key={option.text}
+              className={`border rounded-lg px-[16px] py-[8px] text-left text-[14px] ${getOptionColor(
+                index,
+                option.isCorrect
+              )}`}
+            >
+              <ReactMarkdown
+                remarkPlugins={[remarkMath, remarkGfm]}
+                rehypePlugins={[rehypeKatex, rehypeRaw]}
+              >
+                {option.text}
+              </ReactMarkdown>
+            </div>
+          ))}
+      </div>
+      <div className="text-[#bfbfbf] text-[14px] flex w-full justify-between">
+        {currentQuestion?.Topic && <div>{currentQuestion.Topic}</div>}
+        {currentIndex + 1} of 5
       </div>
     </div>
   );

@@ -3,10 +3,10 @@ import SignOut from "../SignOut";
 
 export default function NavBar() {
   return (
-    <header className="w-full px-[200px] py-[8px] flex justify-between border border-b-[#dedede] items-center">
-      <div className="font-semibold text-[20px] bg-gradient-to-r from-[#4356ff] to-[#283499] bg-clip-text text-transparent">
+    <header className="sticky top-0 z-50 bg-white w-full px-[16px] lg:px-[200px] py-[8px] flex justify-between border border-b-[#dedede] items-center">
+      <h1 className="font-semibold text-[20px] bg-gradient-to-r from-[#4356ff] to-[#283499] bg-clip-text text-transparent">
         PhysNova
-      </div>
+      </h1>
       <div className="flex gap-[8px]">
         <a
           href="mailto: leo.mq06@gmail.com"

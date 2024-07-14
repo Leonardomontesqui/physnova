@@ -25,10 +25,10 @@ export default function Home() {
   };
 
   return (
-    <main className="flex flex-col w-dvh h-screen">
+    <main className="flex flex-col w-dvh min-h-dvh lg:h-screen">
       <NavBar2 />
-      <div className="border min-h-0 h-full bg-[#f6f7fb] flex px-[200px] py-[32px] gap-[32px]">
-        <div className="flex flex-col basis-1/3 gap-[32px]">
+      <section className=" lg:min-h-0 bg-[#f6f7fb] px-[16px] lg:px-[200px] py-[16px] lg:py-[32px] gap-[16px] lg:gap-[32px] lg:flex">
+        <div className="flex flex-col basis-1/3 gap-[16px] lg:gap-[32px]">
           <div className="w-full h-full bg-white rounded-3xl border border-[#d9d9d9] p-[24px] flex flex-col items-center gap-[8px]">
             <div className="font-medium">Gameplay</div>
             <AccuracyDisplay />
@@ -50,7 +50,7 @@ export default function Home() {
           </div>
         </div>
         <CorrectAnswers />
-      </div>
+      </section>
     </main>
   );
 }

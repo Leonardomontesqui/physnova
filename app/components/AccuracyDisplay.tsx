@@ -47,7 +47,7 @@ export default function AccuracyDisplay() {
   };
 
   return (
-    <div className="flex flex-col gap-[8px] items-center">
+    <div className="flex lg:flex-col gap-[8px] items-center">
       <RoundedContainer className="bg-[#4356ff] border border-[#d0d4fe] flex items-center">
         <Target size={35} strokeWidth={1.5} className="text-white" />
         <div className="flex flex-col">
@@ -65,7 +65,7 @@ export default function AccuracyDisplay() {
           <div className="text-[20px]">{GamesPlayed}</div>
         </div>
       </RoundedContainer>
-      <div className="flex gap-[8px]">
+      <div className="gap-[8px] hidden lg:flex">
         <RoundedContainer className="flex items-center">
           <CircleCheck size={35} strokeWidth={1.5} className="text-[#dedede]" />
           <div className="flex flex-col">
