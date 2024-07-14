@@ -197,7 +197,7 @@ export default function QuestionCard() {
             return (
               <button
                 key={shuffledIndex}
-                className="border rounded-lg px-[16px] py-[8px] text-left hover:bg-[#f7f7f7] after:bg-[#4356ff]"
+                className="border rounded-lg px-[16px] py-[8px] text-[14px] md:text-[16px] text-left hover:bg-[#f7f7f7] after:bg-[#4356ff]"
                 onClick={() => handleOptionClick(shuffledIndex, option)}
               >
                 <ReactMarkdown
