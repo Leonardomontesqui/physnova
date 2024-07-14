@@ -16,12 +16,12 @@ export default function Landing() {
   return (
     <main className="h-dvh w-dvh flex flex-col">
       <NavBar />
-      <div className="flex flex-col gap-[32px] h-full items-center justify-center">
+      <section className="flex flex-col gap-[32px] h-full items-center justify-center px-[16px] md:px-0">
         <div className="flex flex-col items-center gap-[8px]">
-          <div className="font-semibold text-[89.76px] bg-gradient-to-r from-[#4356ff] to-[#283499] bg-clip-text text-transparent">
+          <div className="font-semibold text-[64px] lg:text-[80px] bg-gradient-to-r from-[#4356ff] to-[#283499] bg-clip-text text-transparent">
             PhysNova
           </div>
-          <div className="text-3xl">
+          <div className="text-xl lg:text-2xl text-center">
             Mastering IB Physics 5 questions at a time
           </div>
           <button
@@ -31,11 +31,13 @@ export default function Landing() {
             Login with Google
           </button>
         </div>
-        <iframe
-          className="rounded-xl h-[400px] w-[600px] border"
-          src="https://www.loom.com/share/e55e2871b1d5446385517f411863cd4f?sid=a427d051-1d0d-4cee-891f-6382d72131e3"
-        />
-      </div>
+        <div className="w-[300px] h-[150px] lg:w-[600px] lg:h-[300px] ">
+          <iframe
+            src="https://www.loom.com/embed/e55e2871b1d5446385517f411863cd4f?sid=689d0fac-6cbd-4bb9-b6fe-28b3cef1c179"
+            className="w-full h-full border rounded-xl"
+          ></iframe>
+        </div>
+      </section>
     </main>
   );
 }
