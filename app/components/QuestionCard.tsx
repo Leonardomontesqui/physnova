@@ -114,9 +114,12 @@ export default function QuestionCard() {
   };
 
   const testingIndexList = () => {
-    // Set originalIndexes to the first five indexes of questionList
-    const firstFiveIndexes = Array.from({ length: 5 }, (_, index) => index);
-    setQuestionIndexes(firstFiveIndexes);
+    // Set originalIndexes to the last five indexes of questionList
+    const lastFiveIndexes = questionList
+      .slice(-5)
+      .map((_, index) => questionList.length - 5 + index)
+      .reverse();
+    setQuestionIndexes(lastFiveIndexes);
   };
 
   const insertGamePlayData = async (index: number, isLastCorrect: boolean) => {
@@ -197,7 +200,7 @@ export default function QuestionCard() {
             return (
               <button
                 key={shuffledIndex}
-                className="border rounded-lg px-[16px] py-[8px] text-[14px] md:text-[16px] text-left hover:bg-[#f7f7f7] after:bg-[#4356ff]"
+                className="border rounded-lg px-[16px] py-[8px] text-[14px] md:text-[16px] text-left md:hover:bg-[#f7f7f7] after:bg-[#4356ff]"
                 onClick={() => handleOptionClick(shuffledIndex, option)}
               >
                 <ReactMarkdown

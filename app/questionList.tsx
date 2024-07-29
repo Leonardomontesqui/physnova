@@ -881,19 +881,6 @@ export const questionList = [
       { text: "I, II and III", isCorrect: false },
     ],
   },
-  {
-    Qnumber: 16,
-    Topic: "Waves",
-    Exam: "2018_Nov_SL",
-    Image: "https://i.imgur.com/e3tJlQ7.png",
-    Question: `In a double-slit experiment, a source of monochromatic red light is incident on slits S<sub>1</sub> and S<sub>2</sub> separated by a distance $d$. A screen is located at distance $x$ from the slits. A pattern with fringe spacing $y$ is observed on the screen. Three changes are possible for this arrangement. Which changes will cause a decrease in fringe spacing $y$?<br><br><div style="margin-left: 20px;">I. increasing x<br>II. increasing d<br>III. using green monochromatic light instead of red</div>`,
-    Options: [
-      { text: "I and II only", isCorrect: false },
-      { text: "I and III only", isCorrect: false },
-      { text: "II and III only", isCorrect: true },
-      { text: "I, II, and III", isCorrect: false },
-    ],
-  },
 
   {
     Qnumber: 5,
@@ -969,6 +956,18 @@ export const questionList = [
         text: "<img src='https://i.imgur.com/ATTsSWC.png' alt='Diagram D' style='max-height:80px; min-height:60px;'/>",
         isCorrect: false,
       },
+    ],
+  },
+  {
+    Qnumber: 16,
+    Topic: "Waves",
+    Exam: "2018_Nov_SL",
+    Question: `In a double-slit experiment, a source of monochromatic red light is incident on slits S<sub>1</sub> and S<sub>2</sub> separated by a distance $d$. A screen is located at distance $x$ from the slits. A pattern with fringe spacing $y$ is observed on the screen. <div style="text-align: center;"><img src="https://i.imgur.com/e3tJlQ7.png" alt="Double-slit experiment" style="max-height: 240px; display: block; margin: auto;"></div>Three changes are possible for this arrangement. Which changes will cause a decrease in fringe spacing $y$?<br><br><div style="margin-left: 20px;">I. increasing x<br>II. increasing d<br>III. using green monochromatic light instead of red</div><br>`,
+    Options: [
+      { text: "I and II only", isCorrect: false },
+      { text: "I and III only", isCorrect: false },
+      { text: "II and III only", isCorrect: true },
+      { text: "I, II, and III", isCorrect: false },
     ],
   },
 ];
