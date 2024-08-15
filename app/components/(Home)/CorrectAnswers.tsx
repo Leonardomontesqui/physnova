@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { questionList } from "../questionList";
+import { questionList } from "../../questionList";
 import ReactMarkdown from "react-markdown";
 import remarkMath from "remark-math";
 import remarkGfm from "remark-gfm";

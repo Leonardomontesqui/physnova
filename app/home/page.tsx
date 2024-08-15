@@ -2,9 +2,9 @@
 import React, { useState } from "react";
 import NavBar2 from "../components/(NavBars)/NavBar2";
 import { useRouter } from "next/navigation"; //FROM NEXT NAVIGATION
-import AccuracyDisplay from "../components/AccuracyDisplay";
-import CorrectAnswers from "../components/CorrectAnswers";
-import TopicsBox from "../components/TopicsBox";
+import AccuracyDisplay from "../components/(Home)/AccuracyDisplay";
+import CorrectAnswers from "../components/(Home)/CorrectAnswers";
+import TopicsBox from "../components/(Home)/TopicsBox";
 import { supabaseBrowser } from "@/lib/supabase/browser";
 
 const supabase = supabaseBrowser();

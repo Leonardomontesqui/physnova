@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import RoundedContainer from "./RoundedContainer";
+import RoundedContainer from "../(Shared)/RoundedContainer";
 import { supabaseBrowser } from "@/lib/supabase/browser";
 import { CircleCheck, CircleX, MonitorDot, Target } from "lucide-react";
 import { useRouter } from "next/navigation";

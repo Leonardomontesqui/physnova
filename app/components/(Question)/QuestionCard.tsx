@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { questionList } from "../questionList";
+import { questionList } from "../../questionList";
 import { supabaseBrowser } from "@/lib/supabase/browser";
 import { useRouter } from "next/navigation";
 import ReactMarkdown from "react-markdown";
