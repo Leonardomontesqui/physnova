@@ -7,7 +7,9 @@ import rehypeKatex from "rehype-katex";
 import rehypeRaw from "rehype-raw";
 import "katex/dist/katex.min.css";
 import { supabaseBrowser } from "@/lib/supabase/browser";
-import { Bookmark, ChevronLeft, ChevronRight } from "lucide-react";
+import { Bookmark, ChevronLeft, ChevronRight, CircleHelp } from "lucide-react";
+
+import AIExplainButton from "./AIExplainButton";
 
 const supabase = supabaseBrowser();
 
@@ -110,12 +112,20 @@ export default function CorrectAnswers() {
           <ChevronLeft size={20} />
         </button>
         <div className="font-medium">Answers</div>
-        <button
-          className="border border-[#d0cece] rounded px-[2px] py-[2px]"
-          onClick={() => handleNextClick()}
-        >
-          <ChevronRight size={20} />
-        </button>
+        <div className="flex gap-1">
+          <AIExplainButton
+            question={currentQuestion?.Question}
+            userAnswer={
+              currentQuestion?.Options[clickedOptionList[currentIndex]]
+            }
+          />
+          <button
+            className="border border-[#d0cece] rounded px-[2px] py-[2px]"
+            onClick={() => handleNextClick()}
+          >
+            <ChevronRight size={20} />
+          </button>
+        </div>
       </div>
       <div className="flex min-h-0 h-full flex-col gap-[8px] overflow-y-scroll no-scrollbar">
         <div>
