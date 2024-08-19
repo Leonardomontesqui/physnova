@@ -23,6 +23,9 @@ export default function CorrectAnswers() {
   const [currentQuestion, setCurrentQuestion] = useState<any>();
   const [clickedOptionList, setClickedOptionList] = useState<number[]>([]);
 
+  const [showExplanation, setShowExplanation] = useState<boolean>(false);
+  const [explanation, setExplanation] = useState<string>("");
+
   useEffect(() => {
     fetchQuestionIndex();
   }, []);
@@ -78,6 +81,8 @@ export default function CorrectAnswers() {
       const newIndex = currentIndex + 1;
       setCurrentIndex(newIndex);
       setCurrentQuestion(questionList[indexSet[newIndex]]);
+      setShowExplanation(false);
+      setExplanation("");
     }
   };
 
@@ -86,6 +91,8 @@ export default function CorrectAnswers() {
       const newIndex = currentIndex - 1;
       setCurrentIndex(newIndex);
       setCurrentQuestion(questionList[indexSet[newIndex]]);
+      setShowExplanation(false);
+      setExplanation("");
     }
   };
 
@@ -102,9 +109,18 @@ export default function CorrectAnswers() {
     }
   };
 
+  const correctAnswer = currentQuestion?.Options.find(
+    (option: option) => option.isCorrect
+  )?.text;
+
+  const userAnswer =
+    currentQuestion?.Options[clickedOptionList[currentIndex]]?.text;
+
+  const diagramDescription = currentQuestion?.DiagramDescription;
+
   return (
-    <div className="mt-[16px] md:mt-0 w-full h-full min-h-0 bg-white rounded-3xl border border-[#d9d9d9] p-[24px] flex flex-col gap-[8px] basis-2/3">
-      <div className="flex justify-between w-full">
+    <div className="mt-[16px]  w-full h-full min-h-0 bg-white rounded-3xl border border-[#d9d9d9] p-[24px] flex flex-col gap-[8px] basis-2/3">
+      <header className="flex justify-between w-full">
         <button
           className="border border-[#d0cece] rounded px-[2px] py-[2px]"
           onClick={() => handlePrevClick()}
@@ -115,9 +131,12 @@ export default function CorrectAnswers() {
         <div className="flex gap-1">
           <AIExplainButton
             question={currentQuestion?.Question}
-            userAnswer={
-              currentQuestion?.Options[clickedOptionList[currentIndex]]
-            }
+            userAnswer={userAnswer}
+            correctAnswer={correctAnswer}
+            diagramDescription={diagramDescription}
+            setShowExplanation={setShowExplanation}
+            setExplanation={setExplanation}
+            showExplanation={showExplanation}
           />
           <button
             className="border border-[#d0cece] rounded px-[2px] py-[2px]"
@@ -126,49 +145,67 @@ export default function CorrectAnswers() {
             <ChevronRight size={20} />
           </button>
         </div>
-      </div>
-      <div className="flex min-h-0 h-full flex-col gap-[8px] overflow-y-scroll no-scrollbar">
-        <div>
-          {currentQuestion?.Question && (
+      </header>
+      <section className="Question&OptionsORExplain flex flex-col justify-between w-full h-full ">
+        {!showExplanation ? (
+          <>
+            <section className="flex min-h-0 h-full flex-col gap-[8px] overflow-y-scroll no-scrollbar">
+              <div>
+                {currentQuestion?.Question && (
+                  <ReactMarkdown
+                    className="text-[14px]"
+                    remarkPlugins={[remarkMath, remarkGfm]}
+                    rehypePlugins={[rehypeKatex, rehypeRaw]}
+                  >
+                    {currentQuestion.Question}
+                  </ReactMarkdown>
+                )}
+              </div>
+              <div className="max-h-[170px]">
+                {currentQuestion?.Image && (
+                  <img
+                    className="mx-auto h-[100%]"
+                    src={currentQuestion.Image}
+                    alt="Image Related to Question"
+                  />
+                )}
+              </div>
+            </section>
+            <section className="flex flex-col gap-[8px] w-full">
+              {currentQuestion?.Options &&
+                currentQuestion?.Options.map(
+                  (option: option, index: number) => (
+                    <div
+                      key={option.text}
+                      className={`border rounded-lg px-[16px] py-[8px] text-left text-[14px] ${getOptionColor(
+                        index,
+                        option.isCorrect
+                      )}`}
+                    >
+                      <ReactMarkdown
+                        remarkPlugins={[remarkMath, remarkGfm]}
+                        rehypePlugins={[rehypeKatex, rehypeRaw]}
+                      >
+                        {option.text}
+                      </ReactMarkdown>
+                    </div>
+                  )
+                )}
+            </section>
+          </>
+        ) : (
+          <div className="mt-2 p-2 border rounded bg-[#f0f0f0] overflow-y-scroll">
             <ReactMarkdown
-              className="text-[14px]"
+              className="text-sm"
               remarkPlugins={[remarkMath, remarkGfm]}
               rehypePlugins={[rehypeKatex, rehypeRaw]}
             >
-              {currentQuestion.Question}
+              {explanation}
             </ReactMarkdown>
-          )}
-        </div>
-        <div className="max-h-[170px]">
-          {currentQuestion?.Image && (
-            <img
-              className="mx-auto h-[100%]"
-              src={currentQuestion.Image}
-              alt="Image Related to Question"
-            />
-          )}
-        </div>
-      </div>
-      <div className="flex flex-col gap-[8px] w-full">
-        {currentQuestion?.Options &&
-          currentQuestion?.Options.map((option: option, index: number) => (
-            <div
-              key={option.text}
-              className={`border rounded-lg px-[16px] py-[8px] text-left text-[14px] ${getOptionColor(
-                index,
-                option.isCorrect
-              )}`}
-            >
-              <ReactMarkdown
-                remarkPlugins={[remarkMath, remarkGfm]}
-                rehypePlugins={[rehypeKatex, rehypeRaw]}
-              >
-                {option.text}
-              </ReactMarkdown>
-            </div>
-          ))}
-      </div>
-      <div className="text-[#bfbfbf] text-[14px] flex w-full justify-between">
+          </div>
+        )}
+      </section>
+      <div className="text-[#bfbfbf] text-[14px] flex w-full justify-between sticky bottom-0">
         {currentQuestion?.Topic && <div>{currentQuestion.Topic}</div>}
         {currentIndex + 1} of 5
       </div>

@@ -442,6 +442,7 @@ export const questionList = [
     Topic: "Mechanics",
     Exam: "2018_Nov_SL",
     Image: "https://i.imgur.com/6aIOsVG.png",
+    ImageDescription: `The diagram depicts a mass "m" moving with velocity "v" towards a stationary wall`,
     Question:
       "A ball of mass $m$ collides with a wall and bounces back in a straight line. The ball loses 75% of the initial energy during the collision. The speed before the collision is $v$. What is the magnitude of the impulse on the ball by the wall?",
     Options: [
@@ -717,6 +718,7 @@ export const questionList = [
     Topic: "Mechanics",
     Exam: "2016_Nov_SL",
     Image: "https://i.imgur.com/Jw0E12h.png",
+    DiagramDescription: ``,
     Question:
       "A ball of mass m strikes a vertical wall with a speed v at an angle of θ to the wall. The ball rebounds at the same speed and angle. What is the change in the magnitude of the momentum of the ball?",
     Options: [

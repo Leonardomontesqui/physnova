@@ -1,42 +1,64 @@
 import { CircleHelp } from "lucide-react";
 import React, { useState } from "react";
 const { GoogleGenerativeAI } = require("@google/generative-ai");
+import { GoogleAIFileManager } from "@google/generative-ai/server";
 
 const genAI = new GoogleGenerativeAI(process.env.NEXT_PUBLIC_API_KEY!);
 const model = genAI.getGenerativeModel({
-  model: "gemini-1.5-flash",
+  model: "gemini-1.5-pro",
 });
 
-export default function AIExplainButton({
-  question,
-  userAnswer,
-}: {
+interface AIExplainButtonParameters {
   question: string;
   userAnswer: string;
-}) {
-  const [explanation, setExplanation] = useState("");
+  correctAnswer: string;
+  diagramDescription: string;
+  setShowExplanation: (show: boolean) => void;
+  setExplanation: (explanation: string) => void;
+  showExplanation: boolean;
+}
+
+const AIExplainButton: React.FC<AIExplainButtonParameters> = ({
+  question,
+  userAnswer,
+  correctAnswer,
+  diagramDescription,
+  setShowExplanation,
+  setExplanation,
+  showExplanation,
+}) => {
   const [loading, setLoading] = useState(false);
 
   const fetchExplanation = async (question: string, userAnswer: string) => {
     try {
       setLoading(true);
-
-      const prompt = `Explain why the correct answer to the following question is correct and why the user's selected answer is wrong. Question: ${question}. User's Answer: ${userAnswer}`;
+      //Explain why the correct answer to the following question is correct and why the user's selected answer is wrong. If there is a diagram in the question consider the diagram in your explination. Question: ${question}. User's Answer: ${userAnswer}. Image_url:
+      const prompt = `Explain why ${correctAnswer} is the correct answer to the following question is correct and if the user's selected answer is wrong, explain why it is wrong. If there is a diagram in the question consider the diagram in your explination. Use a maximum of 500 words and prioritize equations when possible. Question: ${question}. User's Answer: ${userAnswer}. diagram description: ${diagramDescription}. This setup is commonly used to represent scenarios involving collisions or interactions between moving objects and stationary surfaces in physics problems.`;
       const result = await model.generateContent(prompt);
       const response = await result.response;
       const text = response.text();
 
+      console.log(correctAnswer);
+      console.log(userAnswer);
+      console.log(diagramDescription);
+
       setExplanation(text);
+      setShowExplanation(true);
     } catch (error) {
       console.error("Error fetching explanation:", error);
       setExplanation("Failed to fetch explanation. Please try again.");
+      setShowExplanation(true);
     } finally {
       setLoading(false);
     }
   };
 
   const handleClick = () => {
-    fetchExplanation(question, userAnswer);
+    if (showExplanation) {
+      setShowExplanation(false);
+    } else {
+      fetchExplanation(question, userAnswer);
+    }
   };
 
   return (
@@ -49,11 +71,7 @@ export default function AIExplainButton({
         <CircleHelp size={20} />
         {loading ? "Loading..." : "Explain"}
       </button>
-      {explanation && (
-        <div className="mt-2 p-2 border rounded bg-[#f0f0f0]">
-          {explanation}
-        </div>
-      )}
     </div>
   );
-}
+};
+export default AIExplainButton;
