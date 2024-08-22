@@ -166,7 +166,7 @@ export default function QuestionCard() {
   };
 
   return (
-    <div className="lg:h-full lg:mx-[200px] md:border md:rounded-3xl bg-white flex flex-col px-[16px] md:px-[64px] py-[20px] justify-between border md:my-[40px] overflow-y-scroll flex-1">
+    <div className="lg:h-full lg:max-w-[1080px] lg:min-w-[600px] md:border md:rounded-3xl bg-white flex flex-col px-[16px] md:px-[64px] py-[20px] justify-between border md:my-[40px] overflow-y-scroll">
       <div className="flex flex-col gap-[8px]">
         <div className="text-[#bfbfbf] text-[12px] md:text-[14px] flex w-full justify-between">
           <div>{currentIndex + 1} of 5</div>

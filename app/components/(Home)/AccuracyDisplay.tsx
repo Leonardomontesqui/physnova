@@ -1,3 +1,4 @@
+"use client";
 import React, { useEffect, useState } from "react";
 import RoundedContainer from "../(Shared)/RoundedContainer";
 import { supabaseBrowser } from "@/lib/supabase/browser";

@@ -1,3 +1,4 @@
+"use client";
 import React, { useEffect, useState } from "react";
 import { questionList } from "../../questionList";
 import ReactMarkdown from "react-markdown";
@@ -119,7 +120,7 @@ export default function CorrectAnswers() {
   const diagramDescription = currentQuestion?.DiagramDescription;
 
   return (
-    <div className="mt-[16px]  w-full h-full min-h-0 bg-white rounded-3xl border border-[#d9d9d9] p-[24px] flex flex-col gap-[8px] basis-2/3">
+    <div className="mt-[16px] lg:mt-0 w-full h-full min-h-0 bg-white rounded-3xl border border-[#d9d9d9] p-[24px] flex flex-col gap-[8px] basis-2/3">
       <header className="flex justify-between w-full">
         <button
           className="border border-[#d0cece] rounded px-[2px] py-[2px]"
