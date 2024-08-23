@@ -178,6 +178,9 @@ export const questionList = [
     Qnumber: 4,
     Topic: "Mechanics",
     Exam: "2021_TZ1_SL",
+    Image: "https://i.imgur.com/xsgQE9t.png",
+    ImageDescription:
+      "The graph shows a curved line representing the position of an object over time. The x-axis indicates time in seconds, and the y-axis represents position in meters. Points A, B, C, and D are located approximately at (0, 1), (1, 1.5), (2, 2.2), and (3, 3.5), respectively.",
     Question:
       "The graph shows how the position of an object varies with time in the interval from 0 to 3s. At which point does the instantaneous speed of the object equal its average speed over the interval from 0 to 3s?",
     Options: [
@@ -186,15 +189,15 @@ export const questionList = [
       { text: "C", isCorrect: true },
       { text: "D", isCorrect: false },
     ],
-    Image: "https://i.imgur.com/xsgQE9t.png",
   },
   {
     Qnumber: 8,
     Topic: "Mechanics",
     Exam: "2021_TZ1_SL",
+    Image: "https://i.imgur.com/Z1YOgAc.png",
+    ImageDescription: `The image depicts two identical boxes stacked vertically. The top box has an arrow pointing downward labeled "1" in its center and an arrow pointing upward labeled "2" at its bottom. The bottom box has an arrow pointing downward labeled "4" in its center and an arrow pointing downward labeled "3" at its top. The boxes are resting on a surface.`,
     Question:
       "Two identical boxes are stored in a warehouse as shown in the diagram. Two forces acting on the top box and two forces acting on the bottom box are shown. Which is a force pair according to Newton’s third law?",
-    Image: "https://i.imgur.com/Z1YOgAc.png",
     Options: [
       { text: "2 and 3", isCorrect: true },
       { text: "1 and 2", isCorrect: false },
@@ -206,9 +209,11 @@ export const questionList = [
     Qnumber: 21,
     Topic: "Electricity and Magnetism",
     Exam: "2021_TZ1_SL",
+    Image: "https://i.imgur.com/sBb007m.png",
+    ImageDescription:
+      "The image shows a vertical conductor carrying a current I upwards. To the right of the conductor, an electron is depicted moving horizontally to the right with velocity v.",
     Question:
       "A long straight vertical conductor carries a current I upwards. An electron moves with horizontal speed v to the right. What is the direction of the magnetic force on the electron?",
-    Image: "https://i.imgur.com/sBb007m.png",
     Options: [
       { text: "Downwards", isCorrect: true },
       { text: "Upwards", isCorrect: false },
@@ -270,9 +275,11 @@ export const questionList = [
     Qnumber: 27,
     Topic: "Atomic, Nuclear and Particle Physics",
     Exam: "2021_TZ1_SL",
+    Image: "https://i.imgur.com/soZp4na.png",
+    ImageDescription:
+      "The image depicts a particle physics reaction, specifically the decay of a proton. In the initial state, a proton (charge +1), an electron (charge -1), and a muon neutrino (charge 0) are present. In the final state, a neutron (charge 0), a muon (charge -1), and an electron neutrino (charge 0) are produced.",
     Question:
       "A particle reaction can be seen below. Which conservation law is violated by the reaction?",
-    Image: "https://i.imgur.com/soZp4na.png",
     Options: [
       {
         text: "Baryon number",
@@ -296,9 +303,10 @@ export const questionList = [
     Qnumber: 24,
     Topic: "Atomic, Nuclear and Particle Physics",
     Exam: "2021_TZ1_SL",
+    ImageDescription: `The image depicts a simplified energy level diagram for an atom with three energy levels. The vertical axis represents energy, and the horizontal axis is not labeled. Horizontal lines represent the energy levels, and the vertical arrows indicate the energy differences between them. The energy differences are given as 13.3 x 10^-19 J between the first and second energy levels, and 6.63 x 10^-19 J between the second and third energy levels.`,
+    Image: "https://i.imgur.com/qVdjLXg.png",
     Question:
       "A simple model of an atom has three energy levels. The differences between adjacent energy levels are shown below. What are the two smallest frequencies in the emission spectrum of this atom?",
-    Image: "https://i.imgur.com/qVdjLXg.png",
     Options: [
       {
         text: "0.5 &times; 10<sup>15</sup> Hz and 1.0 &times; 10<sup>15</sup> Hz",
@@ -345,9 +353,10 @@ export const questionList = [
   },
   {
     Qnumber: 20,
-    Topic: "Electricity and Magnetism",
+    Topic: "Electricity and Magnetism", // could maybe use a better desc
     Exam: "2018_Nov_SL",
     Image: "https://i.imgur.com/fGo3UWF.png",
+    ImageDescription: `The image shows a circuit diagram with four identical resistors, each labeled "R," connected to a battery with an electromotive force (EMF) labeled "ε." The battery has negligible internal resistance. The resistors are arranged in a series-parallel configuration, with two resistors in parallel connected in series with another pair of resistors in parallel. The resistor labeled "X" is located in the bottom parallel branch of the circuit.`,
     Question:
       "A combination of four identical resistors each of resistance R are connected to a source of emf $\\varepsilon$ of negligible internal resistance. What is the current in the resistor X?",
     Options: [
@@ -362,6 +371,7 @@ export const questionList = [
     Topic: "Circular Motion and Gravitation",
     Exam: "2018_Nov_SL",
     Image: "https://i.imgur.com/oqLNIuM.png",
+    ImageDescription: `The image depicts a horizontal line with three points labeled 4M, M, and 9M, respectively in that order. The points represent point masses with corresponding masses. The distance between the 4M and 9M points is given as 1 m. A variable x represents the distance between the point mass M and the 9M point mass.`,
     Question:
       "Two isolated point particles of mass $4M$ and $9M$ are separated by a distance of 1 m. A point particle of mass $M$ is placed a distance $x$ from the particle of mass $9M$. The net gravitational force on $M$ is zero. What is $x$?",
     Options: [
@@ -376,6 +386,7 @@ export const questionList = [
     Topic: "Atomic, Nuclear and Particle Physics",
     Exam: "2018_Nov_SL",
     Image: "https://i.imgur.com/DreR3VG.png",
+    ImageDescription: `The graph shows the variation of the activity of a radioactive nuclide with time. The x-axis represents time in seconds, and the y-axis represents activity in units of 10^12 Bq. The graph is a decreasing curve, suggesting that the activity of the nuclide decreases over time. The curve starts at a value of approximately 2.8 x 10^12 Bq at time t = 0 and decreases to approximately 1.4 x 10^12 Bq at time t = 60 seconds. This indicates that the activity of the nuclide decreases by approximately 50% over the first 60 seconds.`,
     Question:
       "The graph shows the variation with time of the activity of a pure sample of a radioactive nuclide. What percentage of the nuclide remains after 200 s?",
     Options: [
@@ -428,6 +439,7 @@ export const questionList = [
     Topic: "Mechanics",
     Exam: "2018_Nov_SL",
     Image: "https://i.imgur.com/1iTMtKr.png",
+    ImageDescription: `The image depicts a spring-mass system. A spring is attached to a fixed point on the left and a block on the right. The block is initially at rest, and the spring is compressed by a distance x. When released, the block slides along a horizontal frictionless surface with a velocity v.`,
     Question:
       "A compressed spring is used to launch an object along a horizontal frictionless surface. When the spring is compressed through a distance $x$ and released, the object leaves the spring at speed $v$. What is the distance through which the spring must be compressed for the object to leave the spring at $2v$?",
     Options: [
@@ -442,6 +454,7 @@ export const questionList = [
     Topic: "Mechanics",
     Exam: "2018_Nov_SL",
     Image: "https://i.imgur.com/6aIOsVG.png",
+    ImageDescription: `The diagram depicts a mass "m" moving with velocity "v" towards a stationary wall`,
     Question:
       "A ball of mass $m$ collides with a wall and bounces back in a straight line. The ball loses 75% of the initial energy during the collision. The speed before the collision is $v$. What is the magnitude of the impulse on the ball by the wall?",
     Options: [
@@ -504,10 +517,11 @@ export const questionList = [
     ],
   },
   {
-    Qnumber: 15,
+    Qnumber: 15, //description could be very much improved
     Topic: "Waves",
     Exam: "2018_Nov_SL",
     Image: "https://i.imgur.com/glzHJn4.png",
+    ImageDescription: `The image shows two graphs representing a traveling wave. The top graph shows the variation of the displacement y (in cm) of the medium with distance x (in m), while the bottom graph shows the variation of the displacement y (in cm) with time t (in ms). Both graphs display a sinusoidal wave pattern, indicating a periodic disturbance propagating through the medium.`,
     Question:
       "The graphs show the variation of the displacement $y$ of a medium with distance $x$ and with time $t$ for a travelling wave. What is the speed of the wave?",
     Options: [
@@ -561,9 +575,10 @@ export const questionList = [
     Qnumber: 20,
     Topic: "Electricity and Magnetism",
     Exam: "2018_Nov_SL",
+    Image: "https://i.imgur.com/07sNit8.png",
+    ImageDescription: `The image depicts a birds eye view of two parallel wires perpendicular to the page. The wires carry equal currents in opposite directions. A point labeled "S" is located at an equal distance from both wires, forming an equilateral triangle. 4 vectors point in different directions. vector A points upward, vector B points to the right, vector C points downward, and vector D points to the left.`,
     Question:
       "Two parallel wires are perpendicular to the page. The wires carry equal currents in opposite directions. Point S is at the same distance from both wires. What is the direction of the magnetic field at point S?",
-    Image: "https://i.imgur.com/07sNit8.png",
     Options: [
       { text: "A", isCorrect: true },
       { text: "B", isCorrect: false },
@@ -602,6 +617,7 @@ export const questionList = [
     Topic: "Energy Production",
     Exam: "2018_Nov_SL",
     Image: "https://i.imgur.com/dUBzR0I.png",
+    ImageDescription: `The image depicts A cloud above a snow-covered surface, and an incident light ray (I₀) travels downwards towards the snow. Some of the light reflected from the snow reaches the cloud, and then a portion of this reflected light is further reflected from the cloud to point P.`,
     Question:
       "Light of intensity $I_0$ is incident on a snow-covered area of Earth. In a model of this situation, the albedo of the cloud is 0.30 and the albedo for the snow surface is 0.80. What is the intensity of the light at P due to the incident ray $I_0$?",
     Options: [
@@ -616,6 +632,7 @@ export const questionList = [
     Topic: "Atomic, Nuclear and Particle Physics",
     Exam: "2018_Nov_SL",
     Image: "https://i.imgur.com/SPAT1YL.png",
+    ImageDescription: `The graph depicts the relationship between the number of neutrons (N) and the atomic number (Z) for stable nuclei. The x-axis represents the atomic number, and the y-axis represents the number of neutrons. The graph shows a general upward trend, indicating that as the atomic number increases, the number of neutrons in stable nuclei also tends to increase. The graph curves slightly upwards, especially for larger atomic numbers, suggesting that the ratio of neutrons to protons in stable nuclei gradually increases with increasing atomic number. Additionally, a dashed line is drawn at a 45-degree angle, representing the line where the number of neutrons equals the number of protons. The actual plot deviates from this line, especially for larger atomic numbers, indicating that stable nuclei generally have more neutrons than protons.`,
     Question: `The graph shows the variation of the number of neutrons $N$ with the atomic number $Z$ for stable nuclei. The same scale is used in the $N$ and $Z$ axes. Which information can be inferred from the graph? <br><br><div style="margin-left: 20px;"> I. For stable nuclei with high $Z$, $N$ is larger than $Z$.<br>II. For stable nuclei with small $Z$, $N = Z$.<br>III. All stable nuclei have more neutrons than protons.</div>`,
     Options: [
       { text: "I and II only", isCorrect: true },
@@ -717,6 +734,7 @@ export const questionList = [
     Topic: "Mechanics",
     Exam: "2016_Nov_SL",
     Image: "https://i.imgur.com/Jw0E12h.png",
+    DiagramDescription: `The image shows a diagram depicting a ball bouncing off a wall. A circle represents the ball, and a vertical line represents the wall. An arrow labeled "v" extends from the ball towards the wall, forming a positive angle θ with respect to the horizontal, indicating its initial velocity. Another arrow labeled "v", same magnitude, extends from the wall towards the ball, indicating its final velocity after the bounce, forming a negative angle θ with the horizontal (that is the angle is below the horizontal). Both arrows form the same angle θ with the horizontal.`,
     Question:
       "A ball of mass m strikes a vertical wall with a speed v at an angle of θ to the wall. The ball rebounds at the same speed and angle. What is the change in the magnitude of the momentum of the ball?",
     Options: [
@@ -780,6 +798,8 @@ export const questionList = [
     Topic: "Thermal Physics",
     Exam: "2016_Nov_SL",
     Image: "https://i.imgur.com/yFz3AJW.png",
+    ImageDescription:
+      "The image shows a graph illustrating the relationship between the volume (V) of an ideal gas and its absolute temperature (T). The x-axis represents the absolute temperature (T), and the y-axis represents the volume (V). The graph is a straight line with a positive slope, indicating a direct proportional relationship between volume and temperature.",
     Question:
       "An ideal gas of N molecules is maintained at a constant pressure p. The graph shows how the volume V of the gas varies with absolute temperature T. What is the gradient of the graph?",
     Options: [
@@ -824,6 +844,8 @@ export const questionList = [
     Topic: "Waves",
     Exam: "2016_Nov_SL",
     Image: "https://i.imgur.com/eHQFwnN.png",
+    ImageDescription:
+      "The image depicts a horizontal spring labeled XY lying on a frictionless table. The end Y of the spring is free. An arrow above the spring indicates the direction of travel of a pulse moving from the left end (X) towards the right end (Y).",
     Question:
       "A spring XY lies on a frictionless table with the end Y free. A horizontal pulse travels along the spring from X to Y. What happens when the pulse reaches Y?",
     Options: [
@@ -860,6 +882,8 @@ export const questionList = [
     Topic: "Electricity and Magnetism",
     Exam: "2016_Nov_SL",
     Image: "https://i.imgur.com/tsViRqe.png",
+    ImageDescription:
+      "The image depicts a horizontal line with three positions, starting from the left side, marked as I, II, and III. In between I and II, but closer to II there is a positive charge of 10 mu C and in between II and III, but even closer to position II there is a negative charge of -5 mu C. ",
     Question:
       "A -5$\\mu$C charge and a +10$\\mu$C charge are a fixed distance apart. Where can the electric field be zero?",
     Options: [
@@ -886,6 +910,8 @@ export const questionList = [
     Qnumber: 5,
     Topic: "Mechanics", //check for this question in answers
     Exam: "2016_Nov_SL",
+    ImageDescription:
+      "Option 1 Index 0: This image shows two graphs: one depicting a parabolic relationship between kinetic energy and time, and the other showing a linear relationship between speed and time. Option 2 Index 1: This image shows two graphs: one depicting a linear relationship between kinetic energy and time, and the other showing a parabolic relationship between speed and time. Option 3 Index 2: This image shows two graphs, both depicting a linear relationship between kinetic energy and time and speed and time. Option 4 Index 3: This image shows two graphs, both depicting a parabolic relationship between kinetic energy and time and speed and time.",
     Question:
       "An object, initially at rest, is accelerated by a constant force. Which graphs show the variation with time t of the kinetic energy and the variation with time t of the speed of the object?",
     Options: [
@@ -911,23 +937,24 @@ export const questionList = [
     Qnumber: 14,
     Topic: "Waves",
     Exam: "2016_Nov_SL",
+    ImageDescription: `Option 1 Index 0: This graph represents the variation of kinetic energy with time for a simple harmonic oscillator. However, it includes negative values for kinetic energy, which is not physically possible. Option 2 Index 1: This graph suggests a damped harmonic oscillator. The maximum kinetic energy decreases over time, indicating a loss of energy. The oscillations become less pronounced as time progresses. Option 3 Index 2: This graph represents a more complex system with varying amplitude oscillations. The kinetic energy fluctuates irregularly, suggesting a non-uniform energy distribution or a more complicated form of motion. Option 4 Index 3: This graph correctly represents the variation of kinetic energy with time in a simple harmonic oscillator. It shows only positive values for kinetic energy, which is consistent with the physical nature of this quantity. The oscillations are periodic, with a consistent maximum value and a period of "T."`,
     Question:
       "A particle oscillates with simple harmonic motion (shm) of period T. Which graph shows the variation with time of the kinetic energy of the particle?",
     Options: [
       {
-        text: "<img src='https://i.imgur.com/dgAdm1G.png' alt='Graph A' style='max-height:80px; min-height:60px;'/>",
+        text: "<img src='https://i.imgur.com/dgAdm1G.png' alt='index 0' style='max-height:80px; min-height:60px;'/>",
         isCorrect: false,
       },
       {
-        text: "<img src='https://i.imgur.com/rZkfMO4.png' alt='Graph B' style='max-height:80px; min-height:60px;'/>",
+        text: "<img src='https://i.imgur.com/rZkfMO4.png' alt='index 1' style='max-height:80px; min-height:60px;'/>",
         isCorrect: false,
       },
       {
-        text: "<img src='https://i.imgur.com/eNNcvL5.png' alt='Graph C' style='max-height:80px; min-height:60px;'/>",
+        text: "<img src='https://i.imgur.com/eNNcvL5.png' alt='index 2' style='max-height:80px; min-height:60px;'/>",
         isCorrect: false,
       },
       {
-        text: "<img src='https://i.imgur.com/8mkxhMC.png' alt='Graph D' style='max-height:80px; min-height:60px;'/>",
+        text: "<img src='https://i.imgur.com/8mkxhMC.png' alt='index 3' style='max-height:80px; min-height:60px;'/>",
         isCorrect: true,
       },
     ],
@@ -937,23 +964,25 @@ export const questionList = [
     Qnumber: 15,
     Topic: "Waves",
     Exam: "2016_Nov_SL",
-    Question:
+    ImageDescription:
+      "Option 1 index 0: This image depicts a basic refraction scenario where a light ray enters a diamond from air at a moderate angle. The refracted ray bends towards the normal line. Option 2 index 1: Similar to Image 0, but the incident ray enters at a steeper angle. The refracted ray bends more significantly towards the normal line due to the increased change in speed. Option 3 index 2: This image demonstrates total internal reflection. The incident ray enters at a very steep angle, exceeding the critical angle. As a result, the light is reflected back into the air instead of refracting into the diamond. Option 4 index 3: This image shows a refracted ray that is bent very close to the boundary. The incident ray enters at a steep angle, causing the refracted ray to approach the boundary at a shallow angle.",
+    QuestionDescription:
       "A light ray is incident on an air-diamond boundary. The refractive index of diamond is greater than 1. Which diagram shows the correct path of the light ray?",
     Options: [
       {
-        text: "<img src='https://i.imgur.com/gv4pgkO.png' alt='Diagram A' style='max-height:80px; min-height:60px;'/>",
+        text: "<img src='https://i.imgur.com/gv4pgkO.png' alt='index 0' style='max-height:80px; min-height:60px;'/>",
         isCorrect: true,
       },
       {
-        text: "<img src='https://i.imgur.com/CkUh082.png' alt='Diagram B' style='max-height:80px; min-height:60px;'/>",
+        text: "<img src='https://i.imgur.com/CkUh082.png' alt='index 1' style='max-height:80px; min-height:60px;'/>",
         isCorrect: false,
       },
       {
-        text: "<img src='https://i.imgur.com/u9uUk14.png' alt='Diagram C' style='max-height:80px; min-height:60px;'/>",
+        text: "<img src='https://i.imgur.com/u9uUk14.png' alt='index 2' style='max-height:80px; min-height:60px;'/>",
         isCorrect: false,
       },
       {
-        text: "<img src='https://i.imgur.com/ATTsSWC.png' alt='Diagram D' style='max-height:80px; min-height:60px;'/>",
+        text: "<img src='https://i.imgur.com/ATTsSWC.png' alt='index 3' style='max-height:80px; min-height:60px;'/>",
         isCorrect: false,
       },
     ],
