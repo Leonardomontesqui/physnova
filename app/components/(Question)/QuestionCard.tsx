@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { questionList } from "../../questionList";
+import { questionList } from "../../../constants/questionList";
 import { supabaseBrowser } from "@/lib/supabase/browser";
 import { useRouter } from "next/navigation";
 import ReactMarkdown from "react-markdown";
@@ -166,34 +166,29 @@ export default function QuestionCard() {
   };
 
   return (
-    <div className="lg:h-full lg:max-w-[1080px] lg:min-w-[600px] md:border md:rounded-3xl bg-white flex flex-col px-[16px] md:px-[64px] py-[20px] justify-between border md:my-[40px] overflow-y-scroll">
-      <div className="flex flex-col gap-[8px]">
-        <div className="text-[#bfbfbf] text-[12px] md:text-[14px] flex w-full justify-between">
-          <div>{currentIndex + 1} of 5</div>
-          {currentQuestion?.Topic && <div>{currentQuestion.Topic}</div>}
-        </div>
-        <div className="flex flex-col gap-[16px] h-full text-[14px] md:text-[16px]">
-          <p>
-            {currentQuestion?.Question && (
-              <ReactMarkdown
-                remarkPlugins={[remarkMath, remarkGfm]}
-                rehypePlugins={[rehypeKatex, rehypeRaw]}
-              >
-                {currentQuestion.Question}
-              </ReactMarkdown>
-            )}
-          </p>
+    <section className="relative h-full lg:max-w-[1080px] lg:min-w-[600px] md:border md:rounded-3xl bg-white flex flex-col px-[20px] py-[20px] border md:my-[40px] overflow-y-scroll no-scrollbar gap-2">
+      <header className="text-[#bfbfbf] text-xs md:text-sm flex w-full justify-between">
+        <p>{currentIndex + 1} of 5</p>
+        <p>{currentQuestion?.Topic}</p>
+      </header>
 
-          {currentQuestion?.Image && (
-            <img
-              className="mx-auto max-h-[200px]"
-              src={currentQuestion.Image}
-              alt="Image Related to Question"
-            />
-          )}
-        </div>
-      </div>
-      <div className="flex flex-col gap-[8px]">
+      <ReactMarkdown
+        remarkPlugins={[remarkMath, remarkGfm]}
+        rehypePlugins={[rehypeKatex, rehypeRaw]}
+        className="text-sm md:text-base"
+      >
+        {currentQuestion?.Question}
+      </ReactMarkdown>
+
+      {currentQuestion?.Image && (
+        <img
+          className="mx-auto max-h-[250px]"
+          src={currentQuestion?.Image}
+          alt="Image Related to Question"
+        />
+      )}
+
+      <section className="absolute bottom-4 left-4 right-4 flex flex-col gap-2">
         {currentQuestion?.Options &&
           shuffledOptionIndices.map((shuffledIndex) => {
             const option = currentQuestion.Options[shuffledIndex];
@@ -212,7 +207,7 @@ export default function QuestionCard() {
               </button>
             );
           })}
-      </div>
-    </div>
+      </section>
+    </section>
   );
 }

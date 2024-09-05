@@ -1,8 +1,9 @@
 "use client";
 import React, { useEffect } from "react";
-import NavBar from "../components/(NavBars)/NavBar3";
+
 import QuestionCard from "../components/(Question)/QuestionCard";
 import { supabaseBrowser } from "@/lib/supabase/browser";
+import NavBar from "../components/(ui)/(NavBars)/NavBar3";
 
 const supabase = supabaseBrowser();
 

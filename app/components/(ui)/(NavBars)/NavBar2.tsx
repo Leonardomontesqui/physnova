@@ -1,5 +1,5 @@
 import React from "react";
-import SignOut from "../(Shared)/SignOut";
+import SignOut from "../../(Shared)/SignOut";
 
 export default function NavBar() {
   return (

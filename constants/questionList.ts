@@ -937,7 +937,8 @@ export const questionList = [
     Qnumber: 14,
     Topic: "Waves",
     Exam: "2016_Nov_SL",
-    ImageDescription: `Option 1 Index 0: This graph represents the variation of kinetic energy with time for a simple harmonic oscillator. However, it includes negative values for kinetic energy, which is not physically possible. Option 2 Index 1: This graph suggests a damped harmonic oscillator. The maximum kinetic energy decreases over time, indicating a loss of energy. The oscillations become less pronounced as time progresses. Option 3 Index 2: This graph represents a more complex system with varying amplitude oscillations. The kinetic energy fluctuates irregularly, suggesting a non-uniform energy distribution or a more complicated form of motion. Option 4 Index 3: This graph correctly represents the variation of kinetic energy with time in a simple harmonic oscillator. It shows only positive values for kinetic energy, which is consistent with the physical nature of this quantity. The oscillations are periodic, with a consistent maximum value and a period of "T."`,
+    ExplanationDisabled: true,
+    ImageDescription: `Option 1: This graph represents the variation of kinetic energy with time for a simple harmonic oscillator. However, it includes negative values for kinetic energy, which is not physically possible. Option 2: This graph suggests a damped harmonic oscillator. The maximum kinetic energy decreases over time, indicating a loss of energy. The oscillations become less pronounced as time progresses. Option 3: This graph represents a more complex system with varying amplitude oscillations. The kinetic energy fluctuates irregularly, suggesting a non-uniform energy distribution or a more complicated form of motion. Option 4: This graph correctly represents the variation of kinetic energy with time in a simple harmonic oscillator. It shows only positive values for kinetic energy, which is consistent with the physical nature of this quantity. The oscillations are periodic, with a consistent maximum value and a period of "T."`,
     Question:
       "A particle oscillates with simple harmonic motion (shm) of period T. Which graph shows the variation with time of the kinetic energy of the particle?",
     Options: [
@@ -966,7 +967,7 @@ export const questionList = [
     Exam: "2016_Nov_SL",
     ImageDescription:
       "Option 1 index 0: This image depicts a basic refraction scenario where a light ray enters a diamond from air at a moderate angle. The refracted ray bends towards the normal line. Option 2 index 1: Similar to Image 0, but the incident ray enters at a steeper angle. The refracted ray bends more significantly towards the normal line due to the increased change in speed. Option 3 index 2: This image demonstrates total internal reflection. The incident ray enters at a very steep angle, exceeding the critical angle. As a result, the light is reflected back into the air instead of refracting into the diamond. Option 4 index 3: This image shows a refracted ray that is bent very close to the boundary. The incident ray enters at a steep angle, causing the refracted ray to approach the boundary at a shallow angle.",
-    QuestionDescription:
+    Question:
       "A light ray is incident on an air-diamond boundary. The refractive index of diamond is greater than 1. Which diagram shows the correct path of the light ray?",
     Options: [
       {

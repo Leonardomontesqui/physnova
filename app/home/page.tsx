@@ -1,13 +1,10 @@
-import { Settings } from "./../components/(Home)/Settings";
-
 import React, { useState } from "react";
-import NavBar2 from "../components/(NavBars)/NavBar2";
-import { useRouter } from "next/navigation"; //FROM NEXT NAVIGATION
-import AccuracyDisplay from "../components/(Home)/AccuracyDisplay";
-import CorrectAnswers from "../components/(Home)/CorrectAnswers";
-import TopicsBox from "../components/(Home)/TopicsBox";
+
+import CorrectAnswers from "../components/(Home)/(CorrectAnswers)/CorrectAnswers";
 import { supabaseBrowser } from "@/lib/supabase/browser";
-import Gameplay from "../components/(Home)/Gameplay";
+import NavBar2 from "../components/(ui)/(NavBars)/NavBar2";
+import Gameplay from "../components/(Home)/(Gameplay)/Gameplay";
+import { Settings } from "../components/(Home)/(Settings)/Settings";
 
 const supabase = supabaseBrowser();
 

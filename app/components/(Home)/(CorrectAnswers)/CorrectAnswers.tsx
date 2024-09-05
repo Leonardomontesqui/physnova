@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { questionList } from "../../questionList";
+import { questionList } from "@/constants/questionList";
 import ReactMarkdown from "react-markdown";
 import remarkMath from "remark-math";
 import remarkGfm from "remark-gfm";
@@ -11,6 +11,7 @@ import { supabaseBrowser } from "@/lib/supabase/browser";
 import { Bookmark, ChevronLeft, ChevronRight, CircleHelp } from "lucide-react";
 
 import AIExplainButton from "./AIExplainButton";
+import SavedButton from "./SavedButton";
 
 const supabase = supabaseBrowser();
 
@@ -26,6 +27,7 @@ export default function CorrectAnswers() {
 
   const [showExplanation, setShowExplanation] = useState<boolean>(false);
   const [explanation, setExplanation] = useState<string>("");
+  const [savedIndexes, setSavedIndexes] = useState<number[]>([]);
 
   useEffect(() => {
     fetchQuestionIndex();
@@ -130,6 +132,7 @@ export default function CorrectAnswers() {
         </button>
         <div className="font-medium">Answers</div>
         <div className="flex gap-1">
+          <SavedButton indexSet={indexSet} currentIndex={currentIndex} />
           <AIExplainButton
             question={currentQuestion?.Question}
             userAnswer={userAnswer}
@@ -138,6 +141,7 @@ export default function CorrectAnswers() {
             setShowExplanation={setShowExplanation}
             setExplanation={setExplanation}
             showExplanation={showExplanation}
+            isDisabled={currentQuestion?.ExplanationDisabled}
           />
           <button
             className="border border-[#d0cece] rounded px-[2px] py-[2px]"

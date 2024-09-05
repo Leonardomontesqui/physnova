@@ -1,6 +1,7 @@
 "use client";
 import { supabaseBrowser } from "@/lib/supabase/browser";
-import NavBar from "./components/(NavBars)/NavBar";
+import NavBar from "./components/(ui)/(NavBars)/NavBar";
+
 const supabase = supabaseBrowser();
 
 export default function Landing() {

@@ -16,6 +16,7 @@ interface AIExplainButtonParameters {
   setShowExplanation: (show: boolean) => void;
   setExplanation: (explanation: string) => void;
   showExplanation: boolean;
+  isDisabled: boolean;
 }
 
 const AIExplainButton: React.FC<AIExplainButtonParameters> = ({
@@ -26,6 +27,7 @@ const AIExplainButton: React.FC<AIExplainButtonParameters> = ({
   setShowExplanation,
   setExplanation,
   showExplanation,
+  isDisabled,
 }) => {
   const [loading, setLoading] = useState(false);
 
@@ -37,7 +39,7 @@ const AIExplainButton: React.FC<AIExplainButtonParameters> = ({
     try {
       setLoading(true);
 
-      const prompt = `Explain why ${correctAnswer} is the correct answer to the following question is correct and if the user's selected answer is wrong, explain why it is wrong. If there is a diagram in the question consider the diagram in your explanation. Use a maximum of 500 words and prioritize equations when possible. Question: ${question}. User's Answer: ${userAnswer}. diagram description: ${diagramDescription}. This setup is commonly used to represent scenarios involving collisions or interactions between moving objects and stationary surfaces in physics problems.`;
+      const prompt = `Explain why ${correctAnswer} is the correct answer to the following question is correct and if the user's selected answer is wrong, explain why it is wrong. If there is a diagram in the question consider the diagram or diagram description in your explanation. Use a maximum of 500 words and prioritize equations when possible. Question: ${question}. User's Answer: ${userAnswer}. diagram description: ${diagramDescription}. This setup is commonly used to represent scenarios involving collisions or interactions between moving objects and stationary surfaces in physics problems.`;
       const result = await model.generateContent(prompt);
       const response = await result.response;
       const text = response.text();
@@ -72,9 +74,11 @@ const AIExplainButton: React.FC<AIExplainButtonParameters> = ({
   return (
     <div>
       <button
-        className="border border-[#d0cece] rounded px-[2px] py-[2px] flex items-center"
-        onClick={handleClick}
-        disabled={loading}
+        className={`border border-[#d0cece] rounded px-[2px] py-[2px] flex items-center ${
+          isDisabled ? "disabled disabled: opacity-50" : ""
+        }`}
+        onClick={!isDisabled ? handleClick : undefined}
+        disabled={loading || isDisabled}
       >
         <CircleHelp size={20} />
         {loading ? "Loading..." : "Explain"}
