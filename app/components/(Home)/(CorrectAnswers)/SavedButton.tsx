@@ -12,9 +12,7 @@ export default function SavedButton({
   indexSet: number[];
   currentIndex: number;
 }) {
-  const router = useRouter();
   const pathname = usePathname();
-  const searchParams = useSearchParams();
 
   const [savedIndexes, setSavedIndexes] = useState<number[]>([]);
   const [userID, setUserID] = useState<string>();
