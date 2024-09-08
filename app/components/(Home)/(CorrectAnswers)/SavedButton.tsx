@@ -1,7 +1,7 @@
 "use client";
 import { supabaseBrowser } from "@/lib/supabase/browser";
 import { Bookmark } from "lucide-react";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { usePathname } from "next/navigation";
 import React, { useEffect, useState } from "react";
 const supabase = supabaseBrowser();
 
