@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import TopicButton from "./TopicButton";
+import { topics } from "@/constants/topics";
 
 interface TopicsBoxProps {
   topicsChosen: string[];
@@ -20,14 +21,7 @@ export default function TopicsBox({
 
   return (
     <div className="flex flex-wrap w-full h-full gap-[8px] gap-y-[8px] justify-auto">
-      {[
-        "Measurements and Uncertainties",
-        "Mechanics",
-        "Waves",
-        "Thermal Physics",
-        "Electricity and Magnetism",
-        "Atomic, Nuclear and Particle Physics",
-      ].map((topic) => (
+      {topics.map((topic) => (
         <TopicButton
           key={topic}
           onClick={() => handleTopicClick(topic)}
