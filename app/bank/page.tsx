@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 
 import Filter from "../components/(Bank)/Filter";
-import NavBar from "../components/(ui)/(NavBars)/NavBar3";
+import NavBar from "../components/ui/(NavBars)/NavBar3";
 import QuestionBank from "../components/(Bank)/QuestionBank";
 
 const indexes = [4, 0, 3, 5, 6, 8, 23, 14, 7];

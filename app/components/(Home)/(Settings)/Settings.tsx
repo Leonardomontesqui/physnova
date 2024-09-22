@@ -22,7 +22,7 @@ export function Settings() {
   };
 
   return (
-    <div className="h-full w-full bg-white rounded-3xl border border-[#d9d9d9] p-[24px] flex flex-col items-center gap-[8px]">
+    <div className="h-fit w-full bg-white rounded-2xl border border-[#d9d9d9] p-4 flex flex-col  gap-[8px]">
       <h1 className="font-medium">Select Topics</h1>
       <TopicsBox
         topicsChosen={topicsChosen}

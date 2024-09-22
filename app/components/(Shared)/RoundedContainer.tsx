@@ -13,7 +13,7 @@ export default function RoundedContainer({
 }: Props) {
   return (
     <div
-      className={`px-[16px] py-[8px] rounded-xl border border-[#dedede] gap-[8px] w-full ${className}`}
+      className={`px-4 py-2 rounded-2xl border border-[#dedede] gap-[8px] w-full ${className}`}
       onClick={onClick}
     >
       {children}

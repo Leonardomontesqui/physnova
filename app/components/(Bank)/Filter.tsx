@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { Checkbox } from "../(ui)/checkbox";
+import { Checkbox } from "../ui/checkbox";
 import { questionList } from "@/constants/questionList";
 import { topics } from "@/constants/topics";
 

@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 
 import QuestionCard from "../components/(Question)/QuestionCard";
 import { supabaseBrowser } from "@/lib/supabase/browser";
-import NavBar from "../components/(ui)/(NavBars)/NavBar3";
+import NavBar from "../components/ui/(NavBars)/NavBar3";
 
 const supabase = supabaseBrowser();
 
