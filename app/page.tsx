@@ -25,12 +25,15 @@ export default function Landing() {
           <div className="text-xl lg:text-2xl text-center">
             Mastering IB Physics 5 questions at a time
           </div>
-          <button
+          <h1 className="py-1 px-4 text-white bg-amber-400 rounded-lg">
+            🚧 V2 Under Construction 🚧
+          </h1>
+          {/* <button
             className="border bg-[#4356ff] px-[16px] py-[8px] rounded-lg text-white"
             onClick={() => handleLoginWithOAuth()}
           >
             Login with Google
-          </button>
+          </button> */}
         </div>
         <div className="w-[300px] h-[150px] lg:w-[600px] lg:h-[300px] ">
           <iframe
