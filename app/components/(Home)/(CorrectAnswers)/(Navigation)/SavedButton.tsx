@@ -1,63 +1,47 @@
 "use client";
+import { fetchSavedIndexes, fetchUserID } from "@/lib/hooks/user";
 import { supabaseBrowser } from "@/lib/supabase/browser";
 import { Bookmark } from "lucide-react";
 import { usePathname } from "next/navigation";
 import React, { useEffect, useState } from "react";
 const supabase = supabaseBrowser();
 
+interface SavedButtonProps {
+  indexSet: number[];
+  currentIndex: number;
+}
+
 export default function SavedButton({
   indexSet,
   currentIndex,
-}: {
-  indexSet: number[];
-  currentIndex: number;
-}) {
+}: SavedButtonProps) {
   const pathname = usePathname();
 
   const [savedIndexes, setSavedIndexes] = useState<number[]>([]);
   const [userID, setUserID] = useState<string>();
 
   useEffect(() => {
-    fetchSavedIndexes();
+    collectSavedIndexes();
   }, []);
 
   useEffect(() => {
-    if (userID && savedIndexes.length > 0) {
+    if (savedIndexes.length > 0) {
       updateDBSavedIndexes();
     }
   }, [pathname, userID, savedIndexes]);
 
-  const fetchSavedIndexes = async () => {
-    const { data: userData, error: userDataError } =
-      await supabase.auth.getUser();
+  const collectSavedIndexes = async () => {
+    const ID = await fetchUserID();
+    setUserID(ID);
 
-    if (!userData || userDataError) {
-      console.error("Following error fetching user data: ", userDataError);
-      return;
-    }
+    const savedIndexes = await fetchSavedIndexes();
 
-    setUserID(userData.user.id);
-    console.log(userID);
-
-    const { data: DBsavedIndexesObject, error: DBsavedIndexesError } =
-      await supabase
-        .from("profiles")
-        .select("savedIndexes")
-        .eq("id", userData.user.id);
-
-    if (DBsavedIndexesError) {
-      console.error(
-        "Following error fetching saved Indexes ",
-        DBsavedIndexesError
-      );
-    }
-
-    if (DBsavedIndexesObject != null) {
-      setSavedIndexes(DBsavedIndexesObject[0].savedIndexes);
+    if (savedIndexes != null) {
+      setSavedIndexes(savedIndexes);
     }
   };
 
-  const saveQuestion = async () => {
+  const saveQuestion = () => {
     let questionIndex = indexSet[currentIndex];
 
     if (savedIndexes?.includes(questionIndex)) {
@@ -66,10 +50,6 @@ export default function SavedButton({
     } else {
       setSavedIndexes([...savedIndexes, questionIndex]);
     }
-    console.log(
-      "This is the saved Index list prior to sending it: ",
-      savedIndexes
-    );
   };
 
   const updateDBSavedIndexes = async () => {
@@ -86,14 +66,20 @@ export default function SavedButton({
 
   return (
     <button
-      className={`border border-[#d0cece] rounded px-[2px] py-[2px] ${
+      className={`flex flex-row gap-2 items-center border rounded px-[2px] py-[2px] ${
         savedIndexes.includes(indexSet[currentIndex])
-          ? "bg-gray-200 text-black border border-[#eeefe]"
-          : "bg-[#ffffff] border-[#dedede]"
+          ? "border-[#fab43e]"
+          : "border-[#d0cece]"
       }`}
       onClick={saveQuestion}
     >
-      <Bookmark size={20} />
+      <Bookmark
+        size={20}
+        strokeWidth={1.75}
+        color={
+          savedIndexes.includes(indexSet[currentIndex]) ? "#FAB43E" : "#000000"
+        }
+      />
     </button>
   );
 }

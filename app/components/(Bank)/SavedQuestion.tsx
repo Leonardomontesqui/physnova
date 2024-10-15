@@ -8,11 +8,12 @@ import { questionList } from "@/constants/questionList";
 
 export default function SavedQuestion({ index }: { index: number }) {
   return (
-    <section className="relative QuestionCard min-h-[600px] max-h-[800px] flex flex-col bg-white rounded-3xl border border-[#d9d9d9] p-4 gap-2">
+    <section className="relative QuestionCard min-h-[600px] max-h-[800px] flex flex-col bg-white rounded-3xl border border-[#d9d9d9] p-4 gap-2 overflow-y-scroll no-scrollbar">
       <header className="flex justify-between w-full text-sm text-[#bfbfbf]">
         <p>{questionList[index]?.Exam}</p>
         <p>{questionList[index]?.Topic}</p>
       </header>
+
       <ReactMarkdown
         className="text-sm"
         remarkPlugins={[remarkMath, remarkGfm]}
@@ -23,7 +24,7 @@ export default function SavedQuestion({ index }: { index: number }) {
 
       {questionList[index]?.Image && (
         <img
-          className="mx-auto max-h-[170px]"
+          className="mx-auto  max-h-[80px] md:max-h-[170px]"
           src={questionList[index].Image}
           alt="Diagram"
         />

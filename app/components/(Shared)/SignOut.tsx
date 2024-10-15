@@ -12,10 +12,7 @@ export default function SignOut() {
   };
 
   return (
-    <button
-      className="text-[14px] px-[16px] py-[8px] border border-[#eeeeee] rounded-xl"
-      onClick={handleSignOut}
-    >
+    <button className="text-[14px] items-center w-full" onClick={handleSignOut}>
       Sign out
     </button>
   );

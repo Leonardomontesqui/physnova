@@ -2,25 +2,21 @@
 import React, { useState, useEffect } from "react";
 import { questionList } from "../../../constants/questionList";
 import { supabaseBrowser } from "@/lib/supabase/browser";
-import { useRouter } from "next/navigation";
 import ReactMarkdown from "react-markdown";
 import rehypeKatex from "rehype-katex";
 import remarkMath from "remark-math";
 import rehypeRaw from "rehype-raw";
 import remarkGfm from "remark-gfm";
 import "katex/dist/katex.min.css";
+import { fetchSettings, insertGameplayData } from "@/lib/hooks/user";
+import { ArrowBigRight } from "lucide-react";
+import {
+  generateFilteredIndexList,
+  shuffleArray,
+} from "@/lib/actions/filtering";
 
 const supabase = supabaseBrowser(); // this makes it a variable for all
 type QuestionType = (typeof questionList)[0];
-
-// Fisher-Yates Shuffle Algorithm
-const shuffleArray = (array: number[]) => {
-  for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];
-  }
-  return array;
-};
 
 export default function QuestionCard() {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
@@ -30,91 +26,30 @@ export default function QuestionCard() {
     []
   );
   const [questionIndexes, setQuestionIndexes] = useState<number[]>([]);
-  const [currentQuestion, setCurrentQuestion] = useState<any>();
-
-  const router = useRouter();
+  const [changeState, setChangeState] = useState<boolean>(false);
+  const [clickedIndex, setClickedIndex] = useState<number>(9);
+  const [numberOfQuestions, setNumberOfQuestions] = useState<number>(5);
 
   useEffect(() => {
-    generateIndexList();
-    // testingIndexList();
+    // applySettings();
+    setShuffledOptionIndices(shuffleArray([0, 1, 2, 3]));
+    testingIndexList();
   }, []);
 
   useEffect(() => {
-    if (questionIndexes.length > 0) {
-      setCurrentQuestion(questionList[questionIndexes[0]]);
-    }
-  }, [questionIndexes]);
+    setShuffledOptionIndices(shuffleArray([0, 1, 2, 3]));
+  }, [currentIndex]);
 
-  useEffect(() => {
-    if (currentQuestion?.Options) {
-      setShuffledOptionIndices(shuffleArray([0, 1, 2, 3]));
-    }
-  }, [currentQuestion]);
+  const applySettings = async () => {
+    const settings = await fetchSettings();
+    const questionAmount = settings?.number_of_questions;
+    setNumberOfQuestions(questionAmount);
 
-  const generateIndexList = async () => {
-    //fetching the topics
-
-    const { data: userData, error: userDataError } =
-      await supabase.auth.getUser();
-
-    if (!userData || userDataError) {
-      console.error("Error fetching user data");
-      router.push("/");
-      return;
-    }
-
-    const { data: topicData, error: topicDataError } = await supabase
-      .from("topics_chosen")
-      .select("topics")
-      .eq("user_id", userData.user.id)
-      .order("created_at", { ascending: true });
-
-    if (topicDataError) {
-      console.error("Error fetching topic data");
-      return;
-    }
-
-    const topics = topicData[topicData.length - 1]["topics"];
-
-    //generating the 5 question list based on the topics
-    if (topics.length > 0) {
-      // Create a set for O(1) topic lookup
-      const topicSet = new Set(topics);
-
-      // Collect the indexes of the questions that match the topics
-      const filteredQuestionsWithIndexes = questionList.reduce(
-        (acc: any, question, index: number) => {
-          if (topicSet.has(question.Topic)) {
-            acc.push(index);
-          }
-          return acc;
-        },
-        []
-      );
-
-      // Shuffle the filtered questions array
-      const shuffledQuestions = shuffleArray(filteredQuestionsWithIndexes);
-
-      const selectedIndexes = shuffledQuestions.slice(0, 5);
-      console.log("Selected indexes of 5 random questions: ", selectedIndexes);
-
-      setQuestionIndexes(selectedIndexes);
-    } else {
-      const allIndexes = Array.from(
-        { length: questionList.length },
-        (_, index) => index
-      );
-
-      // Shuffle and select 5 random indexes
-      const shuffledIndexes = shuffleArray(allIndexes);
-      const selectedIndexes = shuffledIndexes.slice(0, 5);
-      setQuestionIndexes(selectedIndexes);
-    }
-    return;
+    const filteredQuestionIndexes = generateFilteredIndexList(settings);
+    setQuestionIndexes(filteredQuestionIndexes);
   };
 
   const testingIndexList = () => {
-    // Set originalIndexes to the last five indexes of questionList
     const lastFiveIndexes = questionList
       .slice(-5)
       .map((_, index) => questionList.length - 5 + index)
@@ -122,54 +57,56 @@ export default function QuestionCard() {
     setQuestionIndexes(lastFiveIndexes);
   };
 
-  const insertGamePlayData = async (index: number, isLastCorrect: boolean) => {
-    let updatedIndexSelect = optionClickedIndex;
-    updatedIndexSelect.push(index);
-    const { data: userData, error: userDataError } =
-      await supabase.auth.getUser();
+  const handleCheckAnswer = () => {
+    const option =
+      questionList[questionIndexes[currentIndex]].Options[clickedIndex];
 
-    if (!userData || userDataError) {
-      console.error("Error fetching user data");
-      return;
-    }
-
-    const { error: gameplayInsertError } = await supabase
-      .from("gameplay")
-      .insert({
-        accurate: correctAnswers + Number(isLastCorrect),
-        name: userData.user.user_metadata.name,
-        question_index_list: questionIndexes,
-        option_index_list: updatedIndexSelect,
-      });
-
-    if (gameplayInsertError) {
-      console.error("Error inserting gameplay data");
-    }
-    window.location.href = "/home";
-  };
-
-  const handleOptionClick = async (index: number, option: any) => {
-    // console.log("Index clicked: ", index);
-    setOptionClickedIndex((prev) => [...prev, index]);
+    setOptionClickedIndex((prev) => [...prev, clickedIndex]);
 
     if (option.isCorrect) {
       setCorrectAnswers(correctAnswers + 1);
     }
-    //used to be <=5
-    if (currentIndex < 4) {
+
+    setChangeState(true);
+  };
+
+  const handleNextQuestion = async () => {
+    if (currentIndex < numberOfQuestions - 1) {
       const newIndex = currentIndex + 1;
       setCurrentIndex(newIndex);
-      setCurrentQuestion(questionList[questionIndexes[newIndex]]);
+      setChangeState(false);
+      setClickedIndex(9);
     } else {
-      await insertGamePlayData(index, option.isCorrect);
+      await insertGameplayData(
+        correctAnswers,
+        questionIndexes,
+        optionClickedIndex,
+        numberOfQuestions
+      );
+      window.location.href = "/home";
+    }
+  };
+
+  const getOptionColor = (index: number, isCorrect: boolean) => {
+    if (index == clickedIndex) {
+      return isCorrect
+        ? "border-[#d2e9d8] bg-[#ecf8ef]"
+        : "border-[#e7cccc] bg-[#fde2e2]";
+    }
+    if (isCorrect) {
+      return "border-[#d2e9d8] bg-[#ecf8ef]";
+    } else {
+      return "border-[#e0e0e0]";
     }
   };
 
   return (
     <section className="relative h-full lg:max-w-[1080px] lg:min-w-[600px] md:border md:rounded-3xl bg-white flex flex-col px-[20px] py-[20px] border md:my-[40px] overflow-y-scroll no-scrollbar gap-2">
       <header className="text-[#bfbfbf] text-xs md:text-sm flex w-full justify-between">
-        <p>{currentIndex + 1} of 5</p>
-        <p>{currentQuestion?.Topic}</p>
+        <p>
+          {currentIndex + 1} of {numberOfQuestions}
+        </p>
+        <p>{questionList[questionIndexes[currentIndex]]?.Topic}</p>
       </header>
 
       <ReactMarkdown
@@ -177,26 +114,49 @@ export default function QuestionCard() {
         rehypePlugins={[rehypeKatex, rehypeRaw]}
         className="text-sm md:text-base"
       >
-        {currentQuestion?.Question}
+        {questionList[questionIndexes[currentIndex]]?.Question}
       </ReactMarkdown>
 
-      {currentQuestion?.Image && (
+      {questionList[questionIndexes[currentIndex]]?.Image && (
         <img
           className="mx-auto max-h-[250px]"
-          src={currentQuestion?.Image}
+          src={questionList[questionIndexes[currentIndex]]?.Image}
           alt="Image Related to Question"
         />
       )}
 
-      <section className="absolute bottom-4 left-4 right-4 flex flex-col gap-2">
-        {currentQuestion?.Options &&
+      <section className="absolute bottom-4 left-4 right-4 flex flex-col gap-2 items-center">
+        {questionList[questionIndexes[currentIndex]]?.Options &&
           shuffledOptionIndices.map((shuffledIndex) => {
-            const option = currentQuestion.Options[shuffledIndex];
+            const option =
+              questionList[questionIndexes[currentIndex]].Options[
+                shuffledIndex
+              ];
+            if (!changeState) {
+              return (
+                <button
+                  key={shuffledIndex}
+                  className={`border rounded-lg px-[16px] py-[8px] text-[14px] md:text-[16px] text-left md:hover:bg-[#f7f7f7] w-full ${
+                    shuffledIndex == clickedIndex ? "bg-[#f1f1f1]" : ""
+                  }`}
+                  onClick={() => setClickedIndex(shuffledIndex)}
+                >
+                  <ReactMarkdown
+                    remarkPlugins={[remarkMath, remarkGfm]}
+                    rehypePlugins={[rehypeKatex, rehypeRaw]}
+                  >
+                    {option.text}
+                  </ReactMarkdown>
+                </button>
+              );
+            }
             return (
               <button
                 key={shuffledIndex}
-                className="border rounded-lg px-[16px] py-[8px] text-[14px] md:text-[16px] text-left md:hover:bg-[#f7f7f7] after:bg-[#4356ff]"
-                onClick={() => handleOptionClick(shuffledIndex, option)}
+                className={`border rounded-lg px-[16px] py-[8px] text-[14px] md:text-[16px] text-left w-full ${getOptionColor(
+                  shuffledIndex,
+                  option.isCorrect
+                )}`}
               >
                 <ReactMarkdown
                   remarkPlugins={[remarkMath, remarkGfm]}
@@ -207,7 +167,28 @@ export default function QuestionCard() {
               </button>
             );
           })}
+
+        {!changeState ? (
+          <button
+            className={`flex flex-row border border-[#4356FF] rounded-lg w-fit px-4 py-1 text-[#4356FF] ${
+              clickedIndex == 9 ? "opacity-40" : ""
+            }`}
+            onClick={handleCheckAnswer}
+            disabled={clickedIndex == 9}
+          >
+            <p>Check Answer</p>
+          </button>
+        ) : (
+          <button
+            className="flex flex-row border border-[#4356FF] rounded-lg w-fit px-4 py-1 text-[#4356FF]"
+            onClick={handleNextQuestion}
+          >
+            <p>Next Question</p>
+            <ArrowBigRight />
+          </button>
+        )}
       </section>
     </section>
   );
 }
+//practice test

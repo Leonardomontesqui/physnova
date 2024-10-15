@@ -1,6 +1,6 @@
 "use client";
 import { supabaseBrowser } from "@/lib/supabase/browser";
-import NavBar from "./components/(ui)/(NavBars)/NavBar";
+import NavBar from "./components/ui/(NavBars)/NavBar";
 
 const supabase = supabaseBrowser();
 
@@ -9,7 +9,7 @@ export default function Landing() {
     supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
-        redirectTo: window.location.origin + "/auth/callback?next=/home", // This is what used to be "/auth/callback?next=/home"
+        redirectTo: window.location.origin + "/auth/callback?next=/home",
       },
     });
   };
