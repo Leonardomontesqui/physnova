@@ -1000,4 +1000,378 @@ export const questionList = [
       { text: "I, II, and III", isCorrect: false },
     ],
   },
+
+  {
+  Qnumber: 22,
+  Topic: "Circular Motion and Gravitation",
+  Exam: "2022_November_SL",
+  ExplanationDisabled: true,
+  Image: "https://i.imgur.com/sbaYDvD.png",
+  Question: "The centre of the Earth and the Moon are a distance D apart. There is a point X between them where their gravitational fields cancel out. The distance from the centre of the Earth to X is d. The mass of the Earth is M<sub>E</sub> and the mass of the Moon is M<sub>M</sub>.<br><br>What is correct at X?",
+  Options: [
+    { text: "$\\frac{M_E}{d}$ = $\\frac{M_M}{D - d}$", isCorrect: false },
+    { text: "$\\frac{M_E}{D - d}$ = $\\frac{M_M}{d}$", isCorrect: false },
+    { text: "$\\frac{M_E}{d^2}$ = $\\frac{M_M}{(D - d)^2}$", isCorrect: true },
+    { text: "$\\frac{M_E}{d^2}$ = $\\frac{M_M}{(D - d)^4}$", isCorrect: false }
+  ]
+},
+
+{
+  Qnumber: 25,
+  Topic: "Atomic, Nuclear and Particle Physics",
+  Exam: "2022_November_SL",
+  ExplanationDisabled: true,
+  Question: "A fusion reaction of one nucleus of hydrogen-2 and one nucleus of hydrogen-3 converts 0.019u to energy. A fission reaction of one nucleus of uranium-235 converts a mass of 0.190u to energy.<br><br>What is the ratio $$\\frac{\\text{specific energy of fusion of hydrogen}}{\\text{specific energy of fission of uranium}}$$?",
+  Options: [
+    { text: "0.1", isCorrect: false },
+    { text: "0.2", isCorrect: false },
+    { text: "5", isCorrect: true },
+    { text: "10", isCorrect: false }
+  ]
+},
+{
+  Qnumber: 26,
+  Topic: "Atomic, Nuclear and Particle Physics",
+  Exam: "2022_November_SL",
+  ExplanationDisabled: true,
+  Question: "Three statements about the atom are:<br><br><div style='margin-left: 20px;'>  I. The nucleus of the atom is positively charged.<br>  II. The electrons provide only a small fraction of the mass of an atom.<br>  III. Most of the atom is free space.</div><br>Which statements are correct?",
+  Options: [
+    { text: "I and II only", isCorrect: false },
+    { text: "I and III only", isCorrect: true },
+    { text: "II and III only", isCorrect: false },
+    { text: "I, II and III", isCorrect: false }
+  ]
+},
+
+{
+  Qnumber: 28,
+  Topic: "Energy Production",
+  Exam: "2022_November_SL",
+  ExplanationDisabled: true,
+  Question: "Water is to be pumped through a vertical height difference of 12.5m. The pump is driven by a wind turbine that has an efficiency of 50% and an area swept by the blades of 100m<sup>2</sup>. The average wind speed is 5.0ms<sup>-1</sup> and the air density is 1.2kgm<sup>-3</sup>.<br><br>What is the maximum mass of water that can be pumped every second?",
+  Options: [
+    { text: "3kg", isCorrect: false },
+    { text: "30kg", isCorrect: true },
+    { text: "60kg", isCorrect: false },
+    { text: "120kg", isCorrect: false }
+  ]
+},
+{
+  Qnumber: 29,
+  Topic: "Energy Production",
+  Exam: "2022_November_SL",
+  ExplanationDisabled: true,
+  Question: "When heating a metal rod at one end, thermal energy is transferred along the rod.<br><div style='text-align: center;'><img src='https://imgur.com/TWZEAeL.png' alt='Thermal Energy Transfer' style='max-height: 240px; display: block; margin: auto;'></div><br>Which statement explains this transfer?",
+  Options: [
+    { text: "Free electrons transfer kinetic energy to the ions in the metal", isCorrect: true },
+    { text: "Intermolecular potential energy increases throughout the metal", isCorrect: false },
+    { text: "Intermolecular potential energy is transferred to kinetic energy", isCorrect: false },
+    { text: "Ions in the metal radiate energy in all directions", isCorrect: false }
+  ]
+},
+
+{
+  Qnumber: 23,
+  Topic: "Atomic, Nuclear and Particle Physics",
+  Exam: "2022_November_SL",
+  Image:"https://i.imgur.com/8DSlIwC.png",
+  ExplanationDisabled: true,
+  Question: "A nucleus of krypton (Kr) decays to a nucleus of bromine (Br) according to the equation:<br><div style=\"text-align: center;\"><img src=\"https://imgur.com/dtsolxS.png\" alt=\"Krypton Decay\" style=\"height: 30px; display: block; margin: auto;\"></div><br>What are Y and Z?",
+  Options: [
+    { text: "A", isCorrect: true },
+    { text: "B", isCorrect: false },
+    { text: "C", isCorrect: false },
+    { text: "D", isCorrect: false }
+  ]
+},
+
+{
+  Qnumber: 24,
+  Topic: "Measurements and Uncertainties",
+  Exam: "2022_November_SL",
+  ExplanationDisabled: true,
+  Question: "Which development in physics constituted a paradigm shift?",
+  Options: [
+    { text: "The classification of variables into scalars and vectors", isCorrect: false },
+    { text: "The determination of the velocity of light in different media", isCorrect: false },
+    { text: "The equivalence of F = ma to F<sub>p</sub> = $\\frac{∆F}{∆t}$ when the mass of the system is constant", isCorrect: false },
+    { text: "The equivalence of mass and energy", isCorrect: true }
+  ]
+},
+{
+  Qnumber: 3,
+  Topic: "Mechanics",
+  Exam: "2022_November_SL",
+  ExplanationDisabled: true,
+  Question: "Ball 1 is dropped from rest from an initial height h. At the same instant, ball 2 is launched vertically upwards at an initial velocity u.<br><br><div style=\"text-align: center;\"><img src=\"https://i.imgur.com/nh6wNdH.png\" alt=\"Ball trajectories\" style=\"max-height: 240px; display: block; margin: auto;\"></div><br>At what time are both balls at the same distance above the ground?",
+  Options: [
+    { text: "$\\frac{h}{4u}$", isCorrect: false },
+    { text: "$\\frac{h}{2u}$", isCorrect: false },
+    { text: "$\\frac{h}{u}$", isCorrect: true },
+    { text: "$\\frac{2h}{u}$", isCorrect: false}
+  ]
+},
+
+{
+  Qnumber: 4,
+  Topic: "Mechanics",
+  Exam: "2022_November_SL",
+  ExplanationDisabled: true,
+  Question: "A projectile is launched with a velocity u at an angle θ to the horizontal. It reaches a maximum height s. What is the time taken to reach the maximum height?",
+  Options: [
+    { text: "$\\frac{2s}{u \\cos \\theta}$", isCorrect: false },
+    { text: "$\\frac{2s}{g}$", isCorrect: false },
+    { text: "$\\frac{u \\cos \\theta}{g}$", isCorrect: false },
+    { text: "$\\frac{u \\sin \\theta}{g}$", isCorrect: true }
+  ]
+},
+{
+  Qnumber: 5,
+  Topic: "Mechanics",
+  Exam: "2022_November_SL",
+  ExplanationDisabled: true,
+  Question: "An object of mass 2.0 kg is on a horizontal surface. The object is pulled by a force of 12.0 N and accelerates at $2.0 \\mathrm{ms}^{-2}$.<br><br><div style=\"text-align: center;\"><img src=\"https://i.imgur.com/HPakpWF.png\" alt=\"Mass on surface\" style=\"max-height: 240px; display: block; margin: auto;\"></div><br>What is the coefficient of dynamic friction between the object and the surface?",
+  Options: [
+    { text: "0.3", isCorrect: false },
+    { text: "0.4", isCorrect: true },
+    { text: "0.6", isCorrect: false },
+    { text: "0.8", isCorrect: false }
+  ]
+},
+{
+  Qnumber: 6,
+  Topic: "Mechanics",
+  Exam: "2022_November_SL",
+  ExplanationDisabled: true,
+  Question: "A person lifts a total mass of 20 kg through a vertical distance of 0.60 m. The person repeats the lift n times to transfer a total energy of $6.0 \\times 10^4 \\mathrm{J}$.<br><br>What is n?",
+  Options: [
+    { text: "5", isCorrect: false },
+    { text: "50", isCorrect: false },
+    { text: "500", isCorrect: true },
+    { text: "5000", isCorrect: false }
+  ]
+},
+{
+  Qnumber: 7,
+  Topic: "Mechanics",
+  Exam: "2022_November_SL",
+  ExplanationDisabled: true,
+  Question: "A ball of mass 1.5 kg strikes a force sensor and bounces. The ball experiences a change in velocity of $10 \\mathrm{ms}^{-1}$. The graph shows the variation with time t of the force F recorded by the sensor.<br><div style=\"text-align: center;\"><img src=\"https://i.imgur.com/rrBdpdN.png\" alt=\"Force vs Time Graph\" style=\"max-height: 240px; display: block; margin: auto;\"></div>What is $\\Delta T$?",
+  Options: [
+    { text: "0.15 s", isCorrect: false },
+    { text: "0.30 s", isCorrect: true },
+    { text: "0.60 s", isCorrect: false },
+    { text: "3.0 s", isCorrect: false }
+  ]
+},
+{
+  Qnumber: 8,
+  Topic: "Thermal Physics",
+  Exam: "2022_November_SL",
+  ExplanationDisabled: true,
+  Question: "A block of glass of mass 5kg and temperature 30°C is brought into contact with a block of asphalt of mass 20kg and temperature 75°C. The specific heat capacity of asphalt is twice that of glass. No energy is transferred to the surroundings. <br><br>What is the final temperature of both blocks?",
+  Options: [
+    { text: "35°C", isCorrect: false },
+    { text: "45°C", isCorrect: false },
+    { text: "60°C", isCorrect: false },
+    { text: "70°C", isCorrect: true }
+  ]
+},
+{
+  Qnumber: 9,
+  Topic: "Thermal Physics",
+  Exam: "2022_November_SL",
+  Image:"https://i.imgur.com/lfaToS1.png",
+  ExplanationDisabled: true,
+  Question: "A solid mass gains energy at a constant rate until it reaches its liquid phase. The specific heat capacity in the solid phase is greater than in the liquid phase. <br><br>Which graph shows how the temperature of the mass varies with time?",
+  Options: [
+    { text: "A", isCorrect: false },
+    { text: "B", isCorrect: true },
+    { text: "C", isCorrect: false },
+    { text: "D", isCorrect: false }
+  ]
+},
+{
+  Qnumber: 10,
+  Topic: "Thermal Physics",
+  Exam: "2022_November_SL",
+  ExplanationDisabled: true,
+  Question: "Three statements about Boltzmann\’s constant k<sub>B</sub> are:<br><br><div style=\"margin-left: 20px;\">I. k<sub>B</sub> has a unit of J K<sup>-1</sup><br>II. k<sub>B</sub> = $\\frac{\\text{gas constant}}{\\text{Avogadro's constant}}$<br>III. k<sub>B</sub> = $\\frac{\\text{the average kinetic energy of particles}}{\\text{temperature of the gas}}$</div><br>Which statements are correct?",
+  Options: [
+    { text: "I and II only", isCorrect: true },
+    { text: "I and III only", isCorrect: false },
+    { text: "II and III only", isCorrect: false },
+    { text: "I, II and III", isCorrect: false }
+  ]
+},
+{
+  Qnumber: 11,
+  Topic: "Waves",
+  Exam: "2022_November_SL",
+  Image:"https://i.imgur.com/BXPnafx.png",
+  ExplanationDisabled: true,
+  Question: "An object oscillates at the free end of a vertical spring. The graph shows the variation of the object’s position with time.<br><br>At which position does the object have zero velocity and a negative acceleration?",
+  Options: [
+    { text: "A", isCorrect: true },
+    { text: "B", isCorrect: false },
+    { text: "C", isCorrect: false },
+    { text: "D", isCorrect: false }
+  ]
+},
+{
+  Qnumber: 12,
+  Topic: "Waves",
+  Exam: "2022_November_SL",
+  ExplanationDisabled: true,
+  Question: "The graph shows the variation with distance \\(x\\) of the displacement of the particles in a wave. The frequency of the wave is 600Hz.<br><div style=\"text-align: center;\"><img src=\"https://i.imgur.com/7jzmhGo.png\" alt=\"Wave displacement graph\" style=\"max-height: 300px; display: block; margin: auto;\"></div><br>What is the speed of the wave?",
+  Options: [
+    { text: "0.012ms<sup>-1</sup>", isCorrect: false },
+    { text: "0.024ms<sup>-1</sup>", isCorrect: false },
+    { text: "1.2ms<sup>-1</sup>", isCorrect: false },
+    { text: "2.4ms<sup>-1</sup>", isCorrect: true }
+  ]
+},
+
+{
+  Qnumber: 13,
+  Topic: "Waves",
+  Exam: "2022_November_SL",
+  ExplanationDisabled: true,
+  Question: "A point source emits a sound wave of amplitude Z. A person stands a distance L from the source. The amplitude is changed to 2Z. <br><br>What distance must the person move through in order to hear the original intensity again?",
+  Options: [
+    { text: "L", isCorrect: true },
+    { text: "2L", isCorrect: false },
+    { text: "3L", isCorrect: false },
+    { text: "7L", isCorrect: false }
+  ]
+},
+{
+  Qnumber: 14,
+  Topic: "Waves",
+  Exam: "2022_November_SL",
+  ExplanationDisabled: true,
+  Question: "A ray of light enters from air into a water droplet of radius $r$ at point $S$. $S$ is a vertical distance $h$ from the centre of the droplet. The droplet has a refractive index $n$ and the angle of refraction is $\\theta$.<br><div style=\"text-align: center;\"><img src=\"https://i.imgur.com/qiHNdeR.png\" alt=\"Water droplet refraction diagram\" style=\"max-height: 240px; display: block; margin: auto;\"></div><br>What is $\\sin\\theta$ ?",
+  Options: [
+    { text: "$\\frac{nh}{r}$", isCorrect: false },
+    { text: "$\\frac{r}{nh}$", isCorrect: false },
+    { text: "$\\frac{h}{nr}$", isCorrect: true },
+    { text: "$\\frac{nr}{h}$", isCorrect: false }
+  ]
+},
+{
+  Qnumber: 15,
+  Topic: "Waves",
+  Exam: "2022_November_SL",
+  ExplanationDisabled: true,
+  Question: "A standing wave is formed in a pipe closed at one end. The third harmonic has a frequency of 400Hz when the speed of sound is 300ms<sup>-1</sup>. <br><br>What is the length of the pipe?",
+  Options: [
+    { text: "$\\frac{3}{16}$ m", isCorrect: false },
+    { text: "$\\frac{9}{16}$ m", isCorrect: true },
+    { text: "$\\frac{3}{4}$ m", isCorrect: false },
+    { text: "$\\frac{14}{16}$ m", isCorrect: false }
+  ]
+},
+{
+  Qnumber: 16,
+  Topic: "Electricity and Magnetism",
+  Exam: "2022_November_SL",
+  ExplanationDisabled: true,
+  Question: "Wire X and wire Y are connected in series in a circuit. Wire X has three times the radius and one third the charge carrier density of wire Y. <br><br>What is $\\frac{\\text{drift speed in X}}{\\text{drift speed in Y}}$ ?",
+  Options: [
+    { text: "$\\frac{1}{9}$", isCorrect: false },
+    { text: "$\\frac{1}{3}$", isCorrect: true },
+    { text: "1", isCorrect: false },
+    { text: "3", isCorrect: false }
+  ]
+},
+{
+  Qnumber: 17,
+  Topic: "Electricity and Magnetism",
+  Exam: "2022_November_SL",
+  ExplanationDisabled: true,
+  Question: "A cell of negligible internal resistance is connected to three identical resistors. The current in the cell is 3.0A.<br><br><div style=\"text-align: center;\"><img src=\"https://i.imgur.com/5R3RW8b.png\" alt=\"Resistors in parallel\" style=\"max-height: 240px; display: block; margin: auto;\"></div><br>The resistors are now arranged in series. What is the new current in the cell?",
+  Options: [
+    { text: "1.0A", isCorrect: false },
+    { text: "1.5A", isCorrect: true },
+    { text: "3.0A", isCorrect: false },
+    { text: "9.0A", isCorrect: false }
+  ]
+},
+{
+  Qnumber: 18,
+  Topic: "Electricity and Magnetism",
+  Exam: "2022_November_SL",
+  Image:"https://i.imgur.com/bpVIzDV.png",
+  ExplanationDisabled: true,
+  Question: "What is correct about the energy changes and the terminal potential difference during the discharge of a practical electrical cell? <br><br>",
+  Options: [
+    { text: "A", isCorrect: false },
+    { text: "B", isCorrect: true },
+    { text: "C", isCorrect: false },
+    { text: "D", isCorrect: false }
+  ]
+},
+
+{
+  Qnumber: 19,
+  Topic: "Electricity and Magnetism",
+  Exam: "2022_November_SL",
+  ExplanationDisabled: true,
+  Question: "A loop of wire lies in a magnetic field directed into the plane of the page. The loop carries a current in a clockwise direction.<br><br><div style='text-align: center;'><img src='https://i.imgur.com/sLFnBtD.png' alt='Magnetic loop' style='max-height: 240px; display: block; margin: auto;'></div><br>The magnetic force acting on the wire tends to?",
+  Options: [
+    { text: "rotate the loop about the X axis.", isCorrect: false },
+    { text: "rotate the loop about the Y axis.", isCorrect: false },
+    { text: "reduce the radius of the loop.", isCorrect: false },
+    { text: "increase the radius of the loop.", isCorrect: true }
+  ]
+},
+
+
+{
+  Qnumber: 20,
+  Topic: "Circular Motion and Gravitation",
+  Exam: "2022_November_SL",
+  Image:"https://i.imgur.com/zOVhdha.png",
+  ExplanationDisabled: true,
+  Question: "A car on a road follows a horizontal circular path at a constant speed. What is the direction of the net force acting on the car and the direction of the instantaneous velocity of the car?<br><br>",
+  Options: [
+    { text: "A", isCorrect: false },
+    { text: "B", isCorrect: false },
+    { text: "C", isCorrect: true },
+    { text: "D", isCorrect: false }
+  ]
+},
+
+{
+  Qnumber: 21,
+  Topic: "Circular Motion and Gravitation",
+  Exam: "2022_November_SL",
+  Image:"https://i.imgur.com/Y92XrGi.png",
+  ExplanationDisabled: true,
+  Question: "A mass attached to a string rotates in a gravitational field with a constant period in a vertical plane. <div style=\"text-align: center;\"><img src=\"https://i.imgur.com/4N3wL19.png\" alt=\"Resistors in parallel\" style=\"max-height: 180px; display: block; margin: auto;\"></div>How do the speed of the mass and the tension of the string compare at P and Q?",
+  Options: [
+    { text: "A", isCorrect: false },
+    { text: "B", isCorrect: false },
+    { text: "C", isCorrect: false },
+    { text: "D", isCorrect: true }
+  ]
+},
+{
+  Qnumber: 27,
+  Topic: "Energy Production",
+  Exam: "2022_November_SL",
+  Image:"https://i.imgur.com/vJP0TIX.png",
+  ExplanationDisabled: true,
+  Question: "The electromagnetic spectrum radiated by a black body at temperature T shows a peak at wavelength $\\lambda_p$. What is the variation of $\\lambda_p$ with T?",
+  Options: [
+    { text: "A", isCorrect: true },
+    { text: "B", isCorrect: false },
+    { text: "C", isCorrect: false },
+    { text: "D", isCorrect: false }
+  ]
+}
+
+
+
+
 ];

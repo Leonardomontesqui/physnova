@@ -31,9 +31,9 @@ export default function QuestionCard() {
   const [numberOfQuestions, setNumberOfQuestions] = useState<number>(5);
 
   useEffect(() => {
-    applySettings();
+    // applySettings();
     setShuffledOptionIndices(shuffleArray([0, 1, 2, 3]));
-    // testingIndexList();
+    testingIndexList();
   }, []);
 
   useEffect(() => {
@@ -50,7 +50,6 @@ export default function QuestionCard() {
   };
 
   const testingIndexList = () => {
-    // Set originalIndexes to the last five indexes of questionList
     const lastFiveIndexes = questionList
       .slice(-5)
       .map((_, index) => questionList.length - 5 + index)
