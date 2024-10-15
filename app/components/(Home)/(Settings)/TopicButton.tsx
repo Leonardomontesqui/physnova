@@ -11,7 +11,7 @@ export default function TopicButton({ children, onClick, selected }: Props) {
     <button
       className={`px-[8px] h-fit py-[4px] bg-[#ffffff] border border-[#dedede] text-[14px] rounded-xl ${
         selected
-          ? "bg-[#eeeeee] text-black border border-[#eeefe]"
+          ? "bg-sky-600 text-black border border-shy-600"
           : "bg-[#ffffff] border-[#dedede]"
       }`}
       onClick={() => onClick && onClick(children)}
