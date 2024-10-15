@@ -4,10 +4,7 @@ import { questionList } from "@/constants/questionList";
 import Navigation from "./(Navigation)/Navigation";
 import Question from "./Question";
 import Explain from "./Explain";
-import {
-  fetchClickedOptionIndexes,
-  fetchQuestionIndexes,
-} from "@/lib/hooks/user";
+import { fetchGameplayData } from "@/lib/hooks/user";
 
 export default function CorrectAnswers() {
   const [indexSet, setIndexSet] = useState<number[]>([]);
@@ -15,12 +12,12 @@ export default function CorrectAnswers() {
   const [currentQuestion, setCurrentQuestion] = useState<any>();
   const [clickedOptionList, setClickedOptionList] = useState<number[]>([]);
   const [explanation, setExplanation] = useState<string>("");
-
   const [showExplanation, setShowExplanation] = useState<boolean>(false);
   const [triggerFetch, setTriggerFetch] = useState(false);
+  const [questionAmount, setQuestionAmount] = useState<number>(5);
 
   useEffect(() => {
-    fetchQuestionData();
+    setGameplayData();
   }, []);
 
   useEffect(() => {
@@ -29,12 +26,11 @@ export default function CorrectAnswers() {
     }
   }, [indexSet]);
 
-  const fetchQuestionData = async () => {
-    const questionIndexes = await fetchQuestionIndexes();
-    setIndexSet(questionIndexes);
-
-    const clickedOptionIndexes = await fetchClickedOptionIndexes();
-    setClickedOptionList(clickedOptionIndexes);
+  const setGameplayData = async () => {
+    const gameplayData = await fetchGameplayData();
+    setIndexSet(gameplayData?.question_index_list);
+    setClickedOptionList(gameplayData?.option_index_list);
+    setQuestionAmount(gameplayData?.number_of_questions);
   };
 
   const handleClick = () => {
@@ -52,7 +48,7 @@ export default function CorrectAnswers() {
   )?.text;
 
   return (
-    <div className="mt-[16px] lg:mt-0 w-full h-full min-h-0 bg-white rounded-2xl border border-[#d9d9d9] p-4 flex flex-col gap-[8px] basis-2/3">
+    <div className="mt-[16px] lg:mt-0 w-full h-[600px] md:h-full min-h-0 bg-white rounded-2xl border border-[#d9d9d9] p-4 flex flex-col gap-[8px] basis-2/3">
       <Navigation
         setCurrentIndex={setCurrentIndex}
         currentIndex={currentIndex}
@@ -62,6 +58,7 @@ export default function CorrectAnswers() {
         setExplanation={setExplanation}
         indexSet={indexSet}
         handleClick={handleClick}
+        questionAmount={questionAmount}
       />
 
       <section className="Question&OptionsORExplain flex flex-col justify-between w-full h-full ">
@@ -87,7 +84,7 @@ export default function CorrectAnswers() {
 
       <div className="text-[#bfbfbf] text-[14px] flex w-full justify-between sticky bottom-0">
         {currentQuestion?.Topic && <div>{currentQuestion.Topic}</div>}
-        {currentIndex + 1} of 5
+        {currentIndex + 1} of {questionAmount}
       </div>
     </div>
   );

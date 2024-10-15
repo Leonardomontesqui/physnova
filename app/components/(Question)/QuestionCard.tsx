@@ -8,21 +8,15 @@ import remarkMath from "remark-math";
 import rehypeRaw from "rehype-raw";
 import remarkGfm from "remark-gfm";
 import "katex/dist/katex.min.css";
-import { fetchTopics, fetchUserID, insertGamepData } from "@/lib/hooks/user";
+import { fetchSettings, insertGameplayData } from "@/lib/hooks/user";
 import { ArrowBigRight } from "lucide-react";
-import { cli } from "webpack";
+import {
+  generateFilteredIndexList,
+  shuffleArray,
+} from "@/lib/actions/filtering";
 
 const supabase = supabaseBrowser(); // this makes it a variable for all
 type QuestionType = (typeof questionList)[0];
-
-// Fisher-Yates Shuffle Algorithm
-const shuffleArray = (array: number[]) => {
-  for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];
-  }
-  return array;
-};
 
 export default function QuestionCard() {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
@@ -34,9 +28,10 @@ export default function QuestionCard() {
   const [questionIndexes, setQuestionIndexes] = useState<number[]>([]);
   const [changeState, setChangeState] = useState<boolean>(false);
   const [clickedIndex, setClickedIndex] = useState<number>(9);
+  const [numberOfQuestions, setNumberOfQuestions] = useState<number>(5);
 
   useEffect(() => {
-    generateIndexList();
+    applySettings();
     setShuffledOptionIndices(shuffleArray([0, 1, 2, 3]));
     // testingIndexList();
   }, []);
@@ -45,35 +40,13 @@ export default function QuestionCard() {
     setShuffledOptionIndices(shuffleArray([0, 1, 2, 3]));
   }, [currentIndex]);
 
-  const generateIndexList = async () => {
-    const topics = await fetchTopics();
+  const applySettings = async () => {
+    const settings = await fetchSettings();
+    const questionAmount = settings?.number_of_questions;
+    setNumberOfQuestions(questionAmount);
 
-    if (topics.length > 0) {
-      const filteredQuestionsWithIndexes = questionList.reduce(
-        (acc: number[], question, index: number) => {
-          if (topics.includes(question.Topic)) {
-            acc.push(index);
-          }
-          return acc;
-        },
-        []
-      );
-
-      const shuffledQuestions = shuffleArray(filteredQuestionsWithIndexes);
-      const filteredQuestionIndexes = shuffledQuestions.slice(0, 5);
-
-      setQuestionIndexes(filteredQuestionIndexes);
-    } else {
-      const allIndexes = Array.from(
-        { length: questionList.length },
-        (_, index) => index
-      );
-
-      const shuffledIndexes = shuffleArray(allIndexes);
-      const selectedIndexes = shuffledIndexes.slice(0, 5);
-      setQuestionIndexes(selectedIndexes);
-    }
-    return;
+    const filteredQuestionIndexes = generateFilteredIndexList(settings);
+    setQuestionIndexes(filteredQuestionIndexes);
   };
 
   const testingIndexList = () => {
@@ -83,10 +56,6 @@ export default function QuestionCard() {
       .map((_, index) => questionList.length - 5 + index)
       .reverse();
     setQuestionIndexes(lastFiveIndexes);
-  };
-
-  const handleOptionClick = (index: number) => {
-    setClickedIndex(index);
   };
 
   const handleCheckAnswer = () => {
@@ -103,16 +72,17 @@ export default function QuestionCard() {
   };
 
   const handleNextQuestion = async () => {
-    if (currentIndex < 4) {
+    if (currentIndex < numberOfQuestions - 1) {
       const newIndex = currentIndex + 1;
       setCurrentIndex(newIndex);
       setChangeState(false);
       setClickedIndex(9);
     } else {
-      await insertGamepData(
+      await insertGameplayData(
         correctAnswers,
         questionIndexes,
-        optionClickedIndex
+        optionClickedIndex,
+        numberOfQuestions
       );
       window.location.href = "/home";
     }
@@ -134,7 +104,9 @@ export default function QuestionCard() {
   return (
     <section className="relative h-full lg:max-w-[1080px] lg:min-w-[600px] md:border md:rounded-3xl bg-white flex flex-col px-[20px] py-[20px] border md:my-[40px] overflow-y-scroll no-scrollbar gap-2">
       <header className="text-[#bfbfbf] text-xs md:text-sm flex w-full justify-between">
-        <p>{currentIndex + 1} of 5</p>
+        <p>
+          {currentIndex + 1} of {numberOfQuestions}
+        </p>
         <p>{questionList[questionIndexes[currentIndex]]?.Topic}</p>
       </header>
 
@@ -168,7 +140,7 @@ export default function QuestionCard() {
                   className={`border rounded-lg px-[16px] py-[8px] text-[14px] md:text-[16px] text-left md:hover:bg-[#f7f7f7] w-full ${
                     shuffledIndex == clickedIndex ? "bg-[#f1f1f1]" : ""
                   }`}
-                  onClick={() => handleOptionClick(shuffledIndex)}
+                  onClick={() => setClickedIndex(shuffledIndex)}
                 >
                   <ReactMarkdown
                     remarkPlugins={[remarkMath, remarkGfm]}

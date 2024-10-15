@@ -21,7 +21,7 @@ export default function Filter({
   };
 
   return (
-    <div className="h-fit w-1/3 bg-white rounded-3xl border border-[#d9d9d9] p-4 flex flex-col items-center">
+    <div className="h-fit w-full md:w-1/3 bg-white rounded-3xl border border-[#d9d9d9] p-4 flex flex-col items-center">
       <h1 className="font-medium w-fit">Filter</h1>
       <div className="flex flex-col w-full ">
         {topics.map((topic, index) => (

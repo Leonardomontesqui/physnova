@@ -4,14 +4,6 @@ import SavedButton from "./SavedButton";
 import AIExplainButton from "./AIExplainButton";
 import { questionList } from "@/constants/questionList";
 
-import {
-  DropdownMenuSeparator,
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuTrigger,
-  DropdownMenuItem,
-} from "../../../ui/dropdown-menu";
-
 interface NavigationProps {
   setCurrentIndex: (number: number) => void;
   currentIndex: number;
@@ -21,6 +13,7 @@ interface NavigationProps {
   setExplanation: (explanation: string) => void;
   indexSet: number[];
   handleClick: () => void;
+  questionAmount: number;
 }
 
 export default function Navigation({
@@ -32,9 +25,10 @@ export default function Navigation({
   setExplanation,
   indexSet,
   handleClick,
+  questionAmount,
 }: NavigationProps) {
   const handleNextClick = () => {
-    if (currentIndex < 4) {
+    if (currentIndex < questionAmount - 1) {
       const newIndex = currentIndex + 1;
       setCurrentIndex(newIndex);
       setCurrentQuestion(questionList[indexSet[newIndex]]);
@@ -77,26 +71,4 @@ export default function Navigation({
       </div>
     </header>
   );
-}
-
-{
-  /* <DropdownMenu>
-  <DropdownMenuTrigger>
-    <AlignJustify className=" border rounded-sm border-[#d9dde8]" size={24} />
-  </DropdownMenuTrigger>
-
-  <DropdownMenuContent>
-    <DropdownMenuItem>
-      <SavedButton indexSet={indexSet} currentIndex={currentIndex} />
-    </DropdownMenuItem>
-
-    <DropdownMenuItem>
-      <AIExplainButton
-        onClick={handleClick}
-        isDisabled={false}
-        showExplanation={showExplanation}
-      />
-    </DropdownMenuItem>
-  </DropdownMenuContent>
-</DropdownMenu>; */
 }

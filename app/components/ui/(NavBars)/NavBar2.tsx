@@ -10,7 +10,7 @@ import {
 } from "../dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "../avatar";
 import { fetchUserPicture } from "@/lib/hooks/user";
-import { UserRound } from "lucide-react";
+import { BookMarked, LibraryBig, UserRound } from "lucide-react";
 
 export default function NavBar() {
   const [userPic, setUserPic] = useState<string>();
@@ -26,18 +26,22 @@ export default function NavBar() {
   };
   return (
     <header className="sticky top-0 z-50 bg-white w-full px-[16px] lg:px-[200px] py-[8px] flex justify-between border border-b-[#dedede] items-center">
-      <Link
-        href="/"
-        className="font-semibold text-[20px] bg-gradient-to-r from-[#4356ff] to-[#283499] bg-clip-text text-transparent"
-      >
-        PhysNova
-      </Link>
+      <div className="flex gap-4 items-center">
+        <Link
+          href="/"
+          className="font-semibold text-[20px] bg-gradient-to-r from-[#4356ff] to-[#283499] bg-clip-text text-transparent"
+        >
+          PhysNova
+        </Link>
+      </div>
+
       <div className="flex gap-2">
         <Link
           href="\bank"
-          className="text-[14px] px-4 py-1 border border-[#eeeeee] rounded-xl h-fit"
+          className="flex items-center py-1 px-2 border border-[#dedede] rounded-xl gap-1"
         >
-          Saved
+          <p className="text-sm">Bookmarked</p>
+          <BookMarked size={16} color="#5c5c5c" />
         </Link>
         <DropdownMenu>
           <DropdownMenuTrigger>

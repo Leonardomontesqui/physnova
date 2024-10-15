@@ -4,6 +4,7 @@ import SavedQuestion from "./SavedQuestion";
 import { questionList } from "@/constants/questionList";
 import { topics } from "@/constants/topics";
 import { supabaseBrowser } from "@/lib/supabase/browser";
+import { fetchSavedIndexes } from "@/lib/hooks/user";
 const indexes = [4, 0, 3, 5, 6, 8, 23, 14, 7];
 const supabase = supabaseBrowser();
 
@@ -17,7 +18,7 @@ export default function QuestionBank({
   const [savedIndexes, setSavedIndexes] = useState([]);
 
   useEffect(() => {
-    fetchSavedIndexes();
+    setIndexes();
   }, []);
 
   useEffect(() => {
@@ -39,35 +40,14 @@ export default function QuestionBank({
     }
   };
 
-  const fetchSavedIndexes = async () => {
-    const { data: userData, error: userDataError } =
-      await supabase.auth.getUser();
-
-    if (!userData || userDataError) {
-      console.error("Error fetching user data");
-      return;
-    }
-
-    setUserID(userData.user.id);
-
-    const { data: DBsavedIndexesObject, error: DBsavedIndexesError } =
-      await supabase
-        .from("profiles")
-        .select("savedIndexes")
-        .eq("id", userData.user.id);
-
-    if (DBsavedIndexesError) {
-      console.log("error in fetching the saved indexes ", DBsavedIndexesError);
-    }
-
-    if (DBsavedIndexesObject != null) {
-      setSavedIndexes(DBsavedIndexesObject[0].savedIndexes);
-      setFilteredIndexes(DBsavedIndexesObject[0].savedIndexes);
-    }
+  const setIndexes = async () => {
+    const indexes = await fetchSavedIndexes();
+    setSavedIndexes(indexes);
+    setFilteredIndexes(indexes);
   };
 
   return (
-    <div className="flex flex-col w-2/3 gap-4 h-full overflow-y-auto no-scrollbar">
+    <div className="flex flex-col w-full md:w-2/3 gap-4 h-full overflow-y-auto no-scrollbar">
       {filteredIndexes.map((index) => (
         <SavedQuestion index={index} key={index} />
       ))}

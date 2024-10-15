@@ -19,7 +19,6 @@ export default function SavedButton({
 
   const [savedIndexes, setSavedIndexes] = useState<number[]>([]);
   const [userID, setUserID] = useState<string>();
-  const [clicked, setClicked] = useState<boolean>();
 
   useEffect(() => {
     collectSavedIndexes();
@@ -44,7 +43,6 @@ export default function SavedButton({
 
   const saveQuestion = () => {
     let questionIndex = indexSet[currentIndex];
-    setClicked(true);
 
     if (savedIndexes?.includes(questionIndex)) {
       let indexes = savedIndexes.filter((el) => el != questionIndex);
@@ -68,15 +66,20 @@ export default function SavedButton({
 
   return (
     <button
-      className={`flex flex-row gap-2 items-center border border-[#d0cece] rounded px-[2px] py-[2px]${
-        savedIndexes.includes(indexSet[currentIndex]) || clicked
-          ? "bg-[#F7E814] text-black "
-          : "bg-[#ffffff] border-[#dedede]"
+      className={`flex flex-row gap-2 items-center border rounded px-[2px] py-[2px] ${
+        savedIndexes.includes(indexSet[currentIndex])
+          ? "border-[#fab43e]"
+          : "border-[#d0cece]"
       }`}
       onClick={saveQuestion}
     >
-      <Bookmark size={20} strokeWidth={1.75} />
-      {/* <p className="text-sm">Bookmark</p> */}
+      <Bookmark
+        size={20}
+        strokeWidth={1.75}
+        color={
+          savedIndexes.includes(indexSet[currentIndex]) ? "#FAB43E" : "#000000"
+        }
+      />
     </button>
   );
 }

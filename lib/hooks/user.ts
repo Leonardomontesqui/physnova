@@ -37,41 +37,6 @@ export const fetchUserPicture = async () => {
     return userData.user.user_metadata.picture
 }
 
-export const fetchQuestionIndexes = async () => {
-  const userID = await fetchUserID();
-
-  const { data: questionIndexesData, error: errorQuestionIndexesData } = await supabase
-    .from("gameplay")
-    .select("question_index_list")
-    .eq("user_id", userID)
-    .order("created_at", { ascending: true });
-   
-  if(!questionIndexesData || errorQuestionIndexesData){
-    console.error("Error fetching question indexes")
-    return
-  }
-
-  return questionIndexesData[questionIndexesData.length-1].question_index_list
-}
-
-
-export const fetchClickedOptionIndexes = async () => {
-  const userID = await fetchUserID()
-
-  const { data: optionIndexesData, error: optionIndexesErrorData } = await supabase
-      .from("gameplay")
-      .select("option_index_list")
-      .eq("user_id", userID)
-      .order("created_at", { ascending: true }); 
-  
-  if(!optionIndexesData || optionIndexesErrorData){
-    console.error("Error fetching clicked option indexes")
-    return
-  }
-
-  return optionIndexesData[optionIndexesData.length -1].option_index_list
-}
-
 
 export const fetchSavedIndexes = async () =>{
   const userID = await fetchUserID();
@@ -90,28 +55,45 @@ export const fetchSavedIndexes = async () =>{
   return savedIndexesData[0].savedIndexes
 }
 
-export const fetchTopics = async () => {
+export const fetchGameplayData = async () => {
+  const userID = await fetchUserID();
+
+  const { data: gameplayData, error: errorGameplayData } = await supabase
+    .from("gameplay")
+    .select("question_index_list, option_index_list, number_of_questions")
+    .eq("user_id", userID)
+    .order("created_at", { ascending: true });
+
+  if(errorGameplayData || !gameplayData){
+    console.error("Error fetching gameplay data: ", errorGameplayData);
+    return;
+  }
+  
+  return gameplayData[gameplayData.length - 1];
+}
+
+export const fetchSettings = async () => { 
   const userID = await fetchUserID()
 
   if(!userID){
     redirect("/")
   }
 
-  const { data: topicData, error: topicDataError } = await supabase
-      .from("topics_chosen")
-      .select("topics")
+  const { data: settingsData, error: settingsDataError } = await supabase
+      .from("settings")
+      .select("mode, topics, number_of_questions")
       .eq("user_id", userID)
       .order("created_at", { ascending: true });
 
-    if (topicDataError) {
-      console.error("Error fetching topic data");
+    if (settingsDataError) {
+      console.error("Error fetching topic data ", settingsDataError);
       return;
     }
 
-    return topicData[topicData.length - 1]["topics"]
+    return settingsData[settingsData.length - 1]
 }
 
-export const insertGamepData = async (correctAnswers:number, questionIndexes:number[], indexSelected:number[]) => {
+export const insertGameplayData = async (correctAnswers:number, questionIndexes:number[], indexSelected:number[], questionAmount:number) => {
   const userName = await fetchUserName()
 
   const { error: gameplayInsertError } = await supabase
@@ -121,6 +103,7 @@ export const insertGamepData = async (correctAnswers:number, questionIndexes:num
         name: userName,
         question_index_list: questionIndexes,
         option_index_list: indexSelected,
+        number_of_questions: questionAmount,
       });
 
     if (gameplayInsertError) {
@@ -129,3 +112,49 @@ export const insertGamepData = async (correctAnswers:number, questionIndexes:num
     }
     console.log("gameplay submitted succesfully")
 }
+
+export const insertCustomSettings = async (topicsChosen:string[], amount:number) => {
+    const { error: insertError } = await supabase
+      .from("settings")
+      .insert([{mode: "custom", 
+        number_of_questions: amount, 
+        topics: topicsChosen}]);
+    
+    if (insertError) {
+      console.error("Error inserting custom settings ", insertError);
+      return;
+    }
+  };
+
+export const insertMockSettings = async() =>{
+    const { error: insertTopicsError } = await supabase
+      .from("settings")
+      .insert([{mode: "mock", number_of_questions:30}]);
+
+    if (insertTopicsError) {
+      console.error("Error inserting mock settings");
+      return;
+    }
+    
+  };
+
+  export const fetchAccuracy = async () => {
+    const userID = await fetchUserID();
+
+    if(!userID){
+      redirect("/");
+    }
+
+    const {data:gameplayData, error: errorGameplayData} = await supabase
+    .from("gameplay")
+    .select("accurate, number_of_questions")
+    .eq("user_id", userID)
+    .order("created_at", {ascending: true})
+
+    if (!gameplayData || errorGameplayData){
+      console.error("Error fetching gameplay/accuracy data: ", errorGameplayData);
+      return;
+    }
+
+    return gameplayData[gameplayData.length-1];
+  }
