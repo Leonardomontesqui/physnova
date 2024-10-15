@@ -31,9 +31,9 @@ export default function QuestionCard() {
   const [numberOfQuestions, setNumberOfQuestions] = useState<number>(5);
 
   useEffect(() => {
-    // applySettings();
+    applySettings();
     setShuffledOptionIndices(shuffleArray([0, 1, 2, 3]));
-    testingIndexList();
+    // testingIndexList();
   }, []);
 
   useEffect(() => {
