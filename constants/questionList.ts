@@ -276,6 +276,7 @@ export const questionList = [
     Topic: "Atomic, Nuclear and Particle Physics",
     Exam: "2021_TZ1_SL",
     Image: "https://i.imgur.com/soZp4na.png",
+    ExplanationDisabled: true,
     ImageDescription:
       "The image depicts a particle physics reaction, specifically the decay of a proton. In the initial state, a proton (charge +1), an electron (charge -1), and a muon neutrino (charge 0) are present. In the final state, a neutron (charge 0), a muon (charge -1), and an electron neutrino (charge 0) are produced.",
     Question:
@@ -992,7 +993,7 @@ export const questionList = [
     Qnumber: 16,
     Topic: "Waves",
     Exam: "2018_Nov_SL",
-    Question: `In a double-slit experiment, a source of monochromatic red light is incident on slits S<sub>1</sub> and S<sub>2</sub> separated by a distance $d$. A screen is located at distance $x$ from the slits. A pattern with fringe spacing $y$ is observed on the screen. <div style="text-align: center;"><img src="https://i.imgur.com/e3tJlQ7.png" alt="Double-slit experiment" style="max-height: 240px; display: block; margin: auto;"></div>Three changes are possible for this arrangement. Which changes will cause a decrease in fringe spacing $y$?<br><br><div style="margin-left: 20px;">I. increasing x<br>II. increasing d<br>III. using green monochromatic light instead of red</div><br>`,
+    Question: `In a double-slit experiment, a source of monochromatic red light is incident on slits S<sub>1</sub> and S<sub>2</sub> separated by a distance $d$. A screen is located at distance $x$ from the slits. A pattern with fringe spacing $y$ is observed on the screen. <div style="text-align: center;"><img src="https://i.imgur.com/e3tJlQ7.png" alt="Double-slit experiment" style="max-height: 180px; display: block; margin: auto;"></div>Three changes are possible for this arrangement. Which changes will cause a decrease in fringe spacing $y$?<br><br><div style="margin-left: 20px;">I. increasing x<br>II. increasing d<br>III. using green monochromatic light instead of red</div><br>`,
     Options: [
       { text: "I and II only", isCorrect: false },
       { text: "I and III only", isCorrect: false },
@@ -1156,7 +1157,7 @@ export const questionList = [
   Topic: "Mechanics",
   Exam: "2022_November_SL",
   ExplanationDisabled: true,
-  Question: "A ball of mass 1.5 kg strikes a force sensor and bounces. The ball experiences a change in velocity of $10 \\mathrm{ms}^{-1}$. The graph shows the variation with time t of the force F recorded by the sensor.<br><div style=\"text-align: center;\"><img src=\"https://i.imgur.com/rrBdpdN.png\" alt=\"Force vs Time Graph\" style=\"max-height: 240px; display: block; margin: auto;\"></div>What is $\\Delta T$?",
+  Question: "A ball of mass 1.5 kg strikes a force sensor and bounces. The ball experiences a change in velocity of $10 \\mathrm{ms}^{-1}$. The graph shows the variation with time t of the force F recorded by the sensor.<br><div style=\"text-align: center;\"><img src=\"https://i.imgur.com/rrBdpdN.png\" alt=\"Force vs Time Graph\" style=\"max-height: 180px; display: block; margin: auto;\"></div>What is $\\Delta T$?",
   Options: [
     { text: "0.15 s", isCorrect: false },
     { text: "0.30 s", isCorrect: true },
@@ -1250,7 +1251,7 @@ export const questionList = [
   Topic: "Waves",
   Exam: "2022_November_SL",
   ExplanationDisabled: true,
-  Question: "A ray of light enters from air into a water droplet of radius $r$ at point $S$. $S$ is a vertical distance $h$ from the centre of the droplet. The droplet has a refractive index $n$ and the angle of refraction is $\\theta$.<br><div style=\"text-align: center;\"><img src=\"https://i.imgur.com/qiHNdeR.png\" alt=\"Water droplet refraction diagram\" style=\"max-height: 240px; display: block; margin: auto;\"></div><br>What is $\\sin\\theta$ ?",
+  Question: "A ray of light enters from air into a water droplet of radius $r$ at point $S$. $S$ is a vertical distance $h$ from the centre of the droplet. The droplet has a refractive index $n$ and the angle of refraction is $\\theta$.<br><div style=\"text-align: center;\"><img src=\"https://i.imgur.com/qiHNdeR.png\" alt=\"Water droplet refraction diagram\" style=\"max-height: 180px; display: block; margin: auto;\"></div><br>What is $\\sin\\theta$ ?",
   Options: [
     { text: "$\\frac{nh}{r}$", isCorrect: false },
     { text: "$\\frac{r}{nh}$", isCorrect: false },
@@ -1289,7 +1290,7 @@ export const questionList = [
   Topic: "Electricity and Magnetism",
   Exam: "2022_November_SL",
   ExplanationDisabled: true,
-  Question: "A cell of negligible internal resistance is connected to three identical resistors. The current in the cell is 3.0A.<br><br><div style=\"text-align: center;\"><img src=\"https://i.imgur.com/5R3RW8b.png\" alt=\"Resistors in parallel\" style=\"max-height: 240px; display: block; margin: auto;\"></div><br>The resistors are now arranged in series. What is the new current in the cell?",
+  Question: "A cell of negligible internal resistance is connected to three identical resistors. The current in the cell is 3.0A.<br><br><div style=\"text-align: center;\"><img src=\"https://i.imgur.com/5R3RW8b.png\" alt=\"Resistors in parallel\" style=\"max-height: 180px; display: block; margin: auto;\"></div><br>The resistors are now arranged in series. What is the new current in the cell?",
   Options: [
     { text: "1.0A", isCorrect: false },
     { text: "1.5A", isCorrect: true },
@@ -1317,7 +1318,7 @@ export const questionList = [
   Topic: "Electricity and Magnetism",
   Exam: "2022_November_SL",
   ExplanationDisabled: true,
-  Question: "A loop of wire lies in a magnetic field directed into the plane of the page. The loop carries a current in a clockwise direction.<br><br><div style='text-align: center;'><img src='https://i.imgur.com/sLFnBtD.png' alt='Magnetic loop' style='max-height: 240px; display: block; margin: auto;'></div><br>The magnetic force acting on the wire tends to?",
+  Question: "A loop of wire lies in a magnetic field directed into the plane of the page. The loop carries a current in a clockwise direction.<br><br><div style='text-align: center;'><img src='https://i.imgur.com/sLFnBtD.png' alt='Magnetic loop' style='max-height: 180px; display: block; margin: auto;'></div><br>The magnetic force acting on the wire tends to?",
   Options: [
     { text: "rotate the loop about the X axis.", isCorrect: false },
     { text: "rotate the loop about the Y axis.", isCorrect: false },
@@ -1369,9 +1370,201 @@ export const questionList = [
     { text: "C", isCorrect: false },
     { text: "D", isCorrect: false }
   ]
+},
+
+
+
+
+{
+  Qnumber: 30,
+  Topic: "Energy Production",
+  Exam: "2022_May_TZ2_2",
+  Image:"https://i.imgur.com/JnkX9Qw.png",
+  ExplanationDisabled: true,
+  Question: "The Sankey diagrams for a filament lamp and for an LED bulb are shown below.<br><div style=\"text-align: center;\"><img src=\"https://i.imgur.com/oA5cj3r.png\" alt=\"Sankey diagrams for filament lamp and LED bulb\" style='display: block; margin: auto; max-height: 140px; height: auto;'></div><br>What is the efficiency of the filament lamp and the LED bulb?",
+  Options: [
+    { text: "A", isCorrect: true },
+    { text: "B", isCorrect: false },
+    { text: "C", isCorrect: false },
+    { text: "D", isCorrect: false }
+  ]
+},
+
+{
+  Qnumber: 23,
+  Topic: "Circular Motion and Gravitation",
+  Exam: "2022_May_TZ2_2",
+  ExplanationDisabled: true,
+  Question: "A satellite is orbiting Earth in a circular path at constant speed. Three statements about the resultant force on the satellite are:<br><br> <div style='margin-left: 20px;'> I. It is equal to the gravitational force of attraction on the satellite.<br> II. It is equal to the mass of the satellite multiplied by its acceleration.<br> III. It is equal to the centripetal force on the satellite.</div><br>Which combination of statements is correct?",
+  Options: [
+    { text: "I and II only", isCorrect: false },
+    { text: "I and III only", isCorrect: false },
+    { text: "II and III only", isCorrect: false },
+    { text: "I, II and III", isCorrect: true }
+  ]
+},
+{
+  Qnumber: 24,
+  Topic: "Circular Motion and Gravitation",
+  Exam: "2022_May_TZ2_2",
+  ExplanationDisabled: true,
+  Question: "Three statements about Newton’s law of gravitation are:<br><br> <div style='margin-left: 20px;'> I. It can be used to predict the motion of a satellite.<br> II. It explains why gravity exists.<br> III. It is used to derive the expression for gravitational potential energy.</div><br>Which combination of statements is correct?",
+  Options: [
+    { text: "I and II only", isCorrect: false },
+    { text: "I and III only", isCorrect: true },
+    { text: "II and III only", isCorrect: false },
+    { text: "I, II and III", isCorrect: false }
+  ]
+},
+{
+  Qnumber: 27,
+  Topic: "Atomic, Nuclear and Particle Physics",
+  Exam: "2022_May_TZ2_2",
+  ExplanationDisabled: true,
+  Question: "What statement is <strong>not</strong> true about radioactive decay?",
+  Options: [
+    { text: "The percentage of radioactive nuclei of an isotope in a sample of that isotope after 7 half-lives is smaller than 1%.", isCorrect: false },
+    { text: "The half-life of a radioactive isotope is the time taken for half the nuclei in a sample of that isotope to decay.", isCorrect: false },
+    { text: "The whole-life of a radioactive isotope is the time taken for all the nuclei in a sample of that isotope to decay.", isCorrect: true },
+    { text: "The half-life of radioactive isotopes range between extremely short intervals to thousands of millions of years.", isCorrect: false }
+  ]
+},
+
+{
+  Qnumber: 28,
+  Topic: "Energy Production",
+  Exam: "2022_May_TZ2_2",
+  ExplanationDisabled: true,
+  Question: "The age of the Earth is about $4.5 \\times 10^9$ years. <br><br>What area of physics provides experimental evidence for this conclusion?",
+  Options: [
+    { text: "Newtonian mechanics", isCorrect: false },
+    { text: "Optics", isCorrect: false },
+    { text: "Radioactivity", isCorrect: true },
+    { text: "Electromagnetism", isCorrect: false }
+  ]
+},
+{
+  Qnumber: 29,
+  Topic: "Energy Production",
+  Exam: "2022_May_TZ2_2",
+  Image:"https://i.imgur.com/n0DFBLy.png",
+  ExplanationDisabled: true,
+  Question: "Photovoltaic cells and solar heating panels are used to transfer the electromagnetic energy of the Sun’s rays into other forms of energy. <br><br>What is the form of energy into which solar energy is transferred in photovoltaic cells and solar heating panels?<br><br>",
+  Options: [
+    { text: "A", isCorrect: true },
+    { text: "B", isCorrect: false },
+    { text: "C", isCorrect: false },
+    { text: "D", isCorrect: false }
+  ]
+},
+
+
+{
+  Qnumber: 23,
+  Topic: "Circular Motion and Gravitation",
+  Exam: "2022_May_TZ1_1",
+  ExplanationDisabled: true,
+  Question: "A ball of mass 0.3kg is attached to a light, inextensible string. It is rotated in a vertical circle. The length of the string is 0.6m and the speed of rotation of the ball is 4ms<sup>-1</sup>.<br><br><div style='text-align: center;'><img src='https://i.imgur.com/s39EaPV.png' alt='Ball on a string diagram' style='display: block; margin: auto; max-width: 200px; height: auto;'/></div><br>What is the tension when the string is horizontal?",
+  Options: [
+    { text: "5N", isCorrect: false },
+    { text: "8N", isCorrect: true },
+    { text: "11N", isCorrect: false },
+    { text: "13N", isCorrect: false }
+  ]
+},
+
+{
+  Qnumber: 28,
+  Topic: "Energy Production",
+  Exam: "2022_May_TZ1_1",
+  ExplanationDisabled: true,
+  Question: "Wind of speed $v$ flows through a wind generator. The wind speed drops to $\\frac{v}{3}$ after passing through the blades. What is the maximum possible efficiency of the generator?",
+  Options: [
+    { text: "$\\frac{1}{27}$", isCorrect: false },
+    { text: "$\\frac{8}{27}$", isCorrect: false },
+    { text: "$\\frac{19}{27}$", isCorrect: false },
+    { text: "$\\frac{26}{27}$", isCorrect: true }
+  ]
+},
+{
+  Qnumber: 29,
+  Topic: "Energy Production",
+  Exam: "2022_May_TZ1_1",
+  ExplanationDisabled: true,
+  Question: "Three mechanisms that affect the composition of the atmosphere of the Earth are:<br><br><div style='margin-auto'> I. Loss of forests that would otherwise store carbon dioxide – CO<sub>2</sub><br> II. Release of methane – CH<sub>4</sub> by the digestive system of grazing animals<br> III. Increase of nitrous oxide – N<sub>2</sub>O due to extensive use of fertilizer</div><br>Which of these statements describe a process that contributes to global warming?",
+  Options: [
+    { text: "I and II only", isCorrect: false },
+    { text: "I and III only", isCorrect: false },
+    { text: "II and III only", isCorrect: false },
+    { text: "I, II and III", isCorrect: true }
+  ]
+},
+{
+  Qnumber: 30,
+  Topic: "Energy Production",
+  Exam: "2022_May_TZ1_1",
+  ExplanationDisabled: true,
+  Question: "The diagram shows, for a region on the Earth’s surface, the incident, radiated, and reflected intensities of the solar radiation:<br><br><div style='text-align: center;'><img src='https://i.imgur.com/aKToFub.png' alt='Schematic of solar radiation intensities' style='display: block; margin: auto; max-width: 180px; height: auto;'/></div><br><br>What is the albedo of the region?",
+  Options: [
+    { text: "$\\frac{1}{4}$", isCorrect: true },
+    { text: "$\\frac{1}{3}$", isCorrect: false },
+    { text: "$\\frac{3}{4}$", isCorrect: false },
+    { text: "1", isCorrect: false }
+  ]
+},
+{
+      Qnumber: 22,
+      Topic: "Circular Motion and Gravitation",
+      Exam: "2020_Nov_TZ1",
+      ExplanationDisabled: true,
+      Question: "Mass M is attached to one end of a string. The string is passed through a hollow tube and mass m is attached to the other end. Friction between the tube and string is negligible.<br><br><div style='text-align: center;'><img src='https://i.imgur.com/7y1tjZi.png' alt='Mass and string diagram' style='display: block; margin: auto; max-width: 180px; height: auto;'/></div><br><br>Mass m travels at constant speed v in a horizontal circle of radius r. What is mass M?",
+      Options: [
+        { text: "$\\frac{mv}{r}$", isCorrect: false },
+        { text: "$mv^2rg$", isCorrect: false },
+        { text: "$\\frac{mgv}{r^2}$", isCorrect: false },
+        { text: "$\\frac{mv}{gr^2}$", isCorrect: true }
+      ]
+    },
+    {
+      Qnumber: 23,
+      Topic: "Circular Motion and Gravitation",
+      Exam: "2020_Nov_TZ1",
+      ExplanationDisabled: true,
+      Question: "Planet X has a gravitational field strength of 18 N kg<sup>-1</sup> at its surface. Planet Y has the same density as X but three times the radius of X. What is the gravitational field strength at the surface of Y?",
+      Options: [
+        { text: "6 ms<sup>-2</sup>", isCorrect: false },
+        { text: "18 ms<sup>-2</sup>", isCorrect: false },
+        { text: "54 ms<sup>-2</sup>", isCorrect: true },
+        { text: "162 ms<sup>-2</sup>", isCorrect: false }
+      ]
+    },
+
+    {
+  Qnumber: 21,
+  Topic: "Circular Motion and Gravitation",
+  Exam: "2017_Nov_TZ1",
+  Image:"https://i.imgur.com/FZ0JXT5.png",
+  ExplanationDisabled: true,
+  Question: "A mass attached to a string rotates in a gravitational field with a constant period in a vertical plane.<br><div style='text-align: center;'><img src='https://i.imgur.com/kBZgMli.png' alt='Mass on a string' style='display: block; margin: auto; max-height: 140px; height: auto;'/></div>How do the tension in the string and the kinetic energy of the mass compare at points P and Q?",
+  Options: [
+    { text: "A", isCorrect: false },
+    { text: "B", isCorrect: true },
+    { text: "C", isCorrect: false },
+    { text: "D", isCorrect: false }
+  ]
+},
+{
+  Qnumber: 22,
+  Topic: "Circular Motion and Gravitation",
+  Exam: "2017_Nov_TZ1",
+  ExplanationDisabled: true,
+  Question: "A satellite X of mass m orbits the Earth with a period $T$. What will be the orbital period of satellite Y of mass $2m$ occupying the same orbit as X?",
+  Options: [
+    { text: "$\\frac{T}{2}$", isCorrect: false },
+    { text: "T", isCorrect: true },
+    { text: "$\\sqrt{2T}$", isCorrect: false },
+    { text: "2T", isCorrect: false }
+  ]
 }
-
-
-
 
 ];

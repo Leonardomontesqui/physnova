@@ -8,7 +8,7 @@ import { questionList } from "@/constants/questionList";
 
 export default function SavedQuestion({ index }: { index: number }) {
   return (
-    <section className="relative QuestionCard min-h-[600px] max-h-[800px] flex flex-col bg-white rounded-3xl border border-[#d9d9d9] p-4 gap-2 overflow-y-scroll no-scrollbar">
+    <section className="relative min-h-[450px] md:min-h-[600px] flex flex-col bg-white rounded-3xl border border-[#d9d9d9] p-4 gap-2 ">
       <header className="flex justify-between w-full text-sm text-[#bfbfbf]">
         <p>{questionList[index]?.Exam}</p>
         <p>{questionList[index]?.Topic}</p>
@@ -30,7 +30,7 @@ export default function SavedQuestion({ index }: { index: number }) {
         />
       )}
 
-      <section className="absolute bottom-4 flex flex-col gap-2 left-4 right-4">
+      <section className="md:absolute mt-auto bottom-4 flex flex-col gap-2 left-4 right-4 overflow-y-auto">
         {questionList[index]?.Options.map((option) => (
           <div
             className={`border rounded-lg px-4 py-2 text-left text-sm ${

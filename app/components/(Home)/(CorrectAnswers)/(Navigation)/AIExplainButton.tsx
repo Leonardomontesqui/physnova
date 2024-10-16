@@ -20,7 +20,6 @@ export function AIExplainButton({
       onClick={!isDisabled ? onClick : undefined}
     >
       <Sparkles size={20} strokeWidth={1.75} />
-      {/* {showExplanation ? "Hide Explanation" : "AI Explain"} */}
     </button>
   );
 }

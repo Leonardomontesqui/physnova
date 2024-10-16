@@ -22,6 +22,10 @@ interface ExplainProps {
   explanation: string;
   setExplanation: (text: string) => void;
   currentIndex: number;
+  explanationCache: Record<number, string>;
+  setExplanationCache: (
+    cache: (prevCache: Record<number, string>) => Record<number, string>
+  ) => void;
 }
 
 export default function Explain({
@@ -33,32 +37,35 @@ export default function Explain({
   explanation,
   setExplanation,
   currentIndex,
+  explanationCache,
+  setExplanationCache,
 }: ExplainProps) {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
-  const [explanationCache, setExplanationCache] = useState<
-    Record<number, string>
-  >({});
+  // const [explanationCache, setExplanationCache] = useState<
+  //   Record<number, string>
+  // >({});
 
   React.useEffect(() => {
     if (triggerFetchExplanation) {
       fetchExplanation();
     }
-  }, [triggerFetchExplanation]);
+  }, [triggerFetchExplanation, currentIndex]);
 
   // Fetch explanation logic is called when button is clicked
   const fetchExplanation = async () => {
     if (currentIndex in explanationCache) {
+      console.log("hiiiii");
       setExplanation(explanationCache[currentIndex]);
+      return;
     } else {
       setLoading(true);
       setError(false);
 
       try {
         const prompt = `Explain why ${correctAnswer} is 
-      the correct answer to the following question and if the user's selected answer is wrong, 
-      explain why it is wrong. If there is a diagram in the question, consider the diagram or diagram description in your explanation. 
-      Use a maximum of 500 words and prioritize equations when possible. Question: ${question}. User's Answer: ${userAnswer}. Diagram description: ${diagramDescription}.`;
+      the correct answer to the following question. If there is a diagram in the question, consider the diagram or diagram description in your explanation. 
+      Use a maximum of 400 words and prioritize equations when possible. Question: ${question}. Diagram description: ${diagramDescription}.`; //you can also pass the usersAnswer to compare but too much hassle
 
         const result = await model.generateContent(prompt);
         const response = await result.response;
@@ -66,7 +73,7 @@ export default function Explain({
 
         setExplanationCache((prevCache) => ({
           ...prevCache,
-          [currentIndex]: text,
+          [currentIndex]: text, // Use bracket notation to set the value for the key currentIndex
         }));
         setExplanation(text);
       } catch (err) {
@@ -87,14 +94,12 @@ export default function Explain({
   }
 
   return (
-    <div className="overflow-y-scroll no-scrollbar">
-      <ReactMarkdown
-        className="text-sm"
-        remarkPlugins={[remarkMath, remarkGfm]}
-        rehypePlugins={[rehypeKatex, rehypeRaw]}
-      >
-        {explanation || "No explanation available"}
-      </ReactMarkdown>
-    </div>
+    <ReactMarkdown
+      className="text-sm"
+      remarkPlugins={[remarkMath, remarkGfm]}
+      rehypePlugins={[rehypeKatex, rehypeRaw]}
+    >
+      {explanation || "No explanation available"}
+    </ReactMarkdown>
   );
 }

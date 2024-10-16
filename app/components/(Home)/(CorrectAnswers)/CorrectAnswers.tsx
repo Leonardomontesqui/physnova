@@ -15,6 +15,9 @@ export default function CorrectAnswers() {
   const [showExplanation, setShowExplanation] = useState<boolean>(false);
   const [triggerFetch, setTriggerFetch] = useState(false);
   const [questionAmount, setQuestionAmount] = useState<number>(5);
+  const [explanationCache, setExplanationCache] = useState<
+    Record<number, string>
+  >({});
 
   useEffect(() => {
     setGameplayData();
@@ -34,10 +37,15 @@ export default function CorrectAnswers() {
   };
 
   const handleClick = () => {
-    if (!showExplanation) {
-      setTriggerFetch(true); // Trigger the fetching only when showing the explanation
-    }
+    // if (!showExplanation) {
+    //   setTriggerFetch(true); // Trigger the fetching only when showing the explanation
+    // }
     setShowExplanation(!showExplanation);
+    if (!showExplanation) {
+      setTriggerFetch(true); // Trigger fetching only when showing the explanation
+    } else {
+      setTriggerFetch(false); // Reset triggerFetch when explanation is being hidden
+    }
   };
 
   const userAnswer =
@@ -61,7 +69,7 @@ export default function CorrectAnswers() {
         questionAmount={questionAmount}
       />
 
-      <section className="Question&OptionsORExplain flex flex-col justify-between w-full h-full ">
+      <section className="Question&OptionsORExplain flex flex-col justify-between w-full h-full overflow-y-scroll no-scrollbar">
         {!showExplanation ? (
           <Question
             currentQuestion={currentQuestion}
@@ -78,11 +86,13 @@ export default function CorrectAnswers() {
             explanation={explanation}
             setExplanation={setExplanation}
             currentIndex={currentIndex}
+            explanationCache={explanationCache}
+            setExplanationCache={setExplanationCache}
           />
         )}
       </section>
 
-      <div className="text-[#bfbfbf] text-[14px] flex w-full justify-between sticky bottom-0">
+      <div className="text-[#bfbfbf] text-[14px] flex w-full justify-between">
         {currentQuestion?.Topic && <div>{currentQuestion.Topic}</div>}
         {currentIndex + 1} of {questionAmount}
       </div>

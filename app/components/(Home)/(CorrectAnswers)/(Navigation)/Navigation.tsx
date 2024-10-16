@@ -58,7 +58,9 @@ export default function Navigation({
       <div className="flex gap-1 md:gap-2">
         <AIExplainButton
           onClick={handleClick}
-          isDisabled={false}
+          isDisabled={
+            questionList[indexSet[currentIndex]]?.ExplanationDisabled || false
+          }
           showExplanation={showExplanation}
         />
         <SavedButton indexSet={indexSet} currentIndex={currentIndex} />

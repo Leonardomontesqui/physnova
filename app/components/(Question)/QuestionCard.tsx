@@ -101,7 +101,7 @@ export default function QuestionCard() {
   };
 
   return (
-    <section className="relative h-full lg:max-w-[1080px] lg:min-w-[600px] md:border md:rounded-3xl bg-white flex flex-col px-[20px] py-[20px] border md:my-[40px] overflow-y-scroll no-scrollbar gap-2">
+    <section className="relative h-full w-full lg:w-[1080px]  md:border md:rounded-3xl bg-white flex flex-col px-[20px] py-[20px] border md:my-[40px] overflow-y-scroll no-scrollbar gap-2">
       <header className="text-[#bfbfbf] text-xs md:text-sm flex w-full justify-between">
         <p>
           {currentIndex + 1} of {numberOfQuestions}
@@ -119,7 +119,7 @@ export default function QuestionCard() {
 
       {questionList[questionIndexes[currentIndex]]?.Image && (
         <img
-          className="mx-auto max-h-[250px]"
+          className="mx-auto md:max-h-[200px] max-h-[130px]"
           src={questionList[questionIndexes[currentIndex]]?.Image}
           alt="Image Related to Question"
         />

@@ -12,12 +12,12 @@ export default function CustomOption() {
   const handleAmount = (increment: number) => {
     const updatedAmount = amount + increment;
 
-    if (updatedAmount >= 5 && updatedAmount <= 20) {
+    if (updatedAmount >= 5 && updatedAmount <= 10) {
       setAmount(updatedAmount);
     } else if (updatedAmount < 5) {
       setAmount(5);
     } else {
-      setAmount(20);
+      setAmount(10);
     }
   };
 

@@ -23,7 +23,7 @@ export default function Landing() {
             PhysNova
           </div>
           <div className="text-xl lg:text-2xl text-center">
-            Mastering IB Physics 5 questions at a time
+            Master the IB Physics Paper 1 with Past Exam Practice
           </div>
           <button
             className="border bg-[#4356ff] px-[16px] py-[8px] rounded-lg text-white"
@@ -32,12 +32,11 @@ export default function Landing() {
             Login with Google
           </button>
         </div>
-        <div className="w-[300px] h-[150px] lg:w-[600px] lg:h-[300px] ">
-          <iframe
-            src="https://www.loom.com/embed/e55e2871b1d5446385517f411863cd4f?sid=689d0fac-6cbd-4bb9-b6fe-28b3cef1c179"
-            className="w-full h-full border rounded-xl"
-          ></iframe>
-        </div>
+
+        <iframe
+          src="https://www.loom.com/embed/dc64d2f1bad34f369c8e7d87a9df9376?sid=078c9b50-187a-40ae-9fa8-d6d331c73e92"
+          className="border rounded-xl md:w-[650px] md:h-[350px] w-[350px] h-[200px]"
+        />
       </section>
     </main>
   );
