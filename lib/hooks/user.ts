@@ -66,7 +66,7 @@ export const fetchGameplayData = async () => {
 
   if(errorGameplayData || !gameplayData){
     console.error("Error fetching gameplay data: ", errorGameplayData);
-    return;
+    return null;
   }
   
   return gameplayData[gameplayData.length - 1];

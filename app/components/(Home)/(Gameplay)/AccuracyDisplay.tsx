@@ -13,7 +13,7 @@ interface Gameplay {
 const supabase = supabaseBrowser();
 
 export default function AccuracyDisplay() {
-  const [accuracy, setAccuracy] = useState<number>();
+  const [accuracy, setAccuracy] = useState<number>(0);
   const [questionAmount, setQuestionAmount] = useState<number>(5);
 
   const router = useRouter();
