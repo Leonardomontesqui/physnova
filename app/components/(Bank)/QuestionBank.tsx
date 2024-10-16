@@ -42,8 +42,8 @@ export default function QuestionBank({
 
   const setIndexes = async () => {
     const indexes = await fetchSavedIndexes();
-    setSavedIndexes(indexes);
-    setFilteredIndexes(indexes);
+    setSavedIndexes(indexes || []);
+    setFilteredIndexes(indexes || []);
   };
 
   return (
