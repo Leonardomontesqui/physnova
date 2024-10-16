@@ -33,7 +33,7 @@ export default function CorrectAnswers() {
     const gameplayData = await fetchGameplayData();
     setIndexSet(gameplayData?.question_index_list);
     setClickedOptionList(gameplayData?.option_index_list);
-    setQuestionAmount(gameplayData?.number_of_questions);
+    setQuestionAmount(gameplayData?.number_of_questions || 2);
   };
 
   const handleClick = () => {

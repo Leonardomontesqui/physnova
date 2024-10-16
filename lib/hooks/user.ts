@@ -141,9 +141,9 @@ export const insertMockSettings = async() =>{
   export const fetchAccuracy = async () => {
     const userID = await fetchUserID();
 
-    // if(!userID){
-    //   redirect("/");
-    // }
+    if(!userID){
+      redirect("/");
+    }
 
     const {data:gameplayData, error: errorGameplayData} = await supabase
     .from("gameplay")
