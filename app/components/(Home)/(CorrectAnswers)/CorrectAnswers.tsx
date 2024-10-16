@@ -31,9 +31,9 @@ export default function CorrectAnswers() {
 
   const setGameplayData = async () => {
     const gameplayData = await fetchGameplayData();
-    setIndexSet(gameplayData?.question_index_list);
-    setClickedOptionList(gameplayData?.option_index_list);
-    setQuestionAmount(gameplayData?.number_of_questions || 2);
+    setIndexSet(gameplayData?.question_index_list || []);
+    setClickedOptionList(gameplayData?.option_index_list || []);
+    setQuestionAmount(gameplayData?.number_of_questions || 0);
   };
 
   const handleClick = () => {
