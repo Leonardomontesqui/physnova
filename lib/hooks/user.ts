@@ -66,7 +66,7 @@ export const fetchGameplayData = async () => {
 
   if(errorGameplayData || !gameplayData){
     console.error("Error fetching gameplay data: ", errorGameplayData);
-    return null;
+    return;
   }
   
   return gameplayData[gameplayData.length - 1];
@@ -141,9 +141,9 @@ export const insertMockSettings = async() =>{
   export const fetchAccuracy = async () => {
     const userID = await fetchUserID();
 
-    if(!userID){
-      redirect("/");
-    }
+    // if(!userID){
+    //   redirect("/");
+    // }
 
     const {data:gameplayData, error: errorGameplayData} = await supabase
     .from("gameplay")
