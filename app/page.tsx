@@ -54,7 +54,7 @@ export default function Landing() {
         <div className="flex flex-col items-center gap-2 max-w-[942px]">
           <div className="text-[14px] text-[#515151] px-[16px] py-[4px] border border-[#eeeeee] rounded-full flex items-center gap-1">
             {" "}
-            Free because we're also{" "}
+            Free because we&apos;re also{" "}
             <img
               src="IBLogo.png"
               className="w-[16px] h-[16px] inline"
@@ -64,7 +64,7 @@ export default function Landing() {
           <h1 className="font-semibold md:text-[64px] text-[48px] text-center w-full md:leading-[74px]">
             The{" "}
             <a className="bg-gradient-to-r from-[#4356ff] to-[#283499] bg-clip-text text-transparent p-0">
-              free & fun
+              free &amp; fun
             </a>{" "}
             self-testing platform for{" "}
             <a className="bg-gradient-to-r from-[#4356ff] to-[#283499] bg-clip-text text-transparent">
@@ -73,8 +73,8 @@ export default function Landing() {
           </h1>
         </div>
         <h2 className="text-xl lg:text-2xl text-center  text-[#666666] max-w-[700px]">
-          Ace the Paper 1 with hundreds of past exam questions, mock exams, &
-          personalized AI feedback
+          Ace the Paper 1 with hundreds of past exam questions, mock exams,
+          &amp; personalized AI feedback
         </h2>
         <button
           className="border bg-[#4356ff] px-[16px] py-[8px] rounded-xl text-white flex items-center gap-2"
