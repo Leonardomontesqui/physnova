@@ -48,9 +48,9 @@ export default function Landing() {
   };
 
   return (
-    <main className="h-dvh w-dvh flex flex-col">
+    <main className="h-full w-dvh flex flex-col">
       <NavBar />
-      <section className="flex flex-col gap-[32px] h-full items-center justify-center px-[16px] md:px-0">
+      <section className="flex flex-col gap-[32px] h-full items-center justify-center px-[16px] md:px-0 py-7 overflow-scroll">
         <div className="flex flex-col items-center gap-2 max-w-[942px]">
           <div className="text-[14px] text-[#515151] px-[16px] py-[4px] border border-[#eeeeee] rounded-full flex items-center gap-1">
             {" "}
@@ -61,7 +61,7 @@ export default function Landing() {
             ></img>{" "}
             Students
           </div>
-          <h1 className="font-semibold md:text-[64px] text-[48px] text-center w-full md:leading-[74px]">
+          <h1 className="font-semibold md:text-[64px] text-[48px] text-center w-full md:leading-[74px] leading-[50px]">
             The{" "}
             <a className="bg-gradient-to-r from-[#4356ff] to-[#283499] bg-clip-text text-transparent p-0">
               free &amp; fun
