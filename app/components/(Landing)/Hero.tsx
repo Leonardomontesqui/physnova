@@ -9,7 +9,7 @@ export default function Hero() {
         <img src="IBLogo.png" className="w-[16px] h-[16px] inline"></img>{" "}
         Students
       </p>
-      <h1 className="font-semibold md:text-[64px] text-[48px] text-center w-full md:leading-[74px] leading-[50px]">
+      <h1 className="font-semibold md:text-[64px] text-[48px] text-center max-w-[900px] md:leading-[74px] leading-[50px]">
         The{" "}
         <a className="bg-gradient-to-r from-[#4356ff] to-[#283499] bg-clip-text text-transparent p-0">
           free &amp; fun

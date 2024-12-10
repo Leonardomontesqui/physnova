@@ -49,9 +49,9 @@ export default function Landing() {
   };
 
   return (
-    <main className="h-full w-dvh flex flex-col overflow-x-hidden items-center">
+    <main className="h-dvh w-full flex flex-col overflow-x-hidden ">
       <NavBar />
-      <section className="flex flex-col gap-8 items-center px-4 md:px-0 overflow-y-scroll w-full">
+      <section className="flex flex-col items-center py-4 px-4 md:px-0 overflow-y-scroll w-full md:my-auto gap-6 overflow-x-hidden ">
         <Hero />
         <button
           className="border bg-[#4356ff] px-4 py-2 rounded-xl text-white flex items-center gap-2"
