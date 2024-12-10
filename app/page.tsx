@@ -1,6 +1,7 @@
 "use client";
 import { supabaseBrowser } from "@/lib/supabase/browser";
 import NavBar from "./components/ui/(NavBars)/NavBar";
+import Hero from "./components/(Landing)/Hero";
 
 const supabase = supabaseBrowser();
 
@@ -48,36 +49,12 @@ export default function Landing() {
   };
 
   return (
-    <main className="h-full w-dvh flex flex-col">
+    <main className="h-full w-dvh flex flex-col overflow-x-hidden items-center">
       <NavBar />
-      <section className="flex flex-col gap-[32px] h-full items-center justify-center px-[16px] md:px-0 py-7 overflow-scroll">
-        <div className="flex flex-col items-center gap-2 max-w-[942px]">
-          <div className="text-[14px] text-[#515151] px-[16px] py-[4px] border border-[#eeeeee] rounded-full flex items-center gap-1">
-            {" "}
-            Free because we&apos;re also{" "}
-            <img
-              src="IBLogo.png"
-              className="w-[16px] h-[16px] inline"
-            ></img>{" "}
-            Students
-          </div>
-          <h1 className="font-semibold md:text-[64px] text-[48px] text-center w-full md:leading-[74px] leading-[50px]">
-            The{" "}
-            <a className="bg-gradient-to-r from-[#4356ff] to-[#283499] bg-clip-text text-transparent p-0">
-              free &amp; fun
-            </a>{" "}
-            self-testing platform for{" "}
-            <a className="bg-gradient-to-r from-[#4356ff] to-[#283499] bg-clip-text text-transparent">
-              IB Physics
-            </a>
-          </h1>
-        </div>
-        <h2 className="text-xl lg:text-2xl text-center  text-[#666666] max-w-[700px]">
-          Ace the Paper 1 with hundreds of past exam questions, mock exams,
-          &amp; personalized AI feedback
-        </h2>
+      <section className="flex flex-col gap-8 items-center px-4 md:px-0 overflow-y-scroll w-full">
+        <Hero />
         <button
-          className="border bg-[#4356ff] px-[16px] py-[8px] rounded-xl text-white flex items-center gap-2"
+          className="border bg-[#4356ff] px-4 py-2 rounded-xl text-white flex items-center gap-2"
           onClick={() => handleLoginWithOAuth()}
         >
           <GoogleIcon />
