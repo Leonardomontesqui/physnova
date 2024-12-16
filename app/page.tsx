@@ -1,6 +1,6 @@
 "use client";
 import { supabaseBrowser } from "@/lib/supabase/browser";
-import NavBar from "./components/ui/(NavBars)/NavBar";
+import NavBar from "./components/ui/(NavBars)/NavBarX";
 import Hero from "./components/(Landing)/Hero";
 
 const supabase = supabaseBrowser();

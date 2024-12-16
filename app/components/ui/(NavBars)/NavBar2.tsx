@@ -20,7 +20,6 @@ export default function NavBar() {
 
   const fetchUserProfile = async () => {
     const userPicture = await fetchUserPicture();
-    console.log(userPicture);
     setUserPic(userPicture);
     return;
   };
