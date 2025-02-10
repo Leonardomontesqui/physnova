@@ -55,7 +55,6 @@ export default function Explain({
   // Fetch explanation logic is called when button is clicked
   const fetchExplanation = async () => {
     if (currentIndex in explanationCache) {
-      console.log("hiiiii");
       setExplanation(explanationCache[currentIndex]);
       return;
     } else {
