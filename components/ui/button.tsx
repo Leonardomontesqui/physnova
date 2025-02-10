@@ -10,8 +10,9 @@ const buttonVariants = cva("flex  border rounded-xl items-center", {
       secondary: "",
       cta: "bg-[#4356ff] text-white",
     },
-    size: { default: "py-1 px-2 gap-1", lg: "px-4 py-2 gap-2" },
+    size: { default: "py-1 px-2 gap-1 text-sm", lg: "px-4 py-2 gap-2" },
   },
+  defaultVariants: { variant: "default", size: "default" },
 });
 
 interface ButtonProps
@@ -32,3 +33,6 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     );
   }
 );
+Button.displayName = "Button";
+
+export { Button };

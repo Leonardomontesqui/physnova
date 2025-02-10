@@ -3,6 +3,15 @@ import { redirect } from "next/navigation";
 
 const supabase = supabaseBrowser()
 
+export const handleLoginWithOAuth = async () => {
+    supabase.auth.signInWithOAuth({
+      provider: "google",
+      options: {
+        redirectTo: window.location.origin + "/auth/callback?next=/home",
+      },
+    });
+  };
+
 export const fetchUserID = async () => {
     const { data: userDataRes, error: userDataError } =
       await supabase.auth.getUser();

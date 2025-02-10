@@ -1,8 +1,8 @@
 "use client";
 import React, { useState } from "react";
 
-import Filter from "../components/(Bank)/Filter";
-import QuestionBank from "../components/(Bank)/QuestionBank";
+import Filter from "@/components/(Bank)/Filter";
+import QuestionBank from "@/components/(Bank)/QuestionBank";
 
 export default function Bank() {
   const [selectedTopics, setSelectedTopics] = useState<string[]>([]);

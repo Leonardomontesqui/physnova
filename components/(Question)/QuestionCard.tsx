@@ -1,7 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { questionList } from "../../../constants/questionList";
-import { supabaseBrowser } from "@/lib/supabase/browser";
+import { questionList } from "@/constants/questionList";
 import ReactMarkdown from "react-markdown";
 import rehypeKatex from "rehype-katex";
 import remarkMath from "remark-math";
@@ -10,12 +9,8 @@ import remarkGfm from "remark-gfm";
 import "katex/dist/katex.min.css";
 import { fetchSettings, insertGameplayData } from "@/lib/hooks/user";
 import { ArrowBigRight } from "lucide-react";
-import {
-  generateFilteredIndexList,
-  shuffleArray,
-} from "@/lib/actions/filtering";
+import { generateFilteredIndexList, shuffleArray } from "@/lib/utils/filtering";
 
-const supabase = supabaseBrowser(); // this makes it a variable for all
 type QuestionType = (typeof questionList)[0];
 
 export default function QuestionCard() {

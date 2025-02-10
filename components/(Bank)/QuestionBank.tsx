@@ -2,11 +2,7 @@
 import React, { useEffect, useState } from "react";
 import SavedQuestion from "./SavedQuestion";
 import { questionList } from "@/constants/questionList";
-import { topics } from "@/constants/topics";
-import { supabaseBrowser } from "@/lib/supabase/browser";
 import { fetchSavedIndexes } from "@/lib/hooks/user";
-const indexes = [4, 0, 3, 5, 6, 8, 23, 14, 7];
-const supabase = supabaseBrowser();
 
 export default function QuestionBank({
   selectedTopics,
@@ -14,7 +10,6 @@ export default function QuestionBank({
   selectedTopics: string[];
 }) {
   const [filteredIndexes, setFilteredIndexes] = useState<number[]>([]);
-  const [userID, setUserID] = useState<string>();
   const [savedIndexes, setSavedIndexes] = useState([]);
 
   useEffect(() => {
